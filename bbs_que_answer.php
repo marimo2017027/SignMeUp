@@ -1,11 +1,11 @@
-
 <?php
 /*
-Template Name: que_answer
+Template Name: bbs_que_answer
 固定ページ: 回答画面
 */
-// header('X-FRAME-OPTIONS: SAMEORIGIN');
+header('X-FRAME-OPTIONS: SAMEORIGIN');
 get_header();
+// get_header('menu'); 必要なコードか分からない
 $sql = 'SELECT * FROM sortable';
 $query = $wpdb->prepare($sql);
 $rows = $wpdb->get_results($query);
@@ -13,69 +13,66 @@ $rows = $wpdb->get_results($query);
 $upload_dir = wp_upload_dir();
 echo '<div>';
 foreach ($rows as $row) {
-  $files = [$row->attach1, $row->attach2, $row->attach3];
+  $files = array_filter([$row->attach1, $row->attach2, $row->attach3]);
+  $views = []; //ＨＴＭＬをため込む配列の初期化する
   foreach ($files as $file) {
     $info = pathinfo($file);
-    $attach_url = $upload_dir['baseurl'].'/attach/'.$info['basename'];
+    $attach_url = $upload_dir['baseurl'] . '/attach/' . $info['basename'];
     $ext = $info['extension'];
     switch ($ext) {
-            case 'jpeg':
-            case 'png':
-                $view = '<img style="height: 50px;" src="'.$attach_url.'">';
-                break;
-            case 'mp4':
-                $view = '<video style="height: 50px;" src="'.$attach_url.'">';
-                break;
-            case 'pdf':
-                $view = '<iframe style="height: 50px;" src="'.$attach_url.'"></iframe>';
-                break;
-            default:
-                $view = '';
-                break;
-        }
+      case 'jpeg':
+      case 'png':
+        $views[] = '<img style="height: 50px;" src="' . $attach_url . '">';
+        break;
+      case 'mp4':
+        $views[] = '<video style="height: 50px;" src="' . $attach_url . '">';
+        break;
+      case 'pdf':
+        $views[] = '<iframe style="height: 50px;" src="' . $attach_url . '"></iframe>';
+        break;
+      default:
+        break;
     }
   }
   if (empty($row->usericon)) {
     $usericon_src = 'wp-content/themes/sample_theme/images/noimage.png';
   } else {
-    $usericon_src = $upload_dir['baseurl'].'/attach/'->usericon;
+    $usericon_src = $upload_dir['baseurl'] . '/attach/' . $row->usericon;
   }
- //echo '<div><a href="'.$url.'">'.$row->unique_id.'</a></div>';
- echo '<div>' . mb_strimwidth($row->title, 0, 40, '･･･') .'</div>'; //タイトル30文字
- echo '<div>' .$row->stamp.'</div>'; //スタンプ画像
- echo '<div>' .$row->attach1.$row->attach2.$row->attach3.'</div>';  //アップロードファイル
- echo '<div>'.mb_strimwidth($row->text, 0, 40, '･･･').'</div>';//質問文
- echo '<div><img src="'.$usericon_src.'"></div>'; //アイコン画像
- echo '<div>'.mb_strimwidth($row->name, 0, 10, '･･･').'</div>';//名前
+  // echo '<div><a href="'.$url.'">'.$row->unique_id.'</a></div>';
+  echo '<div>' . mb_strimwidth($row->title, 0, 40, '･･･') . '</div>'; // タイトル30文字
+  echo '<div><input type="radio" name="stamp" value="' . $row->stamp . '" id="stamp"><label for="stamp"></label></div>'; // スタンプ画像
+  foreach ($views as $view) {
+    echo '<div>' . $view . '</div>';  // アップロードファイル
+  }
+  echo '<div>' . mb_strimwidth($row->text, 0, 40, '･･･') . '</div>'; // 質問文
+  echo '<div><img src="' . $usericon_src . '"></div>'; // アイコン画像
+  echo '<div>' . mb_strimwidth($row->name, 0, 10, '･･･') . '</div>'; // 名前
+}
 echo '</div>';
-var_dump($row->title);
-var_dump($row->stamp);
-var_dump($row->attach1.$row->attach2.$row->attach3);
-var_dump($row->text);
-var_dump($usericon_src);
-var_dump($row->name);
-var_dump($wpdb->get_results($query));
+// var_dump($attach_dir);
 
-<!-- ここから回答機能 -->
+//ここから回答機能
 //追加コード
 // $upload_dir = wp_upload_dir();
 $camera_url = $upload_dir['baseurl'] . '/camera.png';
 $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
 ?>
-<div class="board_form_partial" id="js_board_form_partial">
+
+<div class="board_respond" id="js_board_respond">
   <div id="answer_Input_area">
     <form name="answer_Input_form">
 
-        <div class="user-area">
+      <div class="user-area">
         <label>
-            <div class="user-icon">
-              <img src="<?php echo $noimage_url; ?>" class="changeImg" style="height:90px;width:90px">
-            </div>
+          <div class="user-icon">
+            <img src="<?php echo $noimage_url; ?>" class="changeImg" style="height:90px;width:90px">
+          </div>
         </label>
-            <input type="file" class="attach" name="attach[]" data-maxsize="5" accept=".png, .jpg, .jpeg" style="display: none;">
-          <div class="viewer" style="display: none;"></div>
-          <button type="button" class="attachclear">clear</button>
-        </div>
+        <input type="file" class="attach" name="attach[]" data-maxsize="5" accept=".png, .jpg, .jpeg" style="display: none;">
+        <div class="viewer" style="display: none;"></div>
+        <button type="button" class="attachclear">clear</button>
+      </div>
 
       <div class="answer-name-area">
         <div class="contents">
@@ -123,15 +120,17 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
         </div>
       </div>
       <style>
-        .hideItems { /* カメラ画像 */
+        .hideItems {
+          /* カメラ画像 */
           display: none;
         }
 
-        .concealItems { 
+        .concealItems {
           display: none;
         }
 
-        .wait { /* ローディング画像 */
+        .wait {
+          /* ローディング画像 */
           height: 40px;
           width: 40px;
           border-radius: 40px;
@@ -142,7 +141,9 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
           animation: rotating 2s 0.25s linear infinite;
         }
 
-        @keyframes rotating { /* ローディング画像 */
+        @keyframes rotating {
+
+          /* ローディング画像 */
           from {
             transform: rotate(0deg);
           }
@@ -153,8 +154,8 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
         }
       </style>
 
-      <div class="uploadfile-warning">
-      ※ファイルサイズ15MB以内、JPG/GIF/PNG/MP4
+      <div class="filesize-restriction-area">
+        動画・画像をアップロード(Upload video・image)<span class="required">※ファイルサイズ15MB以内、JPG/GIF/PNG/MP4</span>
       </div>
 
       <div class="post-button"><!-- ボタンを押せなくする -->
@@ -166,25 +167,8 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
   <div id="confirm_area"></div>
   <div id="result_area"></div>
 </div>
+
 <script>
-  function change1() {
-    q_text.textContent = "質問する";
-    step_img.src = "http://www.irasuto.cfbx.jp/wp-content/themes/sample_theme/images/step01.png";
-    step_img.alt = "STEP1 入力";
-  }
-
-  function change2() {
-    q_text.textContent = "確認する";
-    step_img.src = "http://www.irasuto.cfbx.jp/wp-content/themes/sample_theme/images/step02.png";
-    step_img.alt = "STEP2 確認";
-  }
-
-  function change3() {
-    q_text.textContent = "完了";
-    step_img.src = "http://www.irasuto.cfbx.jp/wp-content/themes/sample_theme/images/step03.png";
-    step_img.alt = "STEP3 完了";
-  }
-
   function validation_submit(f) {
     const submit = document.getElementById("submit_button");
     /* 判定は逆なので、逆に渡す */
@@ -233,7 +217,8 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
     const clear = document.querySelectorAll('.attachclear');
     const viewer = document.querySelectorAll('.viewer');
     const changeImg = document.querySelectorAll('.changeImg'); // 入力されたら消す画像
-    const fileArea = document.querySelectorAll('.image-camera-icon,.usericon-uploads');
+    // .usericon-uploads → .user-icon に変更
+    const fileArea = document.querySelectorAll('.image-camera-icon,.user-icon');
     const set_attach_image = function(i) {
       //HTML要素の中身を変更するときに使われるプロパティ
       if (i == 3) {
@@ -393,15 +378,15 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
         }
         name_value = json.name;
         text_value = json.text;
-        const stamps = document.getElementsByName('stamp');
-        for (var stamp of stamps) {
-          //checkedプロパティは、対象の要素がcheckedを持っていればtrueを、持っていなければfalseを返す
+        // const stamps = document.getElementsByName('stamp');
+        /*for (var stamp of stamps) {
+          checkedプロパティは、対象の要素がcheckedを持っていればtrueを、持っていなければfalseを返す
           if (stamp.checked) {
             stamp_value = stamp.value;
             break;
           }
-        }
-        change2();
+        }*/
+        // change2(); これは恐らくステップフロー画像なので要らない
         // 空文字を入れることで要素内を空にできる
         confirm_area.textContent = '';
         var div;
@@ -417,6 +402,28 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
         //const divQuestionHeaderPartial = document.createElement("div");
         //divQuestionHeaderPartial.classList.add("questionHeader-partial");
         //div.appendChild(child); // div の末尾に child を追加
+
+        const divUserArea = document.createElement("div"); // div (子)を生成
+        divUserArea.classList.add("user-area"); // classの追加
+        divUserArea.appendChild(child); // div (子要素) の末尾に child を追加
+        comment_area.appendChild(divUserArea); // comment_area (親要素) の末尾に div を追加
+
+        const divAnswerNameArea = document.createElement("div"); // div (子)を生成
+        divAnswerNameArea.classList.add("answer-name-area"); // classの追加
+        child = document.createElement("p"); // p (孫)を生成
+        child.appendChild(document.createTextNode(name_value)); //孫要素として Text ノードを生成
+        child.style.display = "inline-block";
+        divAnswerNameArea.appendChild(usericonImg);
+        divAnswerNameArea.appendChild(child); // div (子要素) の末尾に child を追加
+        comment_area.appendChild(divAnswerNameArea); // comment_area (親要素) の末尾に div を追加
+
+        const divAnswerTextArea = document.createElement("div"); // div (子)を生成
+        divAnswerTextArea.classList.add("answer-text-area"); // classの追加
+        child = document.createElement("p"); // p (孫)を生成
+        child.appendChild(document.createTextNode(text_value)); //孫要素として Text ノードを生成
+        divAnswerTextArea.appendChild(child); // div (子要素) の末尾に child を追加
+        comment_area.appendChild(divAnswerTextArea); // comment_area (親要素) の末尾に div を追加
+        divAnswerTextArea.style.fontSize = "150%"; //コメントの文字のサイズ
 
         const image_area = document.createElement("div");
         const comment_area = document.createElement("div");
@@ -454,29 +461,15 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
               const divImageCameraIcon = document.createElement("div"); // div (孫)を生成
               divImageCameraIcon.classList.add("image-camera-icon"); // classの追加
               divImageCameraIcon.appendChild(changeImg); // image_camera_icon (子要素) の末尾に changeImg を追加
-              divImagePartial.appendChild(divImageCameraIcon); // image_partial (親要素) の末尾に image_camera_icon を追加
+              divUserArea.appendChild(divImageCameraIcon); // user_area (親要素) の末尾に image_camera_icon を追加
             }
           }
         }
-        image_area.appendChild(divImagePartial); // image_area (親要素) の末尾に div を追加
+        image_area.appendChild(divUserArea); // image_area (親要素) の末尾に div を追加
 
-
-        const divAnswerNameArea = document.createElement("div"); // div (子)を生成
-        divAnswerNameArea.classList.add("answer-name-area"); // classの追加
-        child = document.createElement("p"); // p (孫)を生成
-        child.appendChild(document.createTextNode(name_value)); //孫要素として Text ノードを生成
-        child.style.display = "inline-block";
-        divAnswerNameArea.appendChild(usericonImg);
-        divAnswerNameArea.appendChild(child); // div (子要素) の末尾に child を追加
-        comment_area.appendChild(divAnswerNameArea); // comment_area (親要素) の末尾に div を追加
-
-        const divAnswerTextArea = document.createElement("div"); // div (子)を生成
-        divAnswerTextArea.classList.add("answer-text-area"); // classの追加
-        child = document.createElement("p"); // p (孫)を生成
-        child.appendChild(document.createTextNode(text_value)); //孫要素として Text ノードを生成
-        divAnswerTextArea.appendChild(child); // div (子要素) の末尾に child を追加
-        comment_area.appendChild(divAnswerTextArea); // comment_area (親要素) の末尾に div を追加
-        divAnswerTextArea.style.fontSize = "150%"; //コメントの文字のサイズ
+        const divFilesizeRestrictionArea = document.createElement("div"); // div (子)を生成
+        divFilesizeRestrictionArea.classList.add("filesize-restriction-area"); // classの追加
+        comment_area.appendChild(divFilesizeRestrictionArea); // comment_area (親要素) の末尾に filesize-restriction-area を追加
 
         const divPostButton = document.createElement("div"); // div (子)を生成
         divPostButton.classList.add("post-button"); // classの追加
@@ -500,16 +493,18 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
         child.addEventListener("click", confirm_button_click);
         divPostButton.appendChild(child); // div (子要素) の末尾に child を追加
         comment_area.appendChild(divPostButton); // comment_area (親要素) の末尾に div を追加
+
         confirm_area.appendChild(image_area);
         confirm_area.appendChild(comment_area);
         if (image_count == 1) {
-          divImagePartial.style.float = "left";
+          divUserArea.style.float = "left";
         } else if (image_count == 2) {
-          divImagePartial.style.float = "left";
+          divUserArea.style.float = "left";
           divBodyPartialParts.style.height = "728px"; //コメント欄外枠
         } else if (image_count == 3) {
-          Array.from(divImagePartial.children).forEach(x => x.style.float = "left");
+          Array.from(divUserArea.children).forEach(x => x.style.float = "left");
         }
+
         input_area.style.display = "none";
         confirm_area.style.display = "block";
       })
@@ -543,9 +538,3 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
       });
   }
 </script>
-
-
-
-<!-- ここから回答に返信する機能 -->
-
-
