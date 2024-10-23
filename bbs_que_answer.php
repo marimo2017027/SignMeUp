@@ -11,6 +11,7 @@ $query = $wpdb->prepare($sql);
 $rows = $wpdb->get_results($query);
 // アップロードディレクトリ（パス名）を取得する
 $upload_dir = wp_upload_dir();
+echo '<div id="questBoard">';
 echo '<div>';
 foreach ($rows as $row) {
   $files = array_filter([$row->attach1, $row->attach2, $row->attach3]);
@@ -60,7 +61,7 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
 ?>
 
 <div class="board_respond" id="js_board_respond">
-  <div id="answer_Input_area">
+  <div id="Input_area">
     <form name="answer_Input_form">
 
       <div class="user-area">
@@ -167,6 +168,7 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
   <div id="confirm_area"></div>
   <div id="result_area"></div>
 </div>
+<?php echo '</div>'; ?>
 
 <script>
   function validation_submit(f) {
@@ -200,7 +202,7 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
     validation_submit(submit);
   };
 
-  const input_area = document.getElementById("input_area");
+  const Input_area = document.getElementById("input_area");
   const confirm_area = document.getElementById("confirm_area");
   const result_area = document.getElementById("result_area");
   var name_value = "";
@@ -321,7 +323,7 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
   const init = function() {
     set_attach_event();
     document.getElementById("submit_button").addEventListener("click", submit_button_click);
-    change1();
+    // change1();
 
     /* 文字数表示 */
     document.addEventListener('input', e => {
@@ -355,7 +357,7 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
     name_value = "";
     text_value = "";
     //サーバーにデータを送信する際に使用するオブジェクトを生成
-    const formData = new FormData(input_form);
+    const formData = new FormData(answer_Input_form);
     //オブジェクト内の既存のキーに新しい値を追加
     formData.append("action", "bbs_quest_submit");
     const opt = {
@@ -429,8 +431,8 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
         const comment_area = document.createElement("div");
         var image_count = 0;
 
-        const divUserArea = document.createElement("div"); // div (子)を生成
-        divUserArea.classList.add("user-area"); // classの追加
+        const divUploadfileArea = document.createElement("div"); // div (子)を生成
+        divUploadfileArea.classList.add("uploadfile-area"); // classの追加
         var usericonImg;
         for (let i = 0; i < blobType.length; i++) {
           if (i == 3) {
@@ -478,7 +480,7 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
         child.type = "button";
         child.innerText = "入力画面へ戻る";
         child.addEventListener("click", () => {
-          change1();
+          // change1();
           input_area.style.display = "block";
           // 空文字を入れることで要素内を空にできる
           confirm_area.textContent = '';
@@ -529,7 +531,7 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
           alert(json.error);
           return;
         }
-        change3();
+        // change3();
         const buttons = document.querySelectorAll('.post-button');
         buttons.forEach(x => x.style.display = "none");
       })
