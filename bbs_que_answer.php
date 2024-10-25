@@ -220,7 +220,7 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
     const viewer = document.querySelectorAll('.viewer');
     const changeImg = document.querySelectorAll('.changeImg'); // 入力されたら消す画像
     // .usericon-uploads → .user-icon に変更
-    const fileArea = document.querySelectorAll('.image-camera-icon,.user-icon');
+    const fileArea = document.querySelectorAll('.uploadfile-camera-icon,.user-icon');
     const set_attach_image = function(i) {
       //HTML要素の中身を変更するときに使われるプロパティ
       if (i == 3) {
