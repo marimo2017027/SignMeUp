@@ -69,9 +69,9 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
           <div class="user-icon">
             <img src="<?php echo $noimage_url; ?>" class="changeImg" style="height:90px;width:90px">
           </div>
+          <input type="file" class="attach" name="attach[]" data-maxsize="5" accept=".png, .jpg, .jpeg" style="display: none;">
+          <div class="viewer" style="display: none;"></div>
         </label>
-        <input type="file" class="attach" name="attach[]" data-maxsize="5" accept=".png, .jpg, .jpeg" style="display: none;">
-        <div class="viewer" style="display: none;"></div>
         <button type="button" class="attachclear">clear</button>
       </div>
 
