@@ -70,8 +70,8 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
             <img src="<?php echo $noimage_url; ?>" class="changeImg" style="height:90px;width:90px">
           </div>
           <input type="file" class="attach" name="attach[]" data-maxsize="5" accept=".png, .jpg, .jpeg" style="display: none;">
-          <div class="viewer" style="display: none;"></div>
         </label>
+        <div class="viewer" style="display: none;"></div>
         <button type="button" class="attachclear">clear</button>
       </div>
 
@@ -84,7 +84,7 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
 
       <div class="answer-text-area">
         <div class="contents">
-          <textarea class="input" name="text" id="question" data-length="<?php echo MAX_LENGTH::TEXT; ?>" data-minlength="<?php echo MIN_LENGTH::TEXT; ?>" placeholder="荒らし行為や誹謗中傷や著作権の侵害はご遠慮ください"></textarea>
+          <textarea class="input" name="text" id="text" data-length="<?php echo MAX_LENGTH::TEXT; ?>" data-minlength="<?php echo MIN_LENGTH::TEXT; ?>" placeholder="荒らし行為や誹謗中傷や著作権の侵害はご遠慮ください"></textarea>
           <div></div>
         </div>
       </div>
