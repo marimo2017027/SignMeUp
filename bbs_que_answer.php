@@ -114,7 +114,7 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
             <div class="uploadfile-camera-icon">
               <img src="<?php echo $camera_url; ?>" class="changeImg" style="height:150px;width:150px">
             </div>
-            < " class=" attach" name="attach[]" accept=".png, .jpg, .jpeg, .pdf, .mp4" style="display: none;">
+            <input type="file" class="attach" name="attach[]" accept=".png, .jpg, .jpeg, .pdf, .mp4" style="display: none;">
           </label>
           <div class="viewer" style="display: none;"></div>
           <button type="button" class="attachclear">clear</button>
