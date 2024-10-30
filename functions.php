@@ -81,7 +81,7 @@ function bbs_quest_submit()
 add_action('wp_ajax_bbs_answer_submit', 'bbs_answer_submit');
 add_action('wp_ajax_nopriv_bbs_answer_submit', 'bbs_answer_submit');
 
-<!-- 質問タイトルとスタンプ画像なし（回答掲示板） -->
+/* 質問タイトルとスタンプ画像なし（回答掲示板 */
 function bbs_answer_submit()
 {
     session_start();
@@ -287,4 +287,3 @@ function bbs_que_list_items()
 }
 add_action('wp_ajax_bbs_que_list_items', 'bbs_que_list_items');
 add_action('wp_ajax_nopriv_bbs_que_list_items', 'bbs_que_list_items');
-?>
