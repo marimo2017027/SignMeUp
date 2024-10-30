@@ -78,10 +78,10 @@ function bbs_quest_submit()
     echo json_encode($result);
     exit;
 }
-add_action('wp_ajax_bbs_answer_submit', 'bbs_answer_submit');
-add_action('wp_ajax_nopriv_bbs_answer_submit', 'bbs_answer_submit');
+add_action('wp_ajax_bbs_quest_submit', 'bbs_quest_submit');
+add_action('wp_ajax_nopriv_bbs_quest_submit', 'bbs_quest_submit');
 
-/* 質問タイトルとスタンプ画像なし（回答掲示板 */
+/* 質問タイトルとスタンプ画像なし（回答掲示板) */
 function bbs_answer_submit()
 {
     session_start();
@@ -132,8 +132,8 @@ function bbs_answer_submit()
     echo json_encode($result);
     exit;
 }
-add_action('wp_ajax_bbs_quest_submit', 'bbs_quest_submit');
-add_action('wp_ajax_nopriv_bbs_quest_submit', 'bbs_quest_submit');
+add_action('wp_ajax_bbs_answer_submit', 'bbs_answer_submit');
+add_action('wp_ajax_nopriv_bbs_answer_submit', 'bbs_answer_submit');
 
 function Chk_ngword($str, $mes, &$error)
 {
