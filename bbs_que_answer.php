@@ -359,7 +359,7 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
     //サーバーにデータを送信する際に使用するオブジェクトを生成
     const formData = new FormData(answer_Input_form);
     //オブジェクト内の既存のキーに新しい値を追加
-    formData.append("action", "bbs_quest_submit");
+    formData.append("action", "bbs_answer_submit");
     const opt = {
       method: "post",
       body: formData
