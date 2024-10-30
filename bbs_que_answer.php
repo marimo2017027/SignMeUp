@@ -114,7 +114,7 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
             <div class="uploadfile-camera-icon">
               <img src="<?php echo $camera_url; ?>" class="changeImg" style="height:150px;width:150px">
             </div>
-            <input type="file" class="attach" name="attach[]" accept=".png, .jpg, .jpeg, .pdf, .mp4" style="display: none;">
+            < " class=" attach" name="attach[]" accept=".png, .jpg, .jpeg, .pdf, .mp4" style="display: none;">
           </label>
           <div class="viewer" style="display: none;"></div>
           <button type="button" class="attachclear">clear</button>
@@ -405,6 +405,7 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
         //divQuestionHeaderPartial.classList.add("questionHeader-partial");
         //div.appendChild(child); // div の末尾に child を追加
 
+        const comment_area = document.createElement("div"); // const image_area の下から移動
         const divUserArea = document.createElement("div"); // div (子)を生成
         divUserArea.classList.add("user-area"); // classの追加
         divUserArea.appendChild(child); // div (子要素) の末尾に child を追加
@@ -428,7 +429,6 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
         divAnswerTextArea.style.fontSize = "150%"; //コメントの文字のサイズ
 
         const image_area = document.createElement("div");
-        const comment_area = document.createElement("div");
         var image_count = 0;
 
         const divUploadfileArea = document.createElement("div"); // div (子)を生成
@@ -463,11 +463,11 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
               const divImageCameraIcon = document.createElement("div"); // div (孫)を生成
               divImageCameraIcon.classList.add("image-camera-icon"); // classの追加
               divImageCameraIcon.appendChild(changeImg); // image_camera_icon (子要素) の末尾に changeImg を追加
-              divUserArea.appendChild(divImageCameraIcon); // user_area (親要素) の末尾に image_camera_icon を追加
+              divUploadfileArea.appendChild(divImageCameraIcon); // uploadfile_area (親要素) の末尾に image_camera_icon を追加
             }
           }
         }
-        image_area.appendChild(divUserArea); // image_area (親要素) の末尾に div を追加
+        image_area.appendChild(divUploadfileArea); // image_area (親要素) の末尾に div を追加
 
         const divFilesizeRestrictionArea = document.createElement("div"); // div (子)を生成
         divFilesizeRestrictionArea.classList.add("filesize-restriction-area"); // classの追加
