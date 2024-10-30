@@ -78,6 +78,60 @@ function bbs_quest_submit()
     echo json_encode($result);
     exit;
 }
+add_action('wp_ajax_bbs_answer_submit', 'bbs_answer_submit');
+add_action('wp_ajax_nopriv_bbs_answer_submit', 'bbs_answer_submit');
+
+<!-- 質問タイトルとスタンプ画像なし（回答掲示板） -->
+function bbs_answer_submit()
+{
+    session_start();
+    $text = $_POST['text'];
+    $name = $_POST['name'];
+    //$title = $_POST['title'];
+    //$stamp = $_POST['stamp'];
+    $name = Chk_StrMode($name);
+    //$title = Chk_StrMode($title);
+    $text = Chk_StrMode($text);
+    Chk_ngword($name, '・NGワードが入力されています。', $error);
+    //Chk_ngword($title, '・NGワードが入力されています。', $error);
+    Chk_ngword($text, '・NGワードが入力されています。', $error);
+    if ($name == "") {
+        $name = "匿名";
+    } // 追加
+    //Chk_InputMode($title, '・質問タイトルをご記入ください。', $error);
+    Chk_InputMode($text, '・質問文をご記入ください。', $error);
+    //Chk_InputMode($stamp, '・スタンプを選択してください。', $error);
+    CheckUrl($name, '・お名前にＵＲＬは記入できません。'); // 追加
+    //CheckUrl($title, '・質問タイトルにＵＲＬは記入できません。'); // 追加
+    CheckUrl($text, '・質問文にＵＲＬは記入できません。'); // 追加
+    $result = [];
+    if (empty($error)) {
+        $result['error'] = '';
+        $result['name'] = $name;
+        //$result['title'] = $title;
+        $result['text'] = $text;
+        $_SESSION['name'] = $name;
+        //$_SESSION['title'] = $title;
+        $_SESSION['text'] = $text;
+        //$_SESSION['stamp'] = $stamp;
+        $_SESSION['attach'] = $_FILES['attach'];
+        foreach ($_FILES['attach']['tmp_name'] as $i => $tmp_name) {
+            if (!empty($tmp_name)) {
+                $_SESSION['attach']['data'][$i] = file_get_contents($tmp_name);
+            }
+        }
+    } else {
+        $result['error'] = $error;
+        $_SESSION['name'] = '';
+        //$_SESSION['title'] = '';
+        $_SESSION['text'] = '';
+        //$_SESSION['stamp'] = '';
+        $_SESSION['attach'] = null;
+    }
+    header('Content-type: application/json; charset=UTF-8');
+    echo json_encode($result);
+    exit;
+}
 add_action('wp_ajax_bbs_quest_submit', 'bbs_quest_submit');
 add_action('wp_ajax_nopriv_bbs_quest_submit', 'bbs_quest_submit');
 
@@ -193,10 +247,6 @@ function bbs_quest_confirm()
 add_action('wp_ajax_bbs_quest_confirm', 'bbs_quest_confirm');
 add_action('wp_ajax_nopriv_bbs_quest_confirm', 'bbs_quest_confirm');
 
-
-
-
-
 function bbs_que_list_items()
 {
     global $wpdb;
@@ -237,3 +287,4 @@ function bbs_que_list_items()
 }
 add_action('wp_ajax_bbs_que_list_items', 'bbs_que_list_items');
 add_action('wp_ajax_nopriv_bbs_que_list_items', 'bbs_que_list_items');
+?>
