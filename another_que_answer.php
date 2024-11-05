@@ -411,35 +411,37 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
                 const divUserIcon = document.createElement("div"); // div (子)を生成
                 divUserArea.classList.add("user-area"); // classの追加
                 divUserIcon.classList.add("user-icon"); // classの追加
-                divUserIcon.appendChild(child); // div (子要素) の末尾に child を追加
+                // child = document.createElement("p"); と child.appendChild(document.createTextNode(○○○_value)); で 1セット
+                // divUserIcon.appendChild(child); // div (子要素) の末尾に child を追加
+                divUserIcon.appendChild(usericonImg); // div (子要素) の末尾に usericonImg を追加
                 divUserArea.appendChild(divUserIcon); // div (子要素) の末尾に div を追加
                 comment_area.appendChild(divUserArea); // comment_area (親要素) の末尾に div を追加
 
                 /* 名前要素作成 */
-                const divNamePartialParts = document.createElement("div"); // div (子)を生成
-                divNamePartialParts.classList.add("answer-name-area"); // classの追加
+                const divAnswerNameArea = document.createElement("div"); // div (子)を生成
+                divAnswerNameArea.classList.add("answer-name-area"); // classの追加
                 child = document.createElement("p"); // p (孫)を生成
                 child.appendChild(document.createTextNode(name_value)); //孫要素として Text ノードを生成
                 child.style.display = "inline-block";
-                divNamePartialParts.appendChild(usericonImg);
-                divNamePartialParts.appendChild(child); // div (子要素) の末尾に child を追加
-                comment_area.appendChild(divNamePartialParts); // comment_area (親要素) の末尾に div を追加
+                // divAnswerNameArea.appendChild(usericonImg); 
+                divAnswerNameArea.appendChild(child); // div (子要素) の末尾に child を追加
+                comment_area.appendChild(divAnswerNameArea); // comment_area (親要素) の末尾に div を追加
 
                 /* コメント要素作成 */
-                divBodyPartialParts.classList.add("body-partial-parts"); // classの追加
-                divBodyPartialParts.classList.add("answer-text-area"); // classの追加
+                const divAnswerTextArea = document.createElement("div"); // div (子)を生成
+                divAnswerTextArea.classList.add("answer-text-area"); // classの追加
                 child = document.createElement("p"); // p (孫)を生成
                 child.appendChild(document.createTextNode(text_value)); //孫要素として Text ノードを生成
-                divBodyPartialParts.appendChild(child); // div (子要素) の末尾に child を追加
-                comment_area.appendChild(divBodyPartialParts); // comment_area (親要素) の末尾に div を追加
-                divBodyPartialParts.style.fontSize = "150%"; //コメントの文字のサイズ
+                divAnswerTextArea.appendChild(child); // div (子要素) の末尾に child を追加
+                comment_area.appendChild(divAnswerTextArea); // comment_area (親要素) の末尾に div を追加
+                divAnswerTextArea.style.fontSize = "150%"; //コメントの文字のサイズ
 
                 /* ファイルアップロード要素作成 */
                 const image_area = document.createElement("div");
                 var image_count = 0;
 
-                const divImagePartial = document.createElement("div"); // div (子)を生成
-                divImagePartial.classList.add("uploadfile-area"); // classの追加
+                const divUploadfileArea = document.createElement("div"); // div (子)を生成
+                divUploadfileArea.classList.add("uploadfile-area"); // classの追加
                 var usericonImg;
                 for (let i = 0; i < blobType.length; i++) {
                     if (i == 3) {
@@ -470,11 +472,11 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
                             const divImageCameraIcon = document.createElement("div"); // div (孫)を生成
                             divImageCameraIcon.classList.add("image-camera-icon"); // classの追加
                             divImageCameraIcon.appendChild(changeImg); // image_camera_icon (子要素) の末尾に changeImg を追加
-                            divImagePartial.appendChild(divImageCameraIcon); // uploadfile_area (親要素) の末尾に image_camera_icon を追加
+                            divUploadfileArea.appendChild(divImageCameraIcon); // uploadfile_area (親要素) の末尾に image_camera_icon を追加
                         }
                     }
                 }
-                image_area.appendChild(divImagePartial); // image_area (親要素) の末尾に div を追加
+                image_area.appendChild(divUploadfileArea); // image_area (親要素) の末尾に div を追加
 
                 /* アップロードファイルサイズ制限事項要素作成 */
                 const divFilesizeRestrictionArea = document.createElement("div"); // div (子)を生成
