@@ -411,7 +411,9 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
         const divUserIcon = document.createElement("div"); // div (子)を生成
         divUserArea.classList.add("user-area"); // classの追加
         divUserIcon.classList.add("user-icon"); // classの追加
-        divUserIcon.appendChild(child); // div (子要素) の末尾に child を追加
+        // child = document.createElement("p"); と child.appendChild(document.createTextNode(○○○_value)); で 1セット
+        // divUserIcon.appendChild(child); // div (子要素) の末尾に child を追加
+        divUserIcon.appendChild(usericonImg); // div (子要素) の末尾に usericonImg を追加
         divUserArea.appendChild(divUserIcon); // div (子要素) の末尾に div を追加
         comment_area.appendChild(divUserArea); // comment_area (親要素) の末尾に div を追加
 
@@ -421,7 +423,7 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
         child = document.createElement("p"); // p (孫)を生成
         child.appendChild(document.createTextNode(name_value)); //孫要素として Text ノードを生成
         child.style.display = "inline-block";
-        divAnswerNameArea.appendChild(usericonImg);
+        // divAnswerNameArea.appendChild(usericonImg); 
         divAnswerNameArea.appendChild(child); // div (子要素) の末尾に child を追加
         comment_area.appendChild(divAnswerNameArea); // comment_area (親要素) の末尾に div を追加
 
