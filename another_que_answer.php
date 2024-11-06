@@ -359,7 +359,7 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
                 submit_button.classList.remove('wait');
                 return response.json();
             })
-            .then(json => {
+            .then(json => { 
                 if (json.error != "") {
                     alert(json.error);
                     return;
