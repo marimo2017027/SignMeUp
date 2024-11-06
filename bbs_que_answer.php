@@ -406,6 +406,7 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
         //div.appendChild(child); // div の末尾に child を追加
 
         /* アイコン画像要素作成 */
+        var usericonImg;
         const comment_area = document.createElement("div"); // const image_area の下から移動
         const divUserArea = document.createElement("div"); // div (子)を生成
         const divUserIcon = document.createElement("div"); // div (子)を生成
@@ -442,7 +443,7 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
 
         const divUploadfileArea = document.createElement("div"); // div (子)を生成
         divUploadfileArea.classList.add("uploadfile-area"); // classの追加
-        var usericonImg;
+        // var usericonImg;
         for (let i = 0; i < blobType.length; i++) {
           if (i == 3) {
             usericonImg = document.createElement("img");
