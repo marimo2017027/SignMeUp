@@ -405,45 +405,13 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
         //divQuestionHeaderPartial.classList.add("questionHeader-partial");
         //div.appendChild(child); // div の末尾に child を追加
 
-        /* アイコン画像要素作成 */
-        var usericonImg;
-        const comment_area = document.createElement("div"); // const image_area の下から移動
-        const divUserArea = document.createElement("div"); // div (子)を生成
-        const divUserIcon = document.createElement("div"); // div (子)を生成
-        divUserArea.classList.add("user-area"); // classの追加
-        divUserIcon.classList.add("user-icon"); // classの追加
-        // child = document.createElement("p"); と child.appendChild(document.createTextNode(○○○_value)); で 1セット
-        // divUserIcon.appendChild(child); // div (子要素) の末尾に child を追加
-        divUserIcon.appendChild(usericonImg); // div (子要素) の末尾に usericonImg を追加
-        divUserArea.appendChild(divUserIcon); // div (子要素) の末尾に div を追加
-        comment_area.appendChild(divUserArea); // comment_area (親要素) の末尾に div を追加
-
-        /* 名前要素作成 */
-        const divAnswerNameArea = document.createElement("div"); // div (子)を生成
-        divAnswerNameArea.classList.add("answer-name-area"); // classの追加
-        child = document.createElement("p"); // p (孫)を生成
-        child.appendChild(document.createTextNode(name_value)); //孫要素として Text ノードを生成
-        child.style.display = "inline-block";
-        // divAnswerNameArea.appendChild(usericonImg); 
-        divAnswerNameArea.appendChild(child); // div (子要素) の末尾に child を追加
-        comment_area.appendChild(divAnswerNameArea); // comment_area (親要素) の末尾に div を追加
-
-        /* コメント要素作成 */
-        const divAnswerTextArea = document.createElement("div"); // div (子)を生成
-        divAnswerTextArea.classList.add("answer-text-area"); // classの追加
-        child = document.createElement("p"); // p (孫)を生成
-        child.appendChild(document.createTextNode(text_value)); //孫要素として Text ノードを生成
-        divAnswerTextArea.appendChild(child); // div (子要素) の末尾に child を追加
-        comment_area.appendChild(divAnswerTextArea); // comment_area (親要素) の末尾に div を追加
-        divAnswerTextArea.style.fontSize = "150%"; //コメントの文字のサイズ
-
         /* ファイルアップロード要素作成 */
         const image_area = document.createElement("div");
         var image_count = 0;
 
         const divUploadfileArea = document.createElement("div"); // div (子)を生成
         divUploadfileArea.classList.add("uploadfile-area"); // classの追加
-        // var usericonImg;
+        var usericonImg;
         for (let i = 0; i < blobType.length; i++) {
           if (i == 3) {
             usericonImg = document.createElement("img");
@@ -478,6 +446,38 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
           }
         }
         image_area.appendChild(divUploadfileArea); // image_area (親要素) の末尾に div を追加
+
+        /* 名前要素作成 */
+        const divAnswerNameArea = document.createElement("div"); // div (子)を生成
+        divAnswerNameArea.classList.add("answer-name-area"); // classの追加
+        child = document.createElement("p"); // p (孫)を生成
+        child.appendChild(document.createTextNode(name_value)); //孫要素として Text ノードを生成
+        child.style.display = "inline-block";
+        // divAnswerNameArea.appendChild(usericonImg); 
+        divAnswerNameArea.appendChild(child); // div (子要素) の末尾に child を追加
+        comment_area.appendChild(divAnswerNameArea); // comment_area (親要素) の末尾に div を追加
+
+        /* コメント要素作成 */
+        const divAnswerTextArea = document.createElement("div"); // div (子)を生成
+        divAnswerTextArea.classList.add("answer-text-area"); // classの追加
+        child = document.createElement("p"); // p (孫)を生成
+        child.appendChild(document.createTextNode(text_value)); //孫要素として Text ノードを生成
+        divAnswerTextArea.appendChild(child); // div (子要素) の末尾に child を追加
+        comment_area.appendChild(divAnswerTextArea); // comment_area (親要素) の末尾に div を追加
+        divAnswerTextArea.style.fontSize = "150%"; //コメントの文字のサイズ
+
+        /* アイコン画像要素作成 */
+        var usericonImg;
+        const comment_area = document.createElement("div"); // const image_area の下から移動
+        const divUserArea = document.createElement("div"); // div (子)を生成
+        const divUserIcon = document.createElement("div"); // div (子)を生成
+        divUserArea.classList.add("user-area"); // classの追加
+        divUserIcon.classList.add("user-icon"); // classの追加
+        // child = document.createElement("p"); と child.appendChild(document.createTextNode(○○○_value)); で 1セット
+        // divUserIcon.appendChild(child); // div (子要素) の末尾に child を追加
+        divUserIcon.appendChild(usericonImg); // div (子要素) の末尾に usericonImg を追加
+        divUserArea.appendChild(divUserIcon); // div (子要素) の末尾に div を追加
+        comment_area.appendChild(divUserArea); // comment_area (親要素) の末尾に div を追加
 
         /* アップロードファイルサイズ制限事項要素作成 */
         const divFilesizeRestrictionArea = document.createElement("div"); // div (子)を生成
