@@ -448,6 +448,7 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
         image_area.appendChild(divUploadfileArea); // image_area (親要素) の末尾に div を追加
 
         /* 名前要素作成 */
+        const comment_area = document.createElement("div"); // const image_area の下から移動
         const divAnswerNameArea = document.createElement("div"); // div (子)を生成
         divAnswerNameArea.classList.add("answer-name-area"); // classの追加
         child = document.createElement("p"); // p (孫)を生成
@@ -468,7 +469,6 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
 
         /* アイコン画像要素作成 */
         var usericonImg;
-        const comment_area = document.createElement("div"); // const image_area の下から移動
         const divUserArea = document.createElement("div"); // div (子)を生成
         const divUserIcon = document.createElement("div"); // div (子)を生成
         divUserArea.classList.add("user-area"); // classの追加
