@@ -359,7 +359,7 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
                 submit_button.classList.remove('wait');
                 return response.json();
             })
-            .then(json => { 
+            .then(json => {
                 if (json.error != "") {
                     alert(json.error);
                     return;
@@ -389,41 +389,12 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
                 //const divQuestionHeaderPartial = document.createElement("div");
                 //divQuestionHeaderPartial.classList.add("questionHeader-partial");
                 //div.appendChild(child); // div の末尾に child を追加
-                /* アイコン画像要素作成 */
-                var usericonImg;
-                const comment_area = document.createElement("div"); // const image_area の下から移動
-                const divUserArea = document.createElement("div"); // div (子)を生成
-                const divUserIcon = document.createElement("div"); // div (子)を生成
-                divUserArea.classList.add("user-area"); // classの追加
-                divUserIcon.classList.add("user-icon"); // classの追加
-                // child = document.createElement("p"); と child.appendChild(document.createTextNode(○○○_value)); で 1セット
-                // divUserIcon.appendChild(child); // div (子要素) の末尾に child を追加
-                divUserIcon.appendChild(child); // div (子要素) の末尾に child を追加
-                divUserArea.appendChild(divUserIcon); // div (子要素) の末尾に div を追加
-                comment_area.appendChild(divUserArea); // comment_area (親要素) の末尾に div を追加
-                /* 名前要素作成 */
-                const divNamePartialParts = document.createElement("div"); // div (子)を生成
-                divNamePartialParts.classList.add("answer-name-area"); // classの追加
-                child = document.createElement("p"); // p (孫)を生成
-                child.appendChild(document.createTextNode(name_value)); //孫要素として Text ノードを生成
-                child.style.display = "inline-block";
-                // divNamePartialParts.appendChild(usericonImg);
-                divNamePartialParts.appendChild(child); // div (子要素) の末尾に child を追加
-                comment_area.appendChild(divNamePartialParts); // comment_area (親要素) の末尾に div を追加
-                /* コメント要素作成 */
-                const divBodyPartialParts = document.createElement("div"); // div (子)を生成
-                divBodyPartialParts.classList.add("answer-text-area"); // classの追加
-                child = document.createElement("p"); // p (孫)を生成
-                child.appendChild(document.createTextNode(text_value)); //孫要素として Text ノードを生成
-                divBodyPartialParts.appendChild(child); // div (子要素) の末尾に child を追加
-                comment_area.appendChild(divBodyPartialParts); // comment_area (親要素) の末尾に div を追加
-                divBodyPartialParts.style.fontSize = "150%"; //コメントの文字のサイズ
                 /* ファイルアップロード要素作成 */
                 const image_area = document.createElement("div");
                 var image_count = 0;
                 const divImagePartial = document.createElement("div"); // div (子)を生成
                 divImagePartial.classList.add("uploadfile-area"); // classの追加
-                // var usericonImg;
+                var usericonImg;
                 for (let i = 0; i < blobType.length; i++) {
                     if (i == 3) {
                         usericonImg = document.createElement("img");
@@ -458,6 +429,35 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
                     }
                 }
                 image_area.appendChild(divImagePartial); // image_area (親要素) の末尾に div を追加
+                /* 名前要素作成 */
+                const comment_area = document.createElement("div"); // const image_area の下から移動
+                const divNamePartialParts = document.createElement("div"); // div (子)を生成
+                divNamePartialParts.classList.add("answer-name-area"); // classの追加
+                child = document.createElement("p"); // p (孫)を生成
+                child.appendChild(document.createTextNode(name_value)); //孫要素として Text ノードを生成
+                child.style.display = "inline-block";
+                // divNamePartialParts.appendChild(usericonImg);
+                divNamePartialParts.appendChild(child); // div (子要素) の末尾に child を追加
+                comment_area.appendChild(divNamePartialParts); // comment_area (親要素) の末尾に div を追加
+                /* コメント要素作成 */
+                const divBodyPartialParts = document.createElement("div"); // div (子)を生成
+                divBodyPartialParts.classList.add("answer-text-area"); // classの追加
+                child = document.createElement("p"); // p (孫)を生成
+                child.appendChild(document.createTextNode(text_value)); //孫要素として Text ノードを生成
+                divBodyPartialParts.appendChild(child); // div (子要素) の末尾に child を追加
+                comment_area.appendChild(divBodyPartialParts); // comment_area (親要素) の末尾に div を追加
+                divBodyPartialParts.style.fontSize = "150%"; //コメントの文字のサイズ
+                /* アイコン画像要素作成 */
+                var usericonImg;
+                const divUserArea = document.createElement("div"); // div (子)を生成
+                const divUserIcon = document.createElement("div"); // div (子)を生成
+                divUserArea.classList.add("user-area"); // classの追加
+                divUserIcon.classList.add("user-icon"); // classの追加
+                // child = document.createElement("p"); と child.appendChild(document.createTextNode(○○○_value)); で 1セット
+                // divUserIcon.appendChild(child); // div (子要素) の末尾に child を追加
+                divUserIcon.appendChild(child); // div (子要素) の末尾に child を追加
+                divUserArea.appendChild(divUserIcon); // div (子要素) の末尾に div を追加
+                comment_area.appendChild(divUserArea); // comment_area (親要素) の末尾に div を追加
                 /* アップロードファイルサイズ制限事項要素作成 */
                 const divFilesizeRestrictionArea = document.createElement("div"); // div (子)を生成
                 divFilesizeRestrictionArea.classList.add("filesize-restriction-area"); // classの追加
