@@ -223,7 +223,7 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
     const fileArea = document.querySelectorAll('.uploadfile-camera-icon,.user-icon');
     const set_attach_image = function(i) {
       //HTML要素の中身を変更するときに使われるプロパティ
-      if (i == 3) {
+      if (i == 4) {
         maxsize = 5;
         height = "85px";
         width = "85px";
@@ -413,7 +413,7 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
         divUploadfileArea.classList.add("uploadfile-area"); // classの追加
         var usericonImg;
         for (let i = 0; i < blobType.length; i++) {
-          if (i == 3) {
+          if (i == 4) {
             usericonImg = document.createElement("img");
             usericonImg.style.maxHeight = "85px";
             usericonImg.style.maxWidth = "85px";
@@ -468,7 +468,6 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
         divAnswerTextArea.style.fontSize = "150%"; //コメントの文字のサイズ
 
         /* アイコン画像要素作成 */
-        var usericonImg;
         const divUserArea = document.createElement("div"); // div (子)を生成
         const divUserIcon = document.createElement("div"); // div (子)を生成
         divUserArea.classList.add("user-area"); // classの追加
