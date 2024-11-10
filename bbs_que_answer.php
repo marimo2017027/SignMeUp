@@ -1,6 +1,6 @@
 <?php
 /*
-Template Name: bbs_que_answer 
+Template Name: bbs_que_answer
 固定ページ: 回答画面
 */
 header('X-FRAME-OPTIONS: SAMEORIGIN');
