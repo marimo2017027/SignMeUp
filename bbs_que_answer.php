@@ -59,7 +59,7 @@ $camera_url = $upload_dir['baseurl'] . '/camera.png';
 $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
 ?>
 <div class="board_respond" id="js_board_respond">
-    <div id="Input_area">
+    <div id="input_area">
         <form name="answer_Input_form">
             <div class="user-area">
                 <label>
@@ -162,11 +162,10 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
 </div>
 <?php echo '</div>'; ?>
 <script>
-    function validation_submit(f) {
+    /* function validation_submit(f) {
         const submit = document.getElementById("submit_button");
-        /* 判定は逆なので、逆に渡す */
-        submit.disabled = f ? false : true;
-    };
+    submit.disabled = f ? false : true;
+    }; */
 
     function validation_text(contents) {
         /* このcontentsグループの、inputを抽出 */
@@ -192,7 +191,7 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
         }
         validation_submit(submit);
     };
-    const Input_area = document.getElementById("input_area");
+    const input_area = document.getElementById("input_area");
     const confirm_area = document.getElementById("confirm_area");
     const result_area = document.getElementById("result_area");
     var name_value = "";
