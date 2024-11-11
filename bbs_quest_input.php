@@ -173,11 +173,10 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
         step_img.alt = "STEP3 完了";
     }
 
-    function validation_submit(f) {
+    /* function validation_submit(f) {
         const submit = document.getElementById("submit_button");
-        /* 判定は逆なので、逆に渡す */
-        submit.disabled = f ? false : true;
-    };
+    submit.disabled = f ? false : true;
+    };*/
 
     function validation_text(parts) {
         /* このpartsグループの、inputを抽出 */
