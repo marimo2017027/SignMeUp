@@ -287,3 +287,13 @@ function bbs_que_list_items()
 }
 add_action('wp_ajax_bbs_que_list_items', 'bbs_que_list_items');
 add_action('wp_ajax_nopriv_bbs_que_list_items', 'bbs_que_list_items');
+
+/* WordPressでJavaScriptファイルを読み込む方法 */
+function my_scripts_method()
+{
+    wp_enqueue_script(
+        'custom_script',
+        get_template_directory_uri() . '/response.js',
+    );
+}
+add_action('wp_enqueue_scripts', 'my_scripts_method');　
