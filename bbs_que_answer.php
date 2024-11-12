@@ -59,7 +59,7 @@ $camera_url = $upload_dir['baseurl'] . '/camera.png';
 $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
 ?>
 <div class="board_respond" id="js_board_respond">
-    <div id="input_area">
+    <div id="Input_area">
         <form name="answer_Input_form">
             <div class="user-area">
                 <label>
@@ -167,19 +167,16 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
     submit.disabled = f ? false : true;
     }; */
 
-    function validation_text(contents) {
-        /* このcontentsグループの、inputを抽出 */
-        let text = contents.getElementsByClassName('input')[0];
-        /* 最小チェック */
-        if (text.value.length < text.dataset.minlength) {
-            return false;
-        }
-        /* 最大チェック */
-        if (text.value.length > text.dataset.length) {
-            return false;
-        }
-        return true;
-    };
+    /* function validation_text(contents) {
+    let text = contents.getElementsByClassName('input')[0];
+    if (text.value.length < text.dataset.minlength) {
+        return false;
+    }
+    if (text.value.length > text.dataset.length) {
+        return false;
+    }
+    return true;
+    }; */
     /* バリデーション条件判断部分 */
     function validation() {
         let contents = document.getElementsByClassName('contents');
@@ -191,7 +188,7 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
         }
         validation_submit(submit);
     };
-    const input_area = document.getElementById("input_area");
+    const Input_area = document.getElementById("input_area");
     const confirm_area = document.getElementById("confirm_area");
     const result_area = document.getElementById("result_area");
     var name_value = "";
