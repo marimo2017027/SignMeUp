@@ -178,19 +178,17 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
     submit.disabled = f ? false : true;
     };*/
 
-    function validation_text(parts) {
-        /* このpartsグループの、inputを抽出 */
-        let text = parts.getElementsByClassName('input')[0];
-        /* 最小チェック */
-        if (text.value.length < text.dataset.minlength) {
-            return false;
-        }
-        /* 最大チェック */
-        if (text.value.length > text.dataset.length) {
-            return false;
-        }
-        return true;
-    };
+    /* function validation_text(parts) {
+    let text = parts.getElementsByClassName('input')[0];
+    if (text.value.length < text.dataset.minlength) {
+        return false;
+    }
+    if (text.value.length > text.dataset.length) {
+        return false;
+    }
+    return true;
+    }; */
+
     /* バリデーション条件判断部分 */
     function validation() {
         let parts = document.getElementsByClassName('parts');
