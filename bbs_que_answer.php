@@ -59,7 +59,7 @@ $camera_url = $upload_dir['baseurl'] . '/camera.png';
 $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
 ?>
 <div class="board_respond" id="js_board_respond">
-    <div id="Input_area">
+    <div id="input_area">
         <form name="answer_Input_form">
             <div class="user-area">
                 <label>
@@ -188,7 +188,7 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
         }
         validation_submit(submit);
     };
-    const Input_area = document.getElementById("input_area");
+    const input_area = document.getElementById("input_area");
     const confirm_area = document.getElementById("confirm_area");
     const result_area = document.getElementById("result_area");
     var name_value = "";
@@ -432,7 +432,7 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
                 child = document.createElement("p"); // p (孫)を生成
                 child.appendChild(document.createTextNode(name_value)); //孫要素として Text ノードを生成
                 child.style.display = "inline-block";
-                // divNamePartialParts.appendChild(usericonImg);
+                divNamePartialParts.appendChild(usericonImg);
                 divNamePartialParts.appendChild(child); // div (子要素) の末尾に child を追加
                 comment_area.appendChild(divNamePartialParts); // comment_area (親要素) の末尾に div を追加
                 /* コメント要素作成 */
