@@ -189,7 +189,7 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
     return true;
     }; */
 
-    /* バリデーション条件判断部分 */
+    /* バリデーション条件判断部分
     function validation() {
         let parts = document.getElementsByClassName('parts');
         let submit = true;
@@ -199,7 +199,7 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
             }
         }
         validation_submit(submit);
-    };
+    }; */
 
     const step_img = document.getElementById("step_img");
     const q_text = document.getElementById("q_text");
