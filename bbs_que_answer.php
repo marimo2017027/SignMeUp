@@ -72,13 +72,13 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
                 <button type="button" class="attachclear">clear</button>
             </div>
             <div class="answer-name-area">
-                <div class="contents">
+                <div class="parts">
                     <input class="input" type="text" name="name" id="name" data-length="<?php echo MAX_LENGTH::NAME; ?>" data-minlength="<?php echo MIN_LENGTH::NAME; ?>" placeholder="未入力の場合は、匿名で表示されます">
                     <div></div>
                 </div>
             </div>
             <div class="answer-text-area">
-                <div class="contents">
+                <div class="parts">
                     <textarea class="input" name="text" id="text" data-length="<?php echo MAX_LENGTH::TEXT; ?>" data-minlength="<?php echo MIN_LENGTH::TEXT; ?>" placeholder="荒らし行為や誹謗中傷や著作権の侵害はご遠慮ください"></textarea>
                     <div></div>
                 </div>
@@ -177,17 +177,17 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
     }
     return true;
     }; */
-    /* バリデーション条件判断部分 */
+    /* バリデーション条件判断部分
     function validation() {
-        let contents = document.getElementsByClassName('contents');
+        let parts = document.getElementsByClassName('parts');
         let submit = true;
-        for (let i = 0; i < contents.length; i++) {
-            if (validation_text(contents[i]) != true) {
+        for (let i = 0; i < parts.length; i++) {
+            if (validation_text(parts[i]) != true) {
                 submit = false;
             }
         }
         validation_submit(submit);
-    };
+    }; */
     const input_area = document.getElementById("input_area");
     const confirm_area = document.getElementById("confirm_area");
     const result_area = document.getElementById("result_area");

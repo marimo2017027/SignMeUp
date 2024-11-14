@@ -18,3 +18,15 @@ function validation_text(parts) {
     }
     return true;
 };
+
+/* バリデーション条件判断部分 */
+function validation() {
+    let parts = document.getElementsByClassName('parts');
+    let submit = true;
+    for (let i = 0; i < parts.length; i++) {
+        if (validation_text(parts[i]) != true) {
+            submit = false;
+        }
+    }
+    validation_submit(submit);
+};
