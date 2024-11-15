@@ -47,3 +47,15 @@ function display_text_length(e) {
     m.replaceChildren(n > 0 ? '' : '残り', c,
         `文字${n > 0 ? '超過してい' : '入力でき'}ます。`);
 }
+
+/* 名前要素作成 */
+function create_name_parts(name_class, name_value, usericonImg) {
+    const divNamePartialParts = document.createElement("div"); // div (子)を生成
+    divNamePartialParts.classList.add(name_class); // classの追加
+    const child = document.createElement("p"); // p (孫)を生成
+    child.appendChild(document.createTextNode(name_value)); //孫要素として Text ノードを生成
+    child.style.display = "inline-block";
+    divNamePartialParts.appendChild(usericonImg);
+    divNamePartialParts.appendChild(child); // div (子要素) の末尾に child を追加
+    return divNamePartialParts;
+}

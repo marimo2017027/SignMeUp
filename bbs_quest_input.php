@@ -173,34 +173,6 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
         step_img.alt = "STEP3 完了";
     }
 
-    /* function validation_submit(f) {
-        const submit = document.getElementById("submit_button");
-    submit.disabled = f ? false : true;
-    };*/
-
-    /* function validation_text(parts) {
-    let text = parts.getElementsByClassName('input')[0];
-    if (text.value.length < text.dataset.minlength) {
-        return false;
-    }
-    if (text.value.length > text.dataset.length) {
-        return false;
-    }
-    return true;
-    }; */
-
-    /* バリデーション条件判断部分
-    function validation() {
-        let parts = document.getElementsByClassName('parts');
-        let submit = true;
-        for (let i = 0; i < parts.length; i++) {
-            if (validation_text(parts[i]) != true) {
-                submit = false;
-            }
-        }
-        validation_submit(submit);
-    }; */
-
     const step_img = document.getElementById("step_img");
     const q_text = document.getElementById("q_text");
     const input_area = document.getElementById("input_area");
@@ -470,13 +442,9 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
                 divStampPartial.appendChild(child); // div (子要素) の末尾に child を追加
                 comment_area.appendChild(divStampPartial); // comment_area (親要素) の末尾に div を追加
 
-                const divNamePartialParts = document.createElement("div"); // div (子)を生成
-                divNamePartialParts.classList.add("name-partial-parts"); // classの追加
-                child = document.createElement("p"); // p (孫)を生成
-                child.appendChild(document.createTextNode(name_value)); //孫要素として Text ノードを生成
-                child.style.display = "inline-block";
-                divNamePartialParts.appendChild(usericonImg);
-                divNamePartialParts.appendChild(child); // div (子要素) の末尾に child を追加
+                /* 名前要素作成 */
+                const divNamePartialParts = create_name_parts("name-partial-parts", name_value, usericonImg);
+                comment_area.appendChild(divNamePartialParts); // comment_area (親要素) の末尾に div を追加
                 comment_area.appendChild(divNamePartialParts); // comment_area (親要素) の末尾に div を追加
 
                 const divPostButton = document.createElement("div"); // div (子)を生成
