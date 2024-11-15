@@ -327,21 +327,10 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
         document.getElementById("submit_button").addEventListener("click", submit_button_click);
         change1();
 
-        /* 文字数表示 */
+        /* inputイベント */
         document.addEventListener('input', e => {
-            if (!['name', 'title', 'text'].includes(e.target.id)) return;
-            const
-                t = e.target,
-                m = t.nextElementSibling,
-                n = t.value.length - (t.dataset.length | 0),
-                c = document.createElement('strong');
-            //絶対値が欲しい時
-            c.append(Math.abs(n));
-            //classを設定
-            m.className = 'msg_partial';
-            m.style.color = n > 0 ? 'red' : 'black';
-            m.replaceChildren(n > 0 ? '' : '残り', c,
-                `文字${n > 0 ? '超過してい' : '入力でき'}ます。`);
+            /* 文字数表示 */
+            display_text_length(e);
             /* 毎回判定によるボタン制御 */
             validation();
         });
