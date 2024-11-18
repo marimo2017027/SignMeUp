@@ -370,7 +370,7 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
                 //const divQuestionHeaderPartial = document.createElement("div");
                 //divQuestionHeaderPartial.classList.add("questionHeader-partial");
                 //div.appendChild(child); // div の末尾に child を追加
-
+                /* ファイルアップロード要素作成 */
                 const image_area = document.createElement("div");
                 const comment_area = document.createElement("div");
                 var image_count = 0;
@@ -412,14 +412,11 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
                 }
                 image_area.appendChild(divImagePartial); // image_area (親要素) の末尾に div を追加
 
-                const divBodyPartialParts = document.createElement("div"); // div (子)を生成
-                divBodyPartialParts.classList.add("body-partial-parts"); // classの追加
-                child = document.createElement("p"); // p (孫)を生成
-                child.appendChild(document.createTextNode(text_value)); //孫要素として Text ノードを生成
-                divBodyPartialParts.appendChild(child); // div (子要素) の末尾に child を追加
+                /* コメント要素作成 */
+                const divBodyPartialParts = create_text_parts("text-partial-parts", text_value);
                 comment_area.appendChild(divBodyPartialParts); // comment_area (親要素) の末尾に div を追加
-                divBodyPartialParts.style.fontSize = "150%"; //コメントの文字のサイズ
 
+                /* タイトル要素作成 */
                 const divTitlePartialParts = document.createElement("div"); // div (子)を生成
                 divTitlePartialParts.classList.add("title-partial-parts"); // classの追加
                 child = document.createElement("p"); // p (孫)を生成
@@ -427,6 +424,7 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
                 divTitlePartialParts.appendChild(child); // div (子要素) の末尾に child を追加
                 comment_area.appendChild(divTitlePartialParts); // comment_area (親要素) の末尾に div を追加
 
+                /* スタンプ画像要素作成 */
                 const divStampPartial = document.createElement("div"); // div (子)を生成
                 divStampPartial.classList.add("stamp-partial"); // classの追加
 
@@ -445,8 +443,8 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
                 /* 名前要素作成 */
                 const divNamePartialParts = create_name_parts("name-partial-parts", name_value, usericonImg);
                 comment_area.appendChild(divNamePartialParts); // comment_area (親要素) の末尾に div を追加
-                comment_area.appendChild(divNamePartialParts); // comment_area (親要素) の末尾に div を追加
 
+                /* 確認画面送信ボタン要素作成 */
                 const divPostButton = document.createElement("div"); // div (子)を生成
                 divPostButton.classList.add("post-button"); // classの追加
 

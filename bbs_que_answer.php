@@ -388,20 +388,18 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
                     }
                 }
                 image_area.appendChild(divImagePartial); // image_area (親要素) の末尾に div を追加
+
                 /* 名前要素作成 */
                 const comment_area = document.createElement("div"); // const image_area の下から移動
+
                 /* 名前要素作成 */
                 const divNamePartialParts = create_name_parts("answer-name-area", name_value, usericonImg);
                 comment_area.appendChild(divNamePartialParts); // comment_area (親要素) の末尾に div を追加
-                comment_area.appendChild(divNamePartialParts); // comment_area (親要素) の末尾に div を追加
+
                 /* コメント要素作成 */
-                const divBodyPartialParts = document.createElement("div"); // div (子)を生成
-                divBodyPartialParts.classList.add("answer-text-area"); // classの追加
-                child = document.createElement("p"); // p (孫)を生成
-                child.appendChild(document.createTextNode(text_value)); //孫要素として Text ノードを生成
-                divBodyPartialParts.appendChild(child); // div (子要素) の末尾に child を追加
+                const divBodyPartialParts = create_text_parts("text-partial-parts", text_value);
                 comment_area.appendChild(divBodyPartialParts); // comment_area (親要素) の末尾に div を追加
-                divBodyPartialParts.style.fontSize = "150%"; //コメントの文字のサイズ
+
                 /* アイコン画像要素作成 */
                 const divUserArea = document.createElement("div"); // div (子)を生成
                 const divUserIcon = document.createElement("div"); // div (子)を生成
@@ -412,10 +410,12 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
                 divUserIcon.appendChild(child); // div (子要素) の末尾に child を追加
                 divUserArea.appendChild(divUserIcon); // div (子要素) の末尾に div を追加
                 comment_area.appendChild(divUserArea); // comment_area (親要素) の末尾に div を追加
+
                 /* アップロードファイルサイズ制限事項要素作成 */
                 const divFilesizeRestrictionArea = document.createElement("div"); // div (子)を生成
                 divFilesizeRestrictionArea.classList.add("filesize-restriction-area"); // classの追加
                 comment_area.appendChild(divFilesizeRestrictionArea); // comment_area (親要素) の末尾に filesize-restriction-area を追加
+
                 /* 確認画面送信ボタン要素作成 */
                 const divPostButton = document.createElement("div"); // div (子)を生成
                 divPostButton.classList.add("post-button"); // classの追加

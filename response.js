@@ -59,3 +59,13 @@ function create_name_parts(name_class, name_value, usericonImg) {
     divNamePartialParts.appendChild(child); // div (子要素) の末尾に child を追加
     return divNamePartialParts;
 }
+
+/* コメント要素作成 */
+function create_text_parts(text_class, text_value) {
+    const divBodyPartialParts = document.createElement("div"); // div (子)を生成
+    divBodyPartialParts.classList.add(text_class); // classの追加
+    child = document.createElement("p"); // p (孫)を生成
+    child.appendChild(document.createTextNode(text_value)); //孫要素として Text ノードを生成
+    divBodyPartialParts.appendChild(child); // div (子要素) の末尾に child を追加
+    divBodyPartialParts.style.fontSize = "150%"; //コメントの文字のサイズ
+}
