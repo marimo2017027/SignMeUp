@@ -397,7 +397,7 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
                 comment_area.appendChild(divNamePartialParts); // comment_area (親要素) の末尾に div を追加
 
                 /* コメント要素作成 */
-                const divBodyPartialParts = create_text_parts("text-partial-parts", text_value);
+                const divBodyPartialParts = create_text_parts("answer-text-area", text_value);
                 comment_area.appendChild(divBodyPartialParts); // comment_area (親要素) の末尾に div を追加
 
                 /* アイコン画像要素作成 */
