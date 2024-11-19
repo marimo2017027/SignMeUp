@@ -57,15 +57,26 @@ function create_name_parts(name_class, name_value, usericonImg) {
     child.style.display = "inline-block";
     divNamePartialParts.appendChild(usericonImg);
     divNamePartialParts.appendChild(child); // div (子要素) の末尾に child を追加
-    return divNamePartialParts;
+    return divNamePartialParts; // create_name_parts() で生成した divNamePartialParts を return 
 }
 
 /* コメント要素作成 */
 function create_text_parts(text_class, text_value) {
     const divBodyPartialParts = document.createElement("div"); // div (子)を生成
     divBodyPartialParts.classList.add(text_class); // classの追加
-    child = document.createElement("p"); // p (孫)を生成
+    const child = document.createElement("p"); // p (孫)を生成
     child.appendChild(document.createTextNode(text_value)); //孫要素として Text ノードを生成
     divBodyPartialParts.appendChild(child); // div (子要素) の末尾に child を追加
     divBodyPartialParts.style.fontSize = "150%"; //コメントの文字のサイズ
+    return divBodyPartialParts; // create_name_parts() で生成した divBodyPartialParts を return
+}
+
+/* コメント要素作成 */
+function create_text_parts(text_class, text_value) {
+    const divTitlePartialParts = document.createElement("div"); // div (子)を生成
+    divTitlePartialParts.classList.add(title_class); // classの追加
+    const child = document.createElement("p"); // p (孫)を生成
+    child.appendChild(document.createTextNode(title_value)); //孫要素として Text ノードを生成
+    divTitlePartialParts.appendChild(child); // div (子要素) の末尾に child を追加
+    return divTitlePartialParts; // create_name_parts() で生成した divTitlePartialParts を return
 }

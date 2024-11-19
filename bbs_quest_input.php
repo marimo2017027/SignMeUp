@@ -417,11 +417,7 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
                 comment_area.appendChild(divBodyPartialParts); // comment_area (親要素) の末尾に div を追加
 
                 /* タイトル要素作成 */
-                const divTitlePartialParts = document.createElement("div"); // div (子)を生成
-                divTitlePartialParts.classList.add("title-partial-parts"); // classの追加
-                child = document.createElement("p"); // p (孫)を生成
-                child.appendChild(document.createTextNode(title_value)); //孫要素として Text ノードを生成
-                divTitlePartialParts.appendChild(child); // div (子要素) の末尾に child を追加
+                const divTitlePartialParts = create_text_parts("title-partial-parts", title_value);
                 comment_area.appendChild(divTitlePartialParts); // comment_area (親要素) の末尾に div を追加
 
                 /* スタンプ画像要素作成 */
