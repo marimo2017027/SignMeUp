@@ -72,7 +72,7 @@ function create_text_parts(text_class, text_value) {
 }
 
 /* コメント要素作成 */
-function create_text_parts(text_class, text_value) {
+function create_text_parts(title_class, title_value) {
     const divTitlePartialParts = document.createElement("div"); // div (子)を生成
     divTitlePartialParts.classList.add(title_class); // classの追加
     const child = document.createElement("p"); // p (孫)を生成

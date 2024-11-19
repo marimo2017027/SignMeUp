@@ -405,6 +405,7 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
                 const divUserIcon = document.createElement("div"); // div (子)を生成
                 divUserArea.classList.add("user-area"); // classの追加
                 divUserIcon.classList.add("user-icon"); // classの追加
+                child = document.createElement("p");
                 // child = document.createElement("p"); と child.appendChild(document.createTextNode(○○○_value)); で 1セット
                 // divUserIcon.appendChild(child); // div (子要素) の末尾に child を追加
                 divUserIcon.appendChild(child); // div (子要素) の末尾に child を追加
