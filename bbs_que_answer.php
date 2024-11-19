@@ -349,44 +349,7 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
                 //divQuestionHeaderPartial.classList.add("questionHeader-partial");
                 //div.appendChild(child); // div の末尾に child を追加
                 /* ファイルアップロード要素作成 */
-                const image_area = document.createElement("div");
-                var image_count = 0;
-                const divImagePartial = document.createElement("div"); // div (子)を生成
-                divImagePartial.classList.add("uploadfile-area"); // classの追加
-                var usericonImg;
-                for (let i = 0; i < blobType.length; i++) {
-                    if (i == 0) {
-                        usericonImg = document.createElement("img");
-                        usericonImg.style.maxHeight = "85px";
-                        usericonImg.style.maxWidth = "85px";
-                        if (blobType[i] == "") {
-                            usericonImg.src = "<?php echo $noimage_url; ?>";
-                        } else {
-                            usericonImg.src = blobUrl[i];
-                        }
-                    } else {
-                        var changeImg = null;
-                        if (blobType[i] == "img") {
-                            changeImg = document.createElement("img");
-                        } else if (blobType[i] == "video") {
-                            changeImg = document.createElement("video");
-                            changeImg.setAttribute("controls", null);
-                        } else if (blobType[i] == "iframe") {
-                            changeImg = document.createElement("iframe");
-                        }
-                        if (changeImg !== null) {
-                            image_count++;
-                            changeImg.classList.add("changeImg");
-                            changeImg.style.height = "350px";
-                            changeImg.style.width = "530px";
-                            changeImg.src = blobUrl[i];
-                            const divImageCameraIcon = document.createElement("div"); // div (孫)を生成
-                            divImageCameraIcon.classList.add("image-camera-icon"); // classの追加
-                            divImageCameraIcon.appendChild(changeImg); // image_camera_icon (子要素) の末尾に changeImg を追加
-                            divImagePartial.appendChild(divImageCameraIcon); // uploadfile_area (親要素) の末尾に image_camera_icon を追加
-                        }
-                    }
-                }
+                const divImagePartial = create_image_parts("uploadfile-area", usericonIndex);
                 image_area.appendChild(divImagePartial); // image_area (親要素) の末尾に div を追加
 
                 /* 名前要素作成 */
