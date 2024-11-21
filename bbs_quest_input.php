@@ -371,9 +371,11 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
                 //divQuestionHeaderPartial.classList.add("questionHeader-partial");
                 //div.appendChild(child); // div の末尾に child を追加
                 /* ファイルアップロード要素作成 */
-                const image_area = create_image_parts("image-partial", 3);
+                const usericonImg = document.createElement("img");
+                const image_area = create_image_parts("image-partial", 3, usericonImg);
 
                 /* コメント要素作成 */
+                const comment_area = document.createElement("div");
                 const divBodyPartialParts = create_text_parts("text-partial-parts", text_value);
                 comment_area.appendChild(divBodyPartialParts); // comment_area (親要素) の末尾に div を追加
 

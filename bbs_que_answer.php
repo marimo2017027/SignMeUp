@@ -349,7 +349,8 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
                 //divQuestionHeaderPartial.classList.add("questionHeader-partial");
                 //div.appendChild(child); // div の末尾に child を追加
                 /* ファイルアップロード要素作成 */
-                const image_area = create_image_parts("uploadfile-area", 0);
+                const usericonImg = document.createElement("img");
+                const image_area = create_image_parts("uploadfile-area", 0, usericonImg);
 
                 /* 名前要素作成 */
                 const comment_area = document.createElement("div"); // const image_area の下から移動
