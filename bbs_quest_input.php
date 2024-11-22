@@ -424,7 +424,7 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
                 child.setAttribute("name", "output");
                 child.innerText = "結果画面へ進む";
                 child.addEventListener("click", confirm_button_click);
-                divPostButton.appendChild(child); // div (子要素) の末尾に child を追加
+                divPostButton.appendChild(child); // div (子要素) の末尾に child を追加                
                 comment_area.appendChild(divPostButton); // comment_area (親要素) の末尾に div を追加
                 confirm_area.appendChild(image_area);
                 confirm_area.appendChild(comment_area);

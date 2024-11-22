@@ -82,9 +82,9 @@ function create_title_parts(title_class, title_value) {
 }
 
 /* ファイルアップロード要素作成 */
-function create_image_parts(image_class, usericonIndex) {
+function create_image_parts(image_class, usericonIndex, usericonImg) {
     const image_area = document.createElement("div");
-    const comment_area = document.createElement("div");
+    // const comment_area = document.createElement("div");
     var image_count = 0;
     const divImagePartial = document.createElement("div"); // div (子)を生成
     divImagePartial.classList.add(image_class); // classの追加
