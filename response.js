@@ -123,11 +123,11 @@ function create_image_parts(image_class, usericonIndex, usericonImg) {
         }
     }
     image_area.appendChild(divImagePartial); // image_area (親要素) の末尾に div を追加
-    return image_area;
+    return image_area; // create_image_parts() で生成した image_area を return
 }
 
 /* 確認画面送信ボタン要素作成 */
-function create_button_parts(button_class, formType) {
+function create_button_parts(formType) {
     const divPostButton = document.createElement("div"); // div (子)を生成
     divPostButton.classList.add(button_class) // classの追加
 
@@ -152,5 +152,6 @@ function create_button_parts(button_class, formType) {
     child.setAttribute("name", "output");
     child.innerText = "結果画面へ進む";
     child.addEventListener("click", confirm_button_click);
-    divPostButton.appendChild(child); // div (子要素) の末尾に child を追加   
+    divPostButton.appendChild(child); // div (子要素) の末尾に child を追加 
+    return divPostButton; // create_button_parts() で生成した divPostButton を return
 }
