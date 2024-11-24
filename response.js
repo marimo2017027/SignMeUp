@@ -125,3 +125,32 @@ function create_image_parts(image_class, usericonIndex, usericonImg) {
     image_area.appendChild(divImagePartial); // image_area (親要素) の末尾に div を追加
     return image_area;
 }
+
+/* 確認画面送信ボタン要素作成 */
+function create_button_parts(button_class, formType) {
+    const divPostButton = document.createElement("div"); // div (子)を生成
+    divPostButton.classList.add(button_class) // classの追加
+
+    child = document.createElement("button"); // button (孫)を生成
+    child.type = "button";
+    child.innerText = "入力画面へ戻る";
+    child.addEventListener("click", () => {
+        if (formType == 1) {
+            change1();
+        } else if (formType == 2) {
+            //change1();
+        }
+        input_area.style.display = "block";
+        // 空文字を入れることで要素内を空にできる
+        confirm_area.textContent = '';
+        confirm_area.style.display = "none";
+    });
+    divPostButton.appendChild(child); // div (子要素) の末尾に child を追加
+    child = document.createElement("button"); // button (孫)を生成
+    child.type = "button";
+    //name属性の追加・変更
+    child.setAttribute("name", "output");
+    child.innerText = "結果画面へ進む";
+    child.addEventListener("click", confirm_button_click);
+    divPostButton.appendChild(child); // div (子要素) の末尾に child を追加   
+}
