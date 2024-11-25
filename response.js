@@ -129,7 +129,7 @@ function create_image_parts(image_class, usericonIndex, usericonImg) {
 /* 確認画面送信ボタン要素作成 */
 function create_button_parts(formType) {
     const divPostButton = document.createElement("div"); // div (子)を生成
-    divPostButton.classList.add(button_class) // classの追加
+    divPostButton.classList.add("post-button") // classの追加
 
     child = document.createElement("button"); // button (孫)を生成
     child.type = "button";
