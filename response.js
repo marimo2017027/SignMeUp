@@ -86,8 +86,8 @@ function create_image_parts(image_class, usericonIndex, usericonImg) {
     const image_area = document.createElement("div");
     // const comment_area = document.createElement("div");
     // var image_count = 0;
-    const divImagePartial = document.createElement("div"); // div (子)を生成
-    divImagePartial.classList.add(image_class); // classの追加
+    // const divImagePartial = document.createElement("div"); // div (子)を生成
+    // divImagePartial.classList.add(image_class); // classの追加
     // var usericonImg;
     for (let i = 0; i < blobType.length; i++) {
         if (i == usericonIndex) {
@@ -118,11 +118,11 @@ function create_image_parts(image_class, usericonIndex, usericonImg) {
                 const divImageCameraIcon = document.createElement("div"); // div (孫)を生成
                 divImageCameraIcon.classList.add("image-camera-icon"); // classの追加
                 divImageCameraIcon.appendChild(changeImg); // image_camera_icon (子要素) の末尾に changeImg を追加
-                divImagePartial.appendChild(divImageCameraIcon); // uploadfile_area (親要素) の末尾に image_camera_icon を追加
+                // divImagePartial.appendChild(divImageCameraIcon); // uploadfile_area (親要素) の末尾に image_camera_icon を追加
             }
         }
     }
-    image_area.appendChild(divImagePartial); // image_area (親要素) の末尾に div を追加
+    // image_area.appendChild(divImagePartial); // image_area (親要素) の末尾に div を追加
     return image_area; // create_image_parts() で生成した image_area を return
 }
 

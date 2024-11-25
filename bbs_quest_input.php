@@ -409,6 +409,8 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
                 confirm_area.appendChild(image_area);
                 confirm_area.appendChild(comment_area);
                 const image_count = image_area.getElementsByClassName("changeImg").length;
+                const divImagePartial = document.createElement("div"); // div (子)を生成
+                divImagePartial.classList.add(image_class); // classの追加
                 if (image_count == 1) {
                     divImagePartial.style.float = "left";
                 } else if (image_count == 2) {
