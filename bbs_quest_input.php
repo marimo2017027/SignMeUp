@@ -408,6 +408,7 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
                 comment_area.appendChild(divPostButton); // comment_area (親要素) の末尾に div を追加
                 confirm_area.appendChild(image_area);
                 confirm_area.appendChild(comment_area);
+                const image_count = image_area.getElementsByClassName("changeImg").length;
                 if (image_count == 1) {
                     divImagePartial.style.float = "left";
                 } else if (image_count == 2) {

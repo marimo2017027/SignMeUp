@@ -85,7 +85,7 @@ function create_title_parts(title_class, title_value) {
 function create_image_parts(image_class, usericonIndex, usericonImg) {
     const image_area = document.createElement("div");
     // const comment_area = document.createElement("div");
-    var image_count = 0;
+    // var image_count = 0;
     const divImagePartial = document.createElement("div"); // div (子)を生成
     divImagePartial.classList.add(image_class); // classの追加
     // var usericonImg;
@@ -110,7 +110,7 @@ function create_image_parts(image_class, usericonIndex, usericonImg) {
                 changeImg = document.createElement("iframe");
             }
             if (changeImg !== null) {
-                image_count++;
+                // image_count++;
                 changeImg.classList.add("changeImg");
                 changeImg.style.height = "350px";
                 changeImg.style.width = "530px";
