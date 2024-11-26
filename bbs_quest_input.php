@@ -372,7 +372,9 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
                 //div.appendChild(child); // div の末尾に child を追加
                 /* ファイルアップロード要素作成 */
                 const usericonImg = document.createElement("img");
-                const image_area = create_image_parts("image-partial", 3, usericonImg);
+                const divImagePartial = create_image_parts("image-partial", 3, usericonImg);
+                const image_area = document.createElement("div");
+                image_area.appendChild(divImagePartial);
 
                 /* コメント要素作成 */
                 const comment_area = document.createElement("div");

@@ -350,7 +350,9 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
                 //div.appendChild(child); // div の末尾に child を追加
                 /* ファイルアップロード要素作成 */
                 const usericonImg = document.createElement("img");
-                const image_area = create_image_parts("uploadfile-area", 0, usericonImg);
+                const divImagePartial = create_image_parts("uploadfile-area", 0, usericonImg);
+                const image_area = document.createElement("div");
+                image_area.appendChild(divImagePartial);
 
                 /* 名前要素作成 */
                 const comment_area = document.createElement("div"); // const image_area の下から移動
@@ -381,29 +383,11 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
                 comment_area.appendChild(divFilesizeRestrictionArea); // comment_area (親要素) の末尾に filesize-restriction-area を追加
 
                 /* 確認画面送信ボタン要素作成 */
-                const divPostButton = document.createElement("div"); // div (子)を生成
-                divPostButton.classList.add("post-button"); // classの追加
-                child = document.createElement("button"); // button (孫)を生成
-                child.type = "button";
-                child.innerText = "入力画面へ戻る";
-                child.addEventListener("click", () => {
-                    // change1();
-                    input_area.style.display = "block";
-                    // 空文字を入れることで要素内を空にできる
-                    confirm_area.textContent = '';
-                    confirm_area.style.display = "none";
-                });
-                divPostButton.appendChild(child); // div (子要素) の末尾に child を追加
-                child = document.createElement("button"); // button (孫)を生成
-                child.type = "button";
-                //name属性の追加・変更
-                child.setAttribute("name", "output");
-                child.innerText = "結果画面へ進む";
-                child.addEventListener("click", confirm_button_click);
-                divPostButton.appendChild(child); // div (子要素) の末尾に child を追加               
+                const divPostButton = create_button_parts(2);
                 comment_area.appendChild(divPostButton); // comment_area (親要素) の末尾に div を追加
                 confirm_area.appendChild(image_area);
                 confirm_area.appendChild(comment_area);
+                const image_count = image_area.getElementsByClassName("changeImg").length;
                 if (image_count == 1) {
                     divUserArea.style.float = "left";
                 } else if (image_count == 2) {

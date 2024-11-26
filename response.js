@@ -83,7 +83,7 @@ function create_title_parts(title_class, title_value) {
 
 /* ファイルアップロード要素作成 */
 function create_image_parts(image_class, usericonIndex, usericonImg) {
-    const image_area = document.createElement("div");
+    // const image_area = document.createElement("div");
     // const comment_area = document.createElement("div");
     // var image_count = 0;
     const divImagePartial = document.createElement("div"); // div (子)を生成
@@ -122,8 +122,8 @@ function create_image_parts(image_class, usericonIndex, usericonImg) {
             }
         }
     }
-    image_area.appendChild(divImagePartial); // image_area (親要素) の末尾に div を追加
-    return image_area; // create_image_parts() で生成した image_area を return
+    // image_area.appendChild(divImagePartial); // image_area (親要素) の末尾に div を追加
+    return divImagePartial; // create_image_parts() で生成した divImagePartial を return
 }
 
 /* 確認画面送信ボタン要素作成 */
