@@ -279,7 +279,7 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
         };
     }
     const init = function() {
-        set_attach_event();
+        set_attach_event('.uploadfile-camera-icon,.user-icon', 0);
         document.getElementById("submit_button").addEventListener("click", submit_button_click);
         // change1();
         /* inputイベント */
@@ -348,24 +348,8 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
                 //const divQuestionHeaderPartial = document.createElement("div");
                 //divQuestionHeaderPartial.classList.add("questionHeader-partial");
                 //div.appendChild(child); // div の末尾に child を追加
-                /* ファイルアップロード要素作成 */
-                const usericonImg = document.createElement("img");
-                const divImagePartial = create_image_parts("uploadfile-area", 0, usericonImg);
-                const image_area = document.createElement("div");
-                image_area.appendChild(divImagePartial);
-
-                /* 名前要素作成 */
-                const comment_area = document.createElement("div"); // const image_area の下から移動
-
-                /* 名前要素作成 */
-                const divNamePartialParts = create_name_parts("answer-name-area", name_value, usericonImg);
-                comment_area.appendChild(divNamePartialParts); // comment_area (親要素) の末尾に div を追加
-
-                /* コメント要素作成 */
-                const divBodyPartialParts = create_text_parts("answer-text-area", text_value);
-                comment_area.appendChild(divBodyPartialParts); // comment_area (親要素) の末尾に div を追加
-
                 /* アイコン画像要素作成 */
+                const comment_area = document.createElement("div");
                 const divUserArea = document.createElement("div"); // div (子)を生成
                 const divUserIcon = document.createElement("div"); // div (子)を生成
                 divUserArea.classList.add("user-area"); // classの追加
@@ -376,6 +360,21 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
                 divUserIcon.appendChild(child); // div (子要素) の末尾に child を追加
                 divUserArea.appendChild(divUserIcon); // div (子要素) の末尾に div を追加
                 comment_area.appendChild(divUserArea); // comment_area (親要素) の末尾に div を追加
+
+                /* 名前要素作成 */
+                // const usericonImg = document.createElement("img");
+                const divNamePartialParts = create_name_parts("answer-name-area", name_value, usericonImg);
+                comment_area.appendChild(divNamePartialParts); // comment_area (親要素) の末尾に div を追加
+
+                /* コメント要素作成 */
+                const divBodyPartialParts = create_text_parts("answer-text-area", text_value);
+                comment_area.appendChild(divBodyPartialParts); // comment_area (親要素) の末尾に div を追加
+
+                /* ファイルアップロード要素作成 */
+                const usericonImg = document.createElement("img");
+                const divImagePartial = create_image_parts("uploadfile-area", 0, usericonImg);
+                const image_area = document.createElement("div");
+                image_area.appendChild(divImagePartial);
 
                 /* アップロードファイルサイズ制限事項要素作成 */
                 const divFilesizeRestrictionArea = document.createElement("div"); // div (子)を生成

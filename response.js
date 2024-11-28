@@ -156,9 +156,7 @@ function create_button_parts(formType) {
     return divPostButton; // create_button_parts() で生成した divPostButton を return
 }
 
-
-
-function choose_file_management(formType, usericonIndex) {
+set_attach_event = function (fileAreaSelector, usericonIndex) {
     /* カメラ画像をファイルアップロード時に非表示にする */
     /* 省略 */
     /* カメラ画像をファイルアップロード時に非表示にする */
@@ -166,109 +164,102 @@ function choose_file_management(formType, usericonIndex) {
     const clear = document.querySelectorAll('.attachclear');
     const viewer = document.querySelectorAll('.viewer');
     const changeImg = document.querySelectorAll('.changeImg'); // 入力されたら消す画像
-    // const fileArea = document.querySelectorAll('.image-camera-icon,.usericon-uploads');
-    const fileArea = function (formType) {
-        if (formType == 1) { //質問画面
-            document.querySelectorAll('.image-camera-icon,.usericon-uploads');
-        } else if (formType == 2) { //回答画面
-            const fileArea = document.querySelectorAll('.uploadfile-camera-icon,.user-icon');
+    const fileArea = document.querySelectorAll(fileAreaSelector);
+    const set_attach_image = function (i) {
+        //HTML要素の中身を変更するときに使われるプロパティ
+        if (i == usericonIndex) {
+            maxsize = 5;
+            height = "85px";
+            width = "85px";
+        } else {
+            maxsize = 15;
+            height = "350px";
+            width = "530px";
         }
-        const set_attach_image = function (i) {
-            //HTML要素の中身を変更するときに使われるプロパティ
-            if (i == usericonIndex) {
-                maxsize = 5;
-                height = "85px";
-                width = "85px";
-            } else {
-                maxsize = 15;
-                height = "350px";
-                width = "530px";
-            }
-            if (attach[i].files[0].size > maxsize * 1024 * 1024) {
-                alert('ファイルサイズが ' + maxsize + 'MBバイトを超えています');
-                return;
-            }
-            viewer[i].innerHTML = "";
-            //新コード
+        if (attach[i].files[0].size > maxsize * 1024 * 1024) {
+            alert('ファイルサイズが ' + maxsize + 'MBバイトを超えています');
+            return;
+        }
+        viewer[i].innerHTML = "";
+        //新コード
+        blobType[i] = "";
+        blobUrl[i] = "";
+        if (attach[i].files.length !== 0) {
+            //オブジェクトのURLを作成する
+            blobUrl[i] = window.URL.createObjectURL(attach[i].files[0]);
+            //ファイルの内容を読み込む FileReaderオブジェクト を生成し、ファイルの内容を非同期で取得
+            const reader = new FileReader();
+            reader.onload = () => {
+                var child = null;
+                //result プロパティは、ファイルの内容を返す
+                if (reader.result.indexOf("data:image/jpeg;base64,") === 0 ||
+                    reader.result.indexOf("data:image/png;base64,") === 0) {
+                    blobType[i] = "img";
+                    child = document.createElement("img");
+                } else if (reader.result.indexOf("data:video/mp4;base64,") === 0) {
+                    blobType[i] = "video";
+                    child = document.createElement("video");
+                    child.setAttribute("controls", null);
+                } else if (reader.result.indexOf("data:application/pdf;base64,") === 0) {
+                    blobType[i] = "iframe";
+                    child = document.createElement("iframe");
+                } else {
+                    alert("対象外のファイルです");
+                    attach[i].value = "";
+                }
+                if (child !== null) {
+                    child.style.height = height;
+                    child.style.width = width;
+                    child.src = blobUrl[i];
+                    //戻り値は追加した子要素 viewer[i]
+                    viewer[i].appendChild(child);
+                    viewer[i].style.display = "block";
+                    //fileArea[i].style.display = "none";
+                    //旧コード
+                    //changeImg[i].classList.add('hideItems'); // もともとの画像を消す
+                    fileArea[i].classList.add('hideItems'); // もともとの画像を消す
+                }
+            };
+            //指定されたBlob または File の内容を読み込む
+            reader.readAsDataURL(attach[i].files[0]);
+        }
+    };
+    for (let i = 0; i < attach.length; i++) {
+        attach[i].addEventListener('change', () => {
+            set_attach_image(i);
+        });
+        clear[i].addEventListener('click', () => {
             blobType[i] = "";
             blobUrl[i] = "";
-            if (attach[i].files.length !== 0) {
-                //オブジェクトのURLを作成する
-                blobUrl[i] = window.URL.createObjectURL(attach[i].files[0]);
-                //ファイルの内容を読み込む FileReaderオブジェクト を生成し、ファイルの内容を非同期で取得
-                const reader = new FileReader();
-                reader.onload = () => {
-                    var child = null;
-                    //result プロパティは、ファイルの内容を返す
-                    if (reader.result.indexOf("data:image/jpeg;base64,") === 0 ||
-                        reader.result.indexOf("data:image/png;base64,") === 0) {
-                        blobType[i] = "img";
-                        child = document.createElement("img");
-                    } else if (reader.result.indexOf("data:video/mp4;base64,") === 0) {
-                        blobType[i] = "video";
-                        child = document.createElement("video");
-                        child.setAttribute("controls", null);
-                    } else if (reader.result.indexOf("data:application/pdf;base64,") === 0) {
-                        blobType[i] = "iframe";
-                        child = document.createElement("iframe");
-                    } else {
-                        alert("対象外のファイルです");
-                        attach[i].value = "";
-                    }
-                    if (child !== null) {
-                        child.style.height = height;
-                        child.style.width = width;
-                        child.src = blobUrl[i];
-                        //戻り値は追加した子要素 viewer[i]
-                        viewer[i].appendChild(child);
-                        viewer[i].style.display = "block";
-                        //fileArea[i].style.display = "none";
-                        //旧コード
-                        //changeImg[i].classList.add('hideItems'); // もともとの画像を消す
-                        fileArea[i].classList.add('hideItems'); // もともとの画像を消す
-                    }
-                };
-                //指定されたBlob または File の内容を読み込む
-                reader.readAsDataURL(attach[i].files[0]);
-            }
-        };
-        for (let i = 0; i < attach.length; i++) {
-            attach[i].addEventListener('change', () => {
+            attach[i].value = "";
+            viewer[i].innerHTML = "";
+            viewer[i].style.display = "none";
+            //fileArea[i].style.display = "block";
+            //changeImg[i].classList.remove('hideItems');
+            fileArea[i].classList.remove('hideItems');
+        });
+        // ドラッグオーバー時の処理
+        fileArea[i].addEventListener('dragover', function (e) {
+            e.preventDefault();
+            fileArea[i].classList.add('dragover');
+        });
+        // ドラッグアウト時の処理	
+        fileArea[i].addEventListener('dragleave', function (e) {
+            e.preventDefault();
+            fileArea[i].classList.remove('dragover');
+        });
+        // ドロップ時の処理	
+        fileArea[i].addEventListener('drop', function (e) {
+            e.preventDefault();
+            fileArea[i].classList.remove('dragover');
+            // ドロップしたファイルの取得	
+            var files = e.dataTransfer.files;
+            // 取得したファイルをinput[type=file]へ	
+            attach[i].files = files;
+            if (typeof files[0] !== 'undefined') {
+                //ファイルが正常に受け取れた際の処理	
                 set_attach_image(i);
-            });
-            clear[i].addEventListener('click', () => {
-                blobType[i] = "";
-                blobUrl[i] = "";
-                attach[i].value = "";
-                viewer[i].innerHTML = "";
-                viewer[i].style.display = "none";
-                //fileArea[i].style.display = "block";
-                //changeImg[i].classList.remove('hideItems');
-                fileArea[i].classList.remove('hideItems');
-            });
-            // ドラッグオーバー時の処理
-            fileArea[i].addEventListener('dragover', function (e) {
-                e.preventDefault();
-                fileArea[i].classList.add('dragover');
-            });
-            // ドラッグアウト時の処理	
-            fileArea[i].addEventListener('dragleave', function (e) {
-                e.preventDefault();
-                fileArea[i].classList.remove('dragover');
-            });
-            // ドロップ時の処理	
-            fileArea[i].addEventListener('drop', function (e) {
-                e.preventDefault();
-                fileArea[i].classList.remove('dragover');
-                // ドロップしたファイルの取得	
-                var files = e.dataTransfer.files;
-                // 取得したファイルをinput[type=file]へ	
-                attach[i].files = files;
-                if (typeof files[0] !== 'undefined') {
-                    //ファイルが正常に受け取れた際の処理	
-                    set_attach_image(i);
-                }
-            });
-        };
-    }
+            }
+        });
+    };
 }
