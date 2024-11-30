@@ -250,17 +250,14 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
 
                 /* 名前要素作成 */
                 // const usericonImg = document.createElement("img");
-                const divNamePartialParts =
-                    const create_name_parts("answer-name-area", name_value, usericonImg);
+                const divNamePartialParts = create_name_parts("answer-name-area", name_value, usericonImg);
 
                 /* コメント要素作成 */
-                const divBodyPartialParts =
-                    const create_text_parts("answer-text-area", text_value);
+                const divBodyPartialParts = create_text_parts("answer-text-area", text_value);
 
                 /* ファイルアップロード要素作成 */
                 const usericonImg = document.createElement("img");
-                const divImagePartial =
-                    const create_image_parts("uploadfile-area", 0, usericonImg);
+                const divImagePartial = create_image_parts("uploadfile-area", 0, usericonImg);
                 const image_area = document.createElement("div");
 
                 /* アップロードファイルサイズ制限事項要素作成 */
@@ -287,8 +284,7 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
                 comment_area.appendChild(divFilesizeRestrictionArea); // comment_area (親要素) の末尾に filesize-restriction-area を追加
 
                 /* 確認画面送信ボタン要素作成 */
-                const divPostButton =
-                    const create_button_parts(2);
+                const divPostButton = create_button_parts(2);
                 comment_area.appendChild(divPostButton); // comment_area (親要素) の末尾に div を追加
                 confirm_area.appendChild(image_area);
                 confirm_area.appendChild(comment_area);

@@ -49,7 +49,7 @@ function display_text_length(e) {
 }
 
 /* 名前要素作成 */
-const create_name_parts(name_class, name_value, usericonImg) {
+const create_name_parts = function (name_class, name_value, usericonImg) {
     const divNamePartialParts = document.createElement("div"); // div (子)を生成
     divNamePartialParts.classList.add(name_class); // classの追加
     const child = document.createElement("p"); // p (孫)を生成
@@ -61,7 +61,7 @@ const create_name_parts(name_class, name_value, usericonImg) {
 }
 
 /* コメント要素作成 */
-const create_text_parts(text_class, text_value) {
+const create_text_parts = function (text_class, text_value) {
     const divBodyPartialParts = document.createElement("div"); // div (子)を生成
     divBodyPartialParts.classList.add(text_class); // classの追加
     const child = document.createElement("p"); // p (孫)を生成
@@ -72,7 +72,7 @@ const create_text_parts(text_class, text_value) {
 }
 
 /* タイトル要素作成 */
-const create_title_parts(title_class, title_value) {
+const create_title_parts = function (title_class, title_value) {
     const divTitlePartialParts = document.createElement("div"); // div (子)を生成
     divTitlePartialParts.classList.add(title_class); // classの追加
     const child = document.createElement("p"); // p (孫)を生成
@@ -82,7 +82,7 @@ const create_title_parts(title_class, title_value) {
 }
 
 /* ファイルアップロード要素作成 */
-const create_image_parts(image_class, usericonIndex, usericonImg) {
+const create_image_parts = function (image_class, usericonIndex, usericonImg) {
     // const image_area = document.createElement("div");
     // const comment_area = document.createElement("div");
     // var image_count = 0;
@@ -127,7 +127,7 @@ const create_image_parts(image_class, usericonIndex, usericonImg) {
 }
 
 /* 確認画面送信ボタン要素作成 */
-const create_button_parts(formType) {
+const create_button_parts = function (formType) {
     const divPostButton = document.createElement("div"); // div (子)を生成
     divPostButton.classList.add("post-button") // classの追加
 
