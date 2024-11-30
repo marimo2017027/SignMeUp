@@ -266,16 +266,13 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
                 const usericonImg = document.createElement("img");
                 const divImagePartial = create_image_parts("image-partial", 3, usericonImg);
                 const image_area = document.createElement("div");
-                image_area.appendChild(divImagePartial);
 
                 /* コメント要素作成 */
                 const comment_area = document.createElement("div");
                 const divBodyPartialParts = create_text_parts("text-partial-parts", text_value);
-                comment_area.appendChild(divBodyPartialParts); // comment_area (親要素) の末尾に div を追加
 
                 /* タイトル要素作成 */
                 const divTitlePartialParts = create_title_parts("title-partial-parts", title_value);
-                comment_area.appendChild(divTitlePartialParts); // comment_area (親要素) の末尾に div を追加
 
                 /* スタンプ画像要素作成 */
                 const divStampPartial = document.createElement("div"); // div (子)を生成
@@ -290,11 +287,24 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
                 divStampPartial.appendChild(child); // div の末尾に child を追加
                 child = document.createElement("label");
                 child.htmlFor = "confirm_stamp";
-                divStampPartial.appendChild(child); // div (子要素) の末尾に child を追加
-                comment_area.appendChild(divStampPartial); // comment_area (親要素) の末尾に div を追加
 
                 /* 名前要素作成 */
                 const divNamePartialParts = create_name_parts("name-partial-parts", name_value, usericonImg);
+
+                /* ファイルアップロード要素配置 */
+                image_area.appendChild(divImagePartial);
+
+                /* 回答要素配置 */
+                comment_area.appendChild(divBodyPartialParts); // comment_area (親要素) の末尾に div を追加
+
+                /* タイトル要素配置 */
+                comment_area.appendChild(divTitlePartialParts); // comment_area (親要素) の末尾に div を追加
+
+                /* スタンプ画像要素配置 */
+                divStampPartial.appendChild(child); // div (子要素) の末尾に child を追加
+                comment_area.appendChild(divStampPartial); // comment_area (親要素) の末尾に div を追加
+
+                /* 名前要素配置 */
                 comment_area.appendChild(divNamePartialParts); // comment_area (親要素) の末尾に div を追加
 
                 /* 確認画面送信ボタン要素作成 */
