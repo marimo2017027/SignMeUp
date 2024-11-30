@@ -171,7 +171,7 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
     const blobType = ["", "", "", ""];
     const blobUrl = ["", "", "", ""];
     const init = function() {
-        const set_attach_event('.uploadfile-camera-icon,.user-icon', 0);
+        set_attach_event('.uploadfile-camera-icon,.user-icon', 0);
         document.getElementById("submit_button").addEventListener("click", submit_button_click);
         // change1();
         /* inputイベント */
@@ -249,14 +249,14 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
                 child = document.createElement("p");
 
                 /* 名前要素作成 */
-                // const usericonImg = document.createElement("img");
+                const usericonImg = document.createElement("img");
                 const divNamePartialParts = create_name_parts("answer-name-area", name_value, usericonImg);
 
                 /* コメント要素作成 */
                 const divBodyPartialParts = create_text_parts("answer-text-area", text_value);
 
                 /* ファイルアップロード要素作成 */
-                const usericonImg = document.createElement("img");
+                // const usericonImg = document.createElement("img");
                 const divImagePartial = create_image_parts("uploadfile-area", 0, usericonImg);
                 const image_area = document.createElement("div");
 
