@@ -263,6 +263,10 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
                 /* アップロードファイルサイズ制限事項要素作成 */
                 const divFilesizeRestrictionArea = document.createElement("div"); // div (子)を生成
                 divFilesizeRestrictionArea.classList.add("filesize-restriction-area"); // classの追加
+                divFilesizeRestrictionArea.textContent = "動画・画像をアップロード(Upload video・image)";
+                const spanFilesizeRestrictionArea = document.createElement("span");
+                spanFilesizeRestrictionArea.classList.add("required");
+                spanFilesizeRestrictionArea.textContent = "※ファイルサイズ15MB以内、JPG/GIF/PNG/MP4";
 
                 /* アイコン画像要素配置 */
                 // child = document.createElement("p"); と child.appendChild(document.createTextNode(○○○_value)); で 1セット
@@ -280,10 +284,8 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
                 /* ファイルアップロード要素配置 */
                 image_area.appendChild(divImagePartial);
 
-                /* アップロードファイルサイズ制限事項要素作成 */
-
                 /* アップロードファイルサイズ制限事項要素配置 */
-                comment_area.appendChild(divFilesizeRestrictionArea); // comment_area (親要素) の末尾に filesize-restriction-area を追加
+                divFilesizeRestrictionArea.appendChild(spanFilesizeRestrictionArea);
 
                 /* 確認画面送信ボタン要素作成 */
                 const divPostButton = create_button_parts(2);
