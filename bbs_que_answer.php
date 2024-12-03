@@ -280,14 +280,16 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
                 /* ファイルアップロード要素配置 */
                 image_area.appendChild(divImagePartial);
 
+                /* アップロードファイルサイズ制限事項要素作成 */
+
                 /* アップロードファイルサイズ制限事項要素配置 */
                 comment_area.appendChild(divFilesizeRestrictionArea); // comment_area (親要素) の末尾に filesize-restriction-area を追加
 
                 /* 確認画面送信ボタン要素作成 */
                 const divPostButton = create_button_parts(2);
-                comment_area.appendChild(divPostButton); // comment_area (親要素) の末尾に div を追加
-                confirm_area.appendChild(image_area);
                 confirm_area.appendChild(comment_area);
+                confirm_area.appendChild(image_area);
+                comment_area.appendChild(divPostButton); // comment_area (親要素) の末尾に div を追加
                 const image_count = image_area.getElementsByClassName("changeImg").length;
                 if (image_count == 1) {
                     divUserArea.style.float = "left";
