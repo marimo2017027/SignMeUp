@@ -289,7 +289,7 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
                 const divPostButton = create_button_parts(2);
                 confirm_area.appendChild(comment_area);
                 confirm_area.appendChild(image_area);
-                comment_area.appendChild(divPostButton); // comment_area (親要素) の末尾に div を追加
+                confirm_area.appendChild(divPostButton); // confirm_area (親要素) の末尾に div を追加
                 const image_count = image_area.getElementsByClassName("changeImg").length;
                 if (image_count == 1) {
                     divUserArea.style.float = "left";
