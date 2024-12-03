@@ -263,7 +263,7 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
                 /* アップロードファイルサイズ制限事項要素作成 */
                 const divFilesizeRestrictionArea = document.createElement("div"); // div (子)を生成
                 divFilesizeRestrictionArea.classList.add("filesize-restriction-area"); // classの追加
-                divFilesizeRestrictionArea.textContent = "動画・画像をアップロード(Upload video・image)";
+                divFilesizeRestrictionArea.textContent = "動画・画像をアップロード(Upload video・image)"; // 文字表示
                 const spanFilesizeRestrictionArea = document.createElement("span");
                 spanFilesizeRestrictionArea.classList.add("required");
                 spanFilesizeRestrictionArea.textContent = "※ファイルサイズ15MB以内、JPG/GIF/PNG/MP4";
