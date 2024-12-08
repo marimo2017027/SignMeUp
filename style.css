@@ -1,0 +1,1581 @@
+/*
+Theme Name: monomode
+Theme URL: https://nijiematome.net
+Description: secondary picture summary blog of cute anime game characters
+Author: 作者の名前 Takuya Inoue
+Version: 0.1
+*/
+
+/* ヘッダー画像の配置位置 */
+ul.header-box {
+    margin: 0 auto;
+}
+
+/* メニューバーの色と縦幅 */
+ul#menu_bar {
+    font-size: 100%;
+    height: 25px;
+    background-color: rgba(0, 0, 0, 0.6);
+    padding-left: 0;
+    margin-left: 0;
+}
+
+/* メニューバーの位置 */
+#menu_bar li {
+    float: left;
+    line-height: 25px;
+    margin: 0;
+    padding: 0;
+}
+
+/* メニューバーの色 */
+#menu_bar li a {
+    display: block;
+    text-align: center;
+    width: 110px;
+    color: #fff;
+}
+
+/* ヘッダーコンテンツ */
+div#modernentryrank ul {
+    margin: 0;
+    padding: 0;
+}
+
+/* ヘッダーランダム記事 */
+#modernentryrank li {
+    position: relative;
+    display: inline-block;
+    vertical-align: top;
+    text-align: center;
+}
+
+/* ヘッダーランダム記事ホバー */
+#modernentryrank li:hover {
+    text-decoration: underline;
+    opacity: 0.65;
+}
+
+/* ヘッダーテーブルボックス */
+li.custom {
+    float: none;
+    position: relative;
+    display: inline-block;
+    vertical-align: top;
+    text-align: center;
+}
+
+/* ヘッダーテーブルボックスタイトル */
+#modernentryrank li a {
+    display: block;
+    text-decoration: none;
+    overflow: hidden;
+}
+
+/* ヘッダーテーブルボックスタイトル */
+#modernentryrank div.titlewrap {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 35px;
+    width: 100%;
+    padding-left: 4px;
+    padding-right: 4px;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: #fff;
+    font-size: 16px;
+    line-height: 16px;
+    text-align: left;
+    text-indent: 0.5em;
+    overflow: hidden;
+    font-size: 13px;
+    z-index: 1;
+}
+
+/* ヘッダーテーブルボックス左寄せ */
+ul.header-box li {
+    float: left;
+}
+
+/* ヘッダーテーブルボックス高さ調節 */
+#header-box,
+ul.header-box {
+    height: 0px;
+    position: relative;
+}
+
+/* 要らない */
+div#modernentryrank {
+    position: relative;
+}
+
+/* ヘッダーテーブルボックスコメント数 */
+a.count.comment {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 3px 5px;
+    color: #fff;
+    text-shadow: 1px 1px 2px #888;
+    background: #e52d77;
+}
+
+/* サイト全体の文字の大きさ */
+body {
+    margin: 0 auto;
+    padding: 0;
+    font: 13px/1.5 "メイリオ", Meiryo, "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "ＭＳ Ｐゴシック", "MS       PGothic", verdana, Sans-Serif;
+    font-weight: 550;
+    color: #333;
+}
+
+/* サイト左右のスペース */
+#blog-box,
+#header-box,
+ul.header-box {
+    width: 1140px;
+    margin: 0 auto;
+}
+
+/* 左右のコンテンツを並べる */
+#main-box {
+    float: left;
+    width: 830px;
+    margin-left: 310px;
+}
+
+/* 右のコンテンツを左と並べる */
+#left-box {
+    float: left;
+    width: 305px;
+    margin-left: -310px;
+    margin-top: 5px;
+}
+
+/* 人気キーワード */
+.popular-keywords {
+    margin-bottom: 5px;
+    border: 1.5px solid #999;
+    background: #FFF;
+}
+
+/* 人気キーワード全体の間隔 */
+ul.category-ranking.clearfix {
+    padding: 7px;
+    display: block;
+    font-size: 0;
+}
+
+/* 人気キーワード文字間隔 */
+ul.category-ranking.clearfix li {
+    display: inline-block;
+    padding: 4px 3px;
+}
+
+/* 人気キーワード文字装飾 */
+#left-box ul.category-ranking.clearfix li a {
+    padding: 2px;
+    font-size: 12px;
+    border-radius: 3px;
+    background-color: #2bc912;
+    color: #fff;
+    transition: 0.6s;
+}
+
+/* 人気キーワード文字ホバー色 */
+#left-box ul.category-ranking.clearfix li a:hover {
+    background-color: #fffacd;
+    color: #e52d77;
+}
+
+/* カテゴリーランキング */
+#left-box ul.category-ranking.clearfix li a:before {
+    font-family: 'Material Icons';
+    content: "\e54e";
+    font-size: 12px;
+}
+
+/* 3日間ランキング */
+.side-title {
+    color: #fff;
+    text-align: center;
+    font-weight: 700;
+    padding: 2px;
+    background: #2bc912;
+    font-size: 120%;
+}
+
+/* 背景画像 */
+body.post-template {
+    background-image: url(http://www.irasuto.cfbx.jp/wp-content/uploads/2020/11/blue-snow.png);
+    background-color: rgba(255, 255, 255, 0.8);
+    background-blend-mode: lighten;
+    background-position: left top;
+    background-size: auto;
+    background-repeat: repeat;
+    background-attachment: scroll;
+}
+
+/* メニューボタンホバー色 */
+#menu_bar li a:hover {
+    color: #fff;
+    background-color: #e52d77;
+}
+
+/* 右側のボックス */
+div#right-box {
+    border: 2px solid #999;
+    margin-top: 5px;
+    padding: 20px 27px;
+    background-color: #fff;
+}
+
+/* 3日間ランキング並べ方 */
+.AMhorizontal li a,
+.AMvertical li a {
+    position: relative;
+    display: block;
+    text-decoration: none;
+    color: #fff;
+    overflow: hidden;
+    width: 97px;
+    height: 120px;
+}
+
+.AMvertical {
+    height: auto;
+    margin: 0 auto;
+    text-align: center;
+}
+
+/* 3日間ランキング画像の配置位置 */
+.AMhorizontal li img,
+.AMvertical li img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -moz-transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+}
+
+/* 3日間ランキング画像の拡大比率 */
+.AMhorizontal li img,
+.AMvertical li img {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* 3日間ランキング */
+.\33 day-ranking {
+    margin-bottom: 5px;
+    border: 1.5px solid #999;
+    background: #FFF;
+}
+
+/* 3日間ランキングたいとる */
+.modelName {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 35px;
+    width: 100%;
+    padding: 3px;
+    background-color: rgba(0, 0, 0, 0.6);
+    color: #fff;
+    font-size: 16px;
+    line-height: 16px;
+    text-align: left;
+    overflow: hidden;
+    font-size: 13px;
+    z-index: 1;
+}
+
+/* 3日間ランキング数字 */
+.AMvertical ul {
+    counter-reset: wpp-ranking;
+    padding-top: 2px;
+    padding-bottom: 3px;
+}
+
+/* 3日間ランキング3列 */
+.AMvertical li {
+    float: none;
+    position: relative;
+    display: inline-block;
+    vertical-align: top;
+    text-align: center;
+    margin: 1.5px;
+    list-style-type: none;
+    position: relative;
+}
+
+/* 3日間ランキング色 大きさ */
+.AMvertical li:before {
+    background: #e52d77;
+    border-radius: 50%;
+    content: counter(wpp-ranking, decimal);
+    counter-increment: wpp-ranking;
+    color: #fff;
+    font-size: 14px;
+    line-height: 1;
+    padding: 5px 7px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+/* acv_openクラスをもたないリスト項目の子リスト（month-archive-list）は、デフォルト非表示に */
+.archive-list>li:not(.acv_open)>ul {
+    display: none;
+}
+
+/* 年別アーカイブリストのアイコン設定 */
+.archive-list>li.acv_open::before {
+    /* リストが開かれているとき */
+    font-family: 'fontello';
+    content: '\e814';
+    /* -マーク */
+    margin-right: .5em;
+}
+
+.archive-list>li:not(.acv_open)::before {
+    /* リストが閉じられているとき */
+    font-family: 'fontello';
+    content: '\e814';
+    /* +マーク */
+    margin-right: .5em;
+}
+
+/* 月別アーカイブリストのアイコン設定 */
+.month-archive-list>li::before {
+
+    margin-right: .5em;
+    margin-left: 3px;
+    color: rgba(0, 0, 0, .54);
+}
+
+/* 月別アーカイブリスト枠 */
+.widget_archive {
+    margin-bottom: 5px;
+    border: 1.5px solid #999;
+    background: #FFF;
+}
+
+/* 本サイト記事 */
+article.article__item {
+    background-color: #fff;
+}
+
+/* 本サイト記事 */
+ul.newarrival_list {
+    background-color: #fff;
+    width: 250px;
+    float: left;
+    /* margin: auto; */
+}
+
+ul.archive-list ul {
+    /* アコーディオン部 */
+    margin: 5px 0 30px 15px;
+}
+
+ul.archive-list ul.hide {
+    /* アコーディオン非表示 */
+    display: none;
+}
+
+ul.archive-list li {
+    /* リセット */
+    list-style: none;
+    background: none;
+    padding: 0;
+}
+
+ul.archive-list li p {
+    /* リセット */
+    margin: 0;
+}
+
+ul.archive-list li p span {
+    /* アイコン背景 */
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    position: relative;
+    background: #09c;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    margin-right: 5px;
+    vertical-align: -2px;
+}
+
+ul.archive-list li p span:before {
+    /* アイコン横棒 */
+    content: '';
+    height: 1px;
+    width: 9px;
+    display: block;
+    background: #fff;
+    position: absolute;
+    top: 7px;
+    left: 3px;
+}
+
+ul.archive-list li p span:after {
+    /* アイコン縦棒（閉じてるとき） */
+    content: '';
+    height: 9px;
+    width: 1px;
+    display: block;
+    background: #fff;
+    position: absolute;
+    top: 3px;
+    left: 7px;
+}
+
+ul.archive-list li p span.acv_open:after {
+    /* アイコン縦棒なし（開いてるとき） */
+    height: 0;
+    width: 0;
+}
+
+ul.archive-list ul li {
+    /* アーカイブリスト */
+    margin-left: 15px;
+    position: relative;
+}
+
+ul.archive-list ul li::after {
+    /* アーカイブリストマーク */
+    display: block;
+    content: '';
+    position: absolute;
+    top: .2em;
+    left: -1em;
+    width: 6px;
+    height: 6px;
+    border-right: 3px solid #2bc912;
+    border-bottom: 3px solid #2bc912;
+    -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+}
+
+/* 年別アーカイブリストのアイコン設定 */
+ul.archive-list>li.acv_open::before {
+    /* リストが開かれているとき */
+    font-family: 'Material Icons';
+    content: '\e909';
+    /* -マーク */
+    margin-right: .5em;
+}
+
+ul.archive-list>li:not(.acv_open)::before {
+    /* リストが閉じられているとき */
+    font-family: 'Material Icons';
+    content: '\e146';
+    /* +マーク */
+    margin-right: .5em;
+    font-size: 18px;
+}
+
+/* 年別アーカイブリストの装飾 */
+ul.archive-list {
+    font-size: 16px;
+    padding: 6px 10px;
+    color: #2bc912;
+}
+
+.rssBlock {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.rssBlock li.sitelink:nth-child(odd) {
+    background-color: #fffacd;
+}
+
+.rssBlock ul li a {
+    text-decoration: none;
+}
+
+.rssBlock ul li.sitelink {
+    background: url(https://i0.wp.com/pioncoooo.net/wp-content/uploads/2016/12/f13b58da2.png) 0 center no-repeat;
+    overflow: hidden;
+    height: 25px;
+    margin: 5px 0 5px;
+    padding-left: 20px;
+    width: 780px;
+    font-size: 16px;
+    color: #e52d77;
+}
+
+.rssBlock ul {
+    margin-bottom: 30px;
+    padding: 0;
+    list-style: none;
+    overflow: hidden;
+}
+
+/* 区切り線 */
+hr {
+    border: none;
+    border-top: dashed 2px #F79FBE;
+    height: 50px;
+    color: #FFFFFF;
+    background-color: #fff;
+    width: 100%;
+    clear: both;
+}
+
+/* 記事タイトル */
+article h1 {
+    margin-left: 30px;
+    margin-bottom: 20px;
+    font-size: 35px;
+    line-height: 117%;
+    color: #2bc912;
+}
+
+/* 記事メタコンテンツあとで */
+.post-meta {
+    margin-bottom: 0.5em;
+    text-align: right;
+    background-color: #F7F7F7;
+    color: #555;
+    font-size: 16px;
+    display: flex;
+    justify-content: flex-end;
+    margin: auto;
+}
+
+/* 固定ページサムネイル後で */
+.img-wrap img {
+    width: 285px;
+    height: 300px;
+}
+
+#main-box h2 {
+    color: #e52d77;
+    border: solid 5px #F79FBE;
+    padding: 0.5em;
+    border-radius: 0.5em;
+    margin: 0px 8px 0px 1px;
+}
+
+/* 固定記事メタコンテンツあとで */
+.post-meta2 {
+    margin-bottom: 0.5em;
+    text-align: right;
+    background-color: #F7F7F7;
+    color: #555;
+    font-size: 16px;
+    display: flex;
+    justify-content: flex-end;
+    margin: auto;
+}
+
+.grid-x.grid-margin-y2 {
+    width: 100%;
+    height: 100px;
+    display: flex;
+    clear: both;
+    flex-wrap: wrap;
+}
+
+/* 固定記事最近のコメント */
+.recentcomment li a img {
+    width: 35%;
+    height: auto;
+    padding: 0 5px;
+}
+
+/* 固定記事最近のコメント欄 */
+.commentlist {
+    margin-bottom: 7px;
+    border: 1.5px solid #999;
+    background: #FFF;
+}
+
+/* 固定記事最近のコメント欄吹き出し */
+.commentnumber {
+    position: relative;
+    display: inline-block;
+    margin: 14px 0 5px 0;
+    padding: 5px 10px;
+    color: #555;
+    font-size: 13px;
+    background: #f5dfdf;
+    border-radius: 10px;
+    width: 290px;
+}
+
+/* 固定記事最近のコメント欄吹き出し */
+.commentnumber:before {
+    content: "";
+    position: absolute;
+    top: -30px;
+    margin-left: 10px;
+    border: 15px solid transparent;
+    border-bottom: 15px solid #f5dfdf;
+    ;
+}
+
+/* 固定記事最近のコメント回り込み */
+.recentcomment li {
+    clear: left;
+    padding: 0 5px;
+}
+
+/* 固定記事最近のコメント区切り線 */
+.recentcomment ul {
+    border-bottom: 1px dashed #ccc;
+    padding: 5px 0;
+}
+
+/* 固定記事最近のコメントタイトル */
+a.com_title {
+    float: right;
+    width: 60%;
+}
+
+/* 固定記事最近のコメントのcom */
+.recentcomment .commentnumber .my_author {
+    font-size: 14px;
+    margin-top: 5px;
+    float: right;
+    text-align: right;
+}
+
+/* 固定記事最近のコメント日付け */
+.recentcomment .commentnumber .comment {
+    padding: 7px 0;
+    border-bottom: 1px dotted #c9caca;
+    font-size: 14px;
+}
+
+/* 検索ブロック配置位置 */
+form#searchform {
+    padding: 10px;
+}
+
+/* 検索欄デザイン */
+.text-form {
+    width: 500px;
+    display: inline-block;
+}
+
+/* 検索ブロック装飾 */
+#s {
+    padding: 10px;
+    width: 100%;
+    background-color: #FCF2F4;
+    border: 2px solid #F7859C;
+    font-size: 160%;
+    font-weight: 550;
+}
+
+/* 検索欄デザインホバー */
+#s:hover {
+    border: 2px solid #000;
+}
+
+/* 検索欄ボタンデザイン */
+.form-bottom {
+    display: inline-block;
+}
+
+/* 検索欄ボタンデザインホバー */
+#searchsubmit:hover {
+    border: 2px solid #000;
+}
+
+/* 検索欄ボタンデザイン */
+#searchsubmit {
+    padding: 10px;
+    background-color: #FCF2F4;
+    border: 2px solid #F7859C;
+    font-size: 160%;
+}
+
+/* RSS画像とタイトル */
+.sitelink2 {
+    position: relative;
+    width: 48.5%;
+    padding: 1%;
+    float: left;
+    padding: 0.1em 0;
+    margin-right: 1px;
+    margin-bottom: 1px;
+    font-weight: bold;
+    color: #e52d77;
+    background: #FFF;
+}
+
+/* RSS画像とタイトルの画像 */
+.sitelink2 img {
+    width: 100%;
+    height: 300px;
+}
+
+/* RSS画像とタイトルのタイトル */
+.sitelink2 strong {
+    position: absolute;
+    left: 0;
+    bottom: 0.1em;
+    color: #fff;
+    margin: 0;
+    padding: 5px 0 5px 3%;
+    width: 100%;
+    background: #000;
+    filter: Alpha(opacity=70);
+    opacity: 0.5;
+    overflow: hidden;
+    font-size: 1em;
+    line-height: 1em;
+}
+
+.sitelink3 {
+    background-image: -webkit-gradient(linear, 0% 0%, 0% 0%, from(#fff), to(#f0f0f0));
+    background: linear-gradient(#fff, #f0f0f0);
+    border-top: 1px px solid #ccc;
+    height: 100px;
+    margin: 0px;
+    position: relative;
+    width: 48%;
+    padding: 1%;
+    float: left;
+    padding: 0.1em 0;
+    margin-right: 1px;
+    margin-bottom: 1px;
+    font-weight: bold;
+    color: #e52d77;
+    background: #FFF;
+}
+
+.sitelink3 a {
+    background: url(https://i1.wp.com/pioncoooo.net/wp-content/uploads/2016/12/list_mark11.png) no-repeat 100% 50%;
+    color: #666;
+    display: block;
+    height: 100px;
+    margin: 0;
+    padding: 0 0 0 0;
+    overflow: hidden;
+    white-space: break-word;
+    text-overflow: ellipsis;
+    text-decoration: none;
+}
+
+.sitelink3 img {
+    float: left;
+    height: 100px;
+    width: 120px;
+    margin-left: 0px;
+}
+
+.sitelink3 a strong {
+    color: #807979;
+    font-size: 16px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+}
+
+figure.snip p {
+    background: #0f6abe;
+    text-align: left;
+    bottom: 87px;
+    font-size: 13px;
+    font-weight: 100;
+    color: #fff;
+    text-align: center;
+    padding-top: 3px;
+    border-radius: 20px;
+    position: absolute;
+    margin-left: 170px;
+    width: 65px;
+    padding-bottom: 3px;
+    opacity: 0.9;
+}
+
+/* 記事装飾アイコン */
+span.fa-fw {
+    font-family: "Font Awesome 5 Free";
+}
+
+/* 返信ボタン */
+.comment-reply-link::before {
+    font-family: 'Material Icons';
+    content: '\e5da';
+    font-size: 12px;
+}
+
+/* 週間ランキングデザイン */
+.main-wrap li {
+    position: relative;
+    width: 175px;
+    height: 150px;
+    display: inline-block;
+    padding: 0;
+    margin: 10px 14px 0 0;
+}
+
+/* 週間ランキングデザインホバー */
+.main-wrap li:hover {
+    opacity: 0.65;
+}
+
+/* 週間ランキング相対位置 */
+.main-wrap .week-ranking.mosaic-backdrop {
+    height: 150px;
+    width: 100%;
+    overflow: hidden;
+}
+
+/* 週間ランキング星デザイン */
+.post-ratings {
+    background: rgba(0, 0, 0, 0.6) none repeat scroll 0 0;
+    border-radius: 15px 0 0 15px;
+    position: absolute;
+    right: 0;
+    text-align: center;
+    top: 4px;
+    width: 70px;
+    height: 30px;
+}
+
+/* 週間ランキング画像デザイン*/
+.main-wrap li img {
+    /*width: 228px; */
+    /* position: absolute; */
+    top: 30%;
+    /* left: 50%; */
+    -ms-transform: translate(-50%, -30%);
+    height: auto;
+}
+
+/* 週間ランキングタイトルデザイン*/
+header.week-ranking-header {
+    /*background: #2bc912;
+    margin: -1px 0 0;
+	*/
+}
+
+/* 週間ランキング日付け*/
+.week-ranking.date-outer {
+    color: #fff;
+    font-size: 85%;
+    font-weight: bold;
+    margin: 1px;
+    padding: 2px 5px;
+    display: none;
+}
+
+/* 週間ランキング日付け*/
+div.week-ranking.info.topinfo {
+    color: #FFF;
+    background: rgba(223, 39, 113, 0.5) none repeat scroll 0 0;
+    bottom: 0.1em;
+    font-size: 1em;
+    overflow: hidden;
+    padding: 5px;
+    position: absolute;
+    width: 100%;
+}
+
+/* メインバナー配置位置 */
+.row {
+    overflow: hidden;
+}
+
+/* メインバナーデザイン(機能していない) */
+.menu {
+    position: relative;
+    margin: 0.5rem 0 1rem 0;
+    background-color: #fff;
+    transition: box-shadow .25s;
+    border-radius: 2px;
+}
+
+/* メインバナー配置位置(機能していない) */
+.main-banner li {
+    padding: 0 !important;
+    margin: 0.5rem 0.5% !important;
+    float: left;
+    height: 110px;
+    width: 49%;
+}
+
+/* メインバナー配置位置 */
+.main-banner img {
+    display: block;
+    height: auto;
+}
+
+.entry-card-content {
+    margin-left: 160px;
+}
+
+.entry-thumnail {
+    float: left;
+    margin-right: 10px;
+    margin-top: 3px;
+    margin-left: 0;
+}
+
+.entry-post {
+    margin-bottom: 100px;
+}
+
+#my_image {
+    display: none;
+    /* 本来のファイル選択フォームは非表示に */
+}
+
+.hideItems {
+    display: none;
+}
+
+.footer-test {
+    width: 100%;
+    height: 120px;
+    text-align: center;
+    padding: 50px 0;
+    background-color: #cab64a;
+    color: #fff;
+}
+
+li {
+    list-style: none;
+}
+
+/* ↓ スライドの外枠 */
+.carousel-area {
+    width: 50%;
+    height: 300px;
+    position: relative;
+    overflow: hidden;
+    /* はみ出したスライドを隠す */
+}
+
+/*  ↓ スライド（コンテンツ） */
+.carousel {
+    /*スライド全体 */
+    width: var(--w);
+    ;
+    /*要素数かける100% */
+    height: 100%;
+    display: flex;
+    transition: all 3s;
+}
+
+/* ↓ スライドの内枠 */
+.carousel-container {
+    width: 100%;
+    /*スライド1枚分なので100% */
+    height: 100%;
+}
+
+.carousel-video-area {
+    /*スライド1枚のラッパに当たるので width, height を px 指定 */
+    position: relative;
+    width: 570px;
+    height: 300px;
+}
+
+.carousel-video-wrap {
+    width: 100%;
+    height: 100%;
+}
+
+.carousel video {
+    /* 質問掲示板 一覧表示画面の動画配置位置 */
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.next,
+.prev {
+    /* スライド */
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    bottom: 50%;
+    z-index: 10;
+    cursor: pointer;
+    border-top: solid 3px #fff;
+    border-right: solid 3px #fff;
+}
+
+/* ↓ 左右のボタン */
+.next {
+    right: 10px;
+    transform: rotate(45deg) translateY(50%);
+}
+
+.prev {
+    left: 25px;
+    transform: rotate(-135deg) translateY(-50%);
+}
+
+/* ↓ インジケーター */
+.indicator {
+    width: 100%;
+    position: absolute;
+    bottom: 20px;
+    display: flex;
+    column-gap: 18px;
+    z-index: 10;
+    justify-content: center;
+    align-items: center;
+}
+
+.indicator li {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, .4);
+    border: 2px #000 solid;
+    cursor: pointer;
+}
+
+.indicator li.active {
+    background-color: #fff;
+}
+
+.carousel-video-title {
+    position: absolute;
+    top: 75%;
+    left: 50%;
+    white-space: nowrap;
+    transform: translateX(-50%);
+    font-size: 25px;
+    font-weight: 700;
+    color: #fff;
+}
+
+#questBoard {
+    width: 1140px;
+    margin: 0 auto 50px;
+    padding: 23px 0px 23px 19px;
+    background-color: #fff;
+    border: 2px solid #999;
+    overflow: hidden;
+    clear: both;
+}
+
+
+
+/* 雑談掲示板全体の配置位置 */
+.board_form_partial {
+    width: 1140px;
+    margin: 0 auto 50px;
+    background-color: #fff;
+    border: 2px solid #999;
+    overflow: hidden;
+    clear: both;
+}
+
+/* 雑談掲示板 本体定義 */
+#js_board_form_partial {
+    padding: 23px 0px 23px 19px;
+}
+
+/* 雑談掲示板ヘッダー装飾 */
+.board_form_partial .questionHeader-partial h2 {
+    font-size: 150%;
+    font-weight: 700;
+    letter-spacing: .1em;
+    margin: 0 0 10px;
+    overflow: hidden;
+    text-align: left;
+}
+
+/* 雑談掲示板ヘッダー配置位置 */
+.questionHeader-partial {
+    position: relative;
+    height: 36px;
+    margin-bottom: 20px;
+}
+
+/* 雑談掲示板ヘッダーステップバー */
+.questionHeader-partial .other_step {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+/* 雑談掲示板 入力画面ファイルアップロード装飾 */
+.board_form_partial div#input_area .image-partial h2 {
+    background: transparent url(http://www.irasuto.cfbx.jp/wp-content/themes/sample_theme/images/title_icon.png) no-repeat scroll 0 0;
+    font-size: 150%;
+    font-weight: 700;
+    letter-spacing: .1em;
+    margin: 0 0 10px;
+    overflow: hidden;
+    padding: 4px 0 2px 40px;
+    text-align: left;
+}
+
+/* 雑談掲示板 入力画面クリアボタン配置位置 */
+.board_form_partial div#input_area .image-partial button.attachclear {
+    font-size: 140%;
+    font-weight: 700;
+    margin: 0 20px 0 0;
+}
+
+/* 雑談掲示板 入力画面ファイルアップロードアイコン */
+.board_form_partial div#input_area .image-partial .image-selector-button {
+    text-align: center;
+    margin-right: 20px;
+    margin-left: 5px;
+    margin-bottom: 20px;
+    display: inline-block !important;
+    /*position: relative;*/
+}
+
+/* 雑談掲示板 入力画面ファイルアップロードアイコン */
+.board_form_partial div#input_area .image-partial .image-camera-icon {
+    text-align: center;
+    /*margin-top: 3px;*/
+    margin-right: 20px;
+    margin-left: 3px;
+    /*margin-bottom: 22px;*/
+    padding: 15px;
+    /*display: inline-block !important;*/
+}
+
+/* 雑談掲示板 入力画面ファイルアップロードアイコンデザイン */
+.board_form_partial div#input_area .image-partial .image-camera-icon img {
+    /* width: 150px; */
+    /* height: 150px; */
+    margin-right: 5px;
+}
+
+/* 雑談掲示板 確認画面コメント定義 */
+.board_form_partial div#confirm_area .body-partial-parts {
+    background-color: #FCF2F4;
+    border: 2px solid #F7859C;
+    /* margin: 5px 0 20px 5px; */
+    /* padding: 10px; */
+    width: 98%;
+    font-size: 150%;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+}
+
+/* 雑談掲示板 入力画面コメント装飾 */
+.board_form_partial div#input_area .body-partial-parts h2 {
+    background: transparent url(http://www.irasuto.cfbx.jp/wp-content/themes/sample_theme/images/title_icon.png) no-repeat scroll 0 0;
+    font-size: 150%;
+    font-weight: 700;
+    letter-spacing: .1em;
+    margin: 0 0 10px;
+    overflow: hidden;
+    padding: 4px 0 2px 40px;
+    text-align: left;
+}
+
+/* 雑談掲示板 入力画面コメント定義 */
+textarea#text {
+    background-color: #FCF2F4;
+    border: 2px solid #F7859C;
+    margin: 5px 0 20px 5px;
+    padding: 10px 0 10px 10px;
+    width: 98%;
+    height: 340px;
+    font-size: 150%;
+    font-weight: 700;
+    letter-spacing: .1em;
+}
+
+/* 雑談掲示板 入力画面コメント定義ホバー */
+textarea#text:hover {
+    border: 2px solid #000;
+}
+
+/* 雑談掲示板 入力画面タイトル配置位置 */
+.board_form_partial div#input_area .title-partial-parts {
+    margin-top: 30px;
+}
+
+/* 雑談掲示板 入力画面タイトル装飾 */
+.board_form_partial div#input_area .title-partial-parts h2 {
+    background: transparent url(http://www.irasuto.cfbx.jp/wp-content/themes/sample_theme/images/title_icon.png) no-repeat scroll 0 0;
+    font-size: 150%;
+    font-weight: 700;
+    letter-spacing: .1em;
+    margin: 0 0 10px;
+    overflow: hidden;
+    padding: 4px 0 2px 40px;
+    text-align: left;
+}
+
+/* 雑談掲示板 入力画面タイトル定義 */
+.board_form_partial div#input_area .title-partial-parts input {
+    background-color: #FCF2F4;
+    border: 2px solid #F7859C;
+    margin: 5px 0 20px 5px;
+    padding: 10px;
+    width: 98%;
+    font-size: 150%;
+    font-weight: 700;
+    letter-spacing: .1em;
+}
+
+/* 雑談掲示板 入力画面タイトル定義ホバー */
+.board_form_partial div#input_area .title-partial-parts input:hover {
+    border: 2px solid #000;
+}
+
+/* 雑談掲示板 入力画面スタンプ配置位置 */
+.board_form_partial div#input_area .stamp-partial {
+    margin-top: 30px;
+}
+
+/* 雑談掲示板 入力画面スタンプ装飾 */
+.board_form_partial div#input_area .stamp-partial h2 {
+    background: transparent url(http://www.irasuto.cfbx.jp/wp-content/themes/sample_theme/images/title_icon.png) no-repeat scroll 0 0;
+    font-size: 150%;
+    font-weight: 700;
+    letter-spacing: .1em;
+    margin: 0 0 15px;
+    overflow: hidden;
+    padding: 4px 0 2px 40px;
+    text-align: left;
+}
+
+/* 雑談掲示板 入力画面スタンプ画像デザイン */
+input[type=radio]+label:before {
+    content: "";
+    display: inline-block;
+    background-color: rgba(0,0,0,0.4);
+    background-size: contain;
+    background-repeat: no-repeat;
+    /* margin-top: 25px; */
+    width: 80px;
+    height: 80px;
+}
+
+/* 雑談掲示板 入力画面スタンプ画像装飾 */
+input[type=radio]:checked+label::before {
+    background-color: #f7c0d6;
+    box-sizing: border-box;
+    /* margin-top: 25px; */
+    width: 80px;
+    height: 80px;
+}
+
+/* 雑談掲示板スタンプ画像 */
+input[type=radio][value="1"]+label:before {
+    background-image: url('http://www.irasuto.cfbx.jp/wp-content/themes/sample_theme/images/stamp/22789936.png');
+}
+
+/* 雑談掲示板スタンプ画像 */
+input[type=radio][value="2"]+label:before {
+    background-image: url('http://www.irasuto.cfbx.jp/wp-content/themes/sample_theme/images/stamp/22789937.png');
+}
+
+/* 雑談掲示板スタンプ画像 */
+input[type=radio][value="3"]+label:before {
+    background-image: url('http://www.irasuto.cfbx.jp/wp-content/themes/sample_theme/images/stamp/22789938.png');
+}
+
+/* 雑談掲示板スタンプ画像 */
+input[type=radio][value="4"]+label:before {
+    background-image: url('http://www.irasuto.cfbx.jp/wp-content/themes/sample_theme/images/stamp/22789939.png');
+}
+
+/* 雑談掲示板スタンプ画像 */
+input[type=radio][value="5"]+label:before {
+    background-image: url('http://www.irasuto.cfbx.jp/wp-content/themes/sample_theme/images/stamp/227899310.png');
+}
+
+/* 雑談掲示板スタンプ画像 */
+input[type=radio][value="6"]+label:before {
+    background-image: url('http://www.irasuto.cfbx.jp/wp-content/themes/sample_theme/images/stamp/227899311.png');
+}
+
+/* 雑談掲示板スタンプ画像 */
+input[type=radio][value="7"]+label:before {
+    background-image: url('http://www.irasuto.cfbx.jp/wp-content/themes/sample_theme/images/stamp/227899312.png');
+}
+
+/* 雑談掲示板スタンプ画像 */
+input[type=radio][value="8"]+label:before {
+    background-image: url('http://www.irasuto.cfbx.jp/wp-content/themes/sample_theme/images/stamp/227899313.png');
+}
+
+/* 雑談掲示板スタンプ画像装飾 */
+input[type=radio] {
+    display: none;
+}
+
+/* 雑談掲示板 入力画面アイコン画像配置位置 */
+.board_form_partial div#input_area .usericon-partial {
+    margin-top: 30px;
+}
+
+/* 雑談掲示板 入力画面アイコン画像配置位置 */
+.board_form_partial div#input_area .usericon-partial h2 {
+    background: transparent url(http://www.irasuto.cfbx.jp/wp-content/themes/sample_theme/images/title_icon.png) no-repeat scroll 0 0;
+    font-size: 150%;
+    font-weight: 700;
+    letter-spacing: .1em;
+    margin: 0 0 15px;
+    overflow: hidden;
+    padding: 4px 0 2px 40px;
+    text-align: left;
+}
+
+/* 雑談掲示板 入力画面アイコン画像本体定義 */
+.board_form_partial .usericon-partial .usericon-thumbnail-button {
+    margin: 5px 0 20px 5px;
+}
+
+/* 雑談掲示板 入力画面アイコン画像 */
+.board_form_partial div#input_area .usericon-partial .usericon-uploads {
+    padding: 10px 20px 10px 10px;
+    width: 110px;
+}
+
+/* 雑談掲示板 入力画面アイコン画像 */
+.board_form_partial div#input_area .usericon-partial .viewer {
+    padding: 10px 20px 10px 10px;
+    width: 110px;
+}
+
+/* 雑談掲示板 入力画面クリアボタン配置位置 */
+.board_form_partial div#input_area .usericon-partial .usericon-thumbnail-button button.attachclear {
+    font-size: 140%;
+    font-weight: 700;
+    margin: 0 0 0 30px;
+}
+
+/* 雑談掲示板 入力画面名前配置位置 */
+.board_form_partial div#input_area .name-partial-parts {
+    margin-top: 30px;
+}
+
+/* 雑談掲示板 入力画面名前装飾 */
+.board_form_partial div#input_area .name-partial-parts h2 {
+    background: transparent url(http://www.irasuto.cfbx.jp/wp-content/themes/sample_theme/images/title_icon.png) no-repeat scroll 0 0;
+    font-size: 150%;
+    font-weight: 700;
+    letter-spacing: .1em;
+    margin: 0 0 10px;
+    overflow: hidden;
+    padding: 4px 0 2px 40px;
+    text-align: left;
+}
+
+/* 雑談掲示板 入力画面名前定義 */
+.board_form_partial div#input_area .name-partial-parts input {
+    background-color: #FCF2F4;
+    border: 2px solid #F7859C;
+    margin: 5px 0 20px 5px;
+    padding: 10px;
+    width: 98%;
+    font-size: 150%;
+    font-weight: 700;
+    letter-spacing: .1em;
+}
+
+/* 雑談掲示板 入力画面名前定義ホバー */
+.board_form_partial div#input_area .name-partial-parts input:hover {
+    border: 2px solid #000;
+}
+
+/* 雑談掲示板 入力画面名前とコメントの文字数表示 */
+.msg_partial {
+    text-align: right;
+    color: #333;
+    margin: 0 15px 20px 0;
+}
+
+/* 雑談掲示板 入力画面名前とコメントの文字数表示 */
+.msg_partial strong {
+    color: #e52d77;
+}
+
+/* 雑談掲示板 入力画面ホバーボタンデザイン */
+button#submit_button {
+    color: #fff;
+    background-color: #ea5692;
+    font-size: 150%;
+    font-weight: 700;
+    margin: 18px 0 5px 5px;
+    width: 280px;
+    text-align: center;
+    line-height: 49px;
+}
+
+/* 雑談掲示板 入力画面ボタンデザイン */
+#submit_button:disabled {
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.4);
+    border: none;
+    font-size: 150%;
+    font-weight: 700;
+    margin: 18px 0 5px 5px;
+    width: 280px;
+    text-align: center;
+    line-height: 49px;
+}
+
+/* 雑談掲示板 確認画面ヘッダーアンダーライン */
+div#confirm_area .user-partial-Header {
+    /* border-bottom: 1.5px solid #ddd;
+    padding-bottom: 50px;
+    width: 1090px !important;*/
+}
+
+/* 雑談掲示板 確認画面ファイルアップロードを並べる */
+.board_form_partial div#confirm_area .image-partial .image-camera-icon {
+    /* display: inline-block; */
+    /* margin - right: 24px; */
+    margin-bottom: 30px;
+    padding: 0px 18px 0px 5px;
+}
+
+/* 雑談掲示板 確認画面コメント装飾 */
+.board_form_partial div#confirm_area .text-partial-parts {
+    color: #e52d77;
+    /* font-size: 140 %; */
+    font-weight: 700;
+    width: 1098px !important;
+    margin-top: 25px;
+}
+
+/* 雑談掲示板 確認画面タイトル配置位置 */
+.board_form_partial div#confirm_area .title-partial-parts p {
+    border: 2px solid #F7859C;
+    margin: 25px 0 20px 0;
+    padding: 10px;
+    width: 89%;
+    font-size: 150%;
+    font-weight: 700;
+    letter-spacing: .1em;
+    float: left;
+    overflow: hidden;
+    text-align: left;
+}
+
+/* 雑談掲示板 確認画面スタンプ配置位置 */
+.board_form_partial div#confirm_area .stamp-partial {
+    float: right;
+    /* margin-top: 25px; */
+    margin-right: 22px;
+}
+
+/* 雑談掲示板 確認画面アイコン画像配置位置 */
+.board_form_partial div#confirm_area .name-partial-parts img {
+    display: inline-block;
+}
+
+/* 雑談掲示板 確認画面名前配置位置 */
+.board_form_partial div#confirm_area .name-partial-parts {
+    /* display: inline-block; */
+    /* margin-top: 5px; */
+}
+
+/* 雑談掲示板 確認画面名前配置位置 */
+.board_form_partial div#confirm_area .name-partial-parts p {
+    border: 2px solid #F7859C;
+    font-size: 150%;
+    font-weight: 700;
+    letter-spacing: .1em;
+    vertical-align: top;
+    margin-left: 20px;
+    padding: 10px;
+    /* width: 89%; */
+    overflow: hidden;
+    text-align: left;
+}
+
+/* 雑談掲示板 確認画面ボタン配置位置 */
+.board_form_partial div#confirm_area .post-button button {
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.4);
+    border: none;
+    font-size: 150%;
+    font-weight: 700;
+    margin: 38px 38px 5px 1px;
+    width: 280px;
+    text-align: center;
+    line-height: 49px;
+}
+
+/* 雑談掲示板 確認画面ホバーボタン配置位置 */
+.board_form_partial div#confirm_area .post-button button:hover {
+    color: #fff;
+    background-color: #ea5692;
+    border: none;
+    font-size: 150%;
+    font-weight: 700;
+    margin: 38px 38px 5px 1px;
+    width: 280px;
+    text-align: center;
+    line-height: 49px;
+}
+
+/* 雑談掲示板 確認画面ファイルアップロードボタンアンダーライン */
+.board_form_partial div#confirm_area .post-button {
+    border-bottom: 1px solid #F7859C;
+    width: 1070px;
+}
+
+.dragover {
+    background: rgba(22, 165, 191, 0.6);
+}
+
+/* スクロール高さテスト */
+div#feed4-layout {
+    height: 500px;
+}
+
+/* 雑談掲示板　一覧表示画面本体定義 */
+.inline-player {
+    width: 1140px;
+    margin: 0 auto 50px;
+    background-color: #fff;
+    border: 2px solid #999;
+    clear: both;
+}
+
+/* 雑談掲示板　一覧表示画面本体定義 */
+.inline-player .image-card-wrap {
+    width: 260px;
+    /* 枠の横幅 */
+    margin: 23px 0px 23px 19px;
+    /* 枠のスペース */
+    vertical-align: top;
+    /* 上端に揃える */
+    word-wrap: break-word;
+    /* 文字を改行し枠内に収める */
+    display: inline-block;
+    /* <li>要素を横に並べる */
+    /* display:inline; */
+    zoom: 1;
+}
+
+/* 雑談掲示板　一覧表示画面配置位置 */
+.inline-player .image-card-wrap .image-title-link {
+    font-size: 150%;
+    font-weight: 700;
+    letter-spacing: .1em;
+}
+
+/* 雑談掲示板　一覧表示画面の画像配置位置 */
+.inline-player .image-card-wrap .image-thumbnail-card {
+    height: 150px;
+    /* 画像の高さ */
+    width: 260px;
+    /* 画像の横幅 */
+}
