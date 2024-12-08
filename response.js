@@ -92,8 +92,8 @@ const create_image_parts = function (image_class, usericonIndex, usericonImg) {
     for (let i = 0; i < blobType.length; i++) {
         if (i == usericonIndex) {
             // usericonImg = document.createElement("img");
-            usericonImg.style.maxHeight = "85px";
-            usericonImg.style.maxWidth = "85px";
+            // usericonImg.style.maxHeight = "85px";
+            // usericonImg.style.maxWidth = "85px";
             if (blobType[i] == "") {
                 usericonImg.src = "<?php echo $noimage_url; ?>";
             } else {

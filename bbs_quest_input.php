@@ -33,7 +33,7 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
     <div id="input_area">
         <form name="input_form">
             <div class="image-partial">
-                               <h2>動画・画像をアップロード(Upload video・image)<span class="required">※ファイルサイズ15MB以内、JPG/GIF/PNG/MP4</span></h2>
+                <h2>動画・画像をアップロード(Upload video・image)<span class="required">※ファイルサイズ15MB以内、JPG/GIF/PNG/MP4</span></h2>
                 <div class="image-selector-button">
                     <label>
                         <div class="image-camera-icon">
@@ -319,9 +319,9 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
                     divImagePartial.style.float = "left";
                 } else if (image_count == 2) {
                     divImagePartial.style.float = "left";
-                    divBodyPartialParts.style.height = "728px"; // コメント欄外枠
+                    divBodyPartialParts.style.height = "728px"; //コメント欄外枠
                 } else if (image_count == 3) {
-                    Array.from(divImagePartial.children).forEach(x => x.style.float = "left"); // divImagePartial の子要素を取得する、与えられた関数を配列の各要素に対して一度ずつ実行
+                    Array.from(divImagePartial.children).forEach(x => x.style.float = "left");
                 }
                 input_area.style.display = "none";
                 confirm_area.style.display = "block";
