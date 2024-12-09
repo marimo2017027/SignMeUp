@@ -1454,15 +1454,21 @@ div#confirm_area .user-partial-Header {
 }
 
 /* 雑談掲示板 確認画面タイトル配置位置 */
+.board_form_partial div#confirm_area .title-partial-parts {
+    display: inline-block;
+    width: 89%;
+}
+
+/* 雑談掲示板 確認画面タイトル配置位置 */
 .board_form_partial div#confirm_area .title-partial-parts p {
     border: 2px solid #F7859C;
     margin: 25px 0 20px 0;
     padding: 10px;
-    width: 89%;
+    width: 100%;
     font-size: 150%;
     font-weight: 700;
     letter-spacing: .1em;
-    float: left;
+    /* float: left; */
     overflow: hidden;
     text-align: left;
 }
@@ -1472,11 +1478,14 @@ div#confirm_area .user-partial-Header {
     float: right;
     /* margin-top: 25px; */
     margin-right: 22px;
+	display: inline-block;
 }
 
 /* 雑談掲示板 確認画面アイコン画像配置位置 */
 .board_form_partial div#confirm_area .name-partial-parts img {
     display: inline-block;
+	height: 85px;
+    width: 85px;
 }
 
 /* 雑談掲示板 確認画面名前配置位置 */
@@ -1494,7 +1503,7 @@ div#confirm_area .user-partial-Header {
     vertical-align: top;
     margin-left: 20px;
     padding: 10px;
-    /* width: 89%; */
+    width: 89%; 
     overflow: hidden;
     text-align: left;
 }
