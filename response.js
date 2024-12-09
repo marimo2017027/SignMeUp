@@ -95,7 +95,7 @@ const create_image_parts = function (image_class, usericonIndex, usericonImg) {
             // usericonImg.style.maxHeight = "85px";
             // usericonImg.style.maxWidth = "85px";
             if (blobType[i] == "") {
-                usericonImg.src = "<?php echo $noimage_url; ?>";
+                usericonImg.src = "../wp-content/uploads/noimage.png";
             } else {
                 usericonImg.src = blobUrl[i];
             }
