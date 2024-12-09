@@ -11,8 +11,8 @@ $query = $wpdb->prepare($sql);
 $rows = $wpdb->get_results($query);
 // アップロードディレクトリ（パス名）を取得する
 $upload_dir = wp_upload_dir();
-echo '<div id="questBoard">';
-echo '<div>';
+echo '<div id="quest_container">';
+echo '<div class="main_container">';
 foreach ($rows as $row) {
     $files = array_filter([$row->attach1, $row->attach2, $row->attach3]);
     $views = []; //ＨＴＭＬをため込む配列の初期化する
@@ -41,14 +41,14 @@ foreach ($rows as $row) {
         $usericon_src = $upload_dir['baseurl'] . '/attach/' . $row->usericon;
     }
     // echo '<div><a href="'.$url.'">'.$row->unique_id.'</a></div>';
-    echo '<div>' . mb_strimwidth($row->title, 0, 40, '･･･') . '</div>'; // タイトル30文字
-    echo '<div><input type="radio" name="stamp" value="' . $row->stamp . '" id="stamp"><label for="stamp"></label></div>'; // スタンプ画像
+    echo '<div class="quest_header_title">' . mb_strimwidth($row->title, 0, 40, '･･･') . '</div>'; // タイトル30文字
+    echo '<div class="quest_usericon_img"><input type="radio" name="stamp" value="' . $row->stamp . '" id="stamp"><label for="stamp"></label></div>'; // スタンプ画像
     foreach ($views as $view) {
-        echo '<div>' . $view . '</div>';  // アップロードファイル
+        echo '<div class="quest_markdown">' . $view . '</div>';  // アップロードファイル
     }
-    echo '<div>' . mb_strimwidth($row->text, 0, 40, '･･･') . '</div>'; // 質問文
-    echo '<div><img src="' . $usericon_src . '"></div>'; // アイコン画像
-    echo '<div>' . mb_strimwidth($row->name, 0, 10, '･･･') . '</div>'; // 名前
+    echo '<quest_container>' . mb_strimwidth($row->text, 0, 40, '･･･') . '</div>'; // 質問文
+    echo '<div class="quest_usericon_img"><img src="' . $usericon_src . '"></div>'; // アイコン画像
+    echo '<div class="quest_username">' . mb_strimwidth($row->name, 0, 10, '･･･') . '</div>'; // 名前
 }
 echo '</div>';
 // var_dump($attach_dir);
