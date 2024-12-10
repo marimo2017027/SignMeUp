@@ -11,8 +11,8 @@ $query = $wpdb->prepare($sql);
 $rows = $wpdb->get_results($query);
 // アップロードディレクトリ（パス名）を取得する
 $upload_dir = wp_upload_dir();
-echo '<div id="quest_container">';
-echo '<div class="main_container">';
+echo '<div id="main_container">';
+echo '<div class="quest_container">';
 foreach ($rows as $row) {
     $files = array_filter([$row->attach1, $row->attach2, $row->attach3]);
     $views = []; //ＨＴＭＬをため込む配列の初期化する
@@ -46,7 +46,7 @@ foreach ($rows as $row) {
     foreach ($views as $view) {
         echo '<div class="quest_markdown">' . $view . '</div>';  // アップロードファイル
     }
-    echo '<quest_container>' . mb_strimwidth($row->text, 0, 40, '･･･') . '</div>'; // 質問文
+    echo '<div class="quest_container">' . mb_strimwidth($row->text, 0, 40, '･･･') . '</div>'; // 質問文
     echo '<div class="quest_usericon_img"><img src="' . $usericon_src . '"></div>'; // アイコン画像
     echo '<div class="quest_username">' . mb_strimwidth($row->name, 0, 10, '･･･') . '</div>'; // 名前
 }
