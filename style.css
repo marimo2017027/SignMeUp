@@ -1588,3 +1588,26 @@ div#feed4-layout {
     width: 260px;
     /* 画像の横幅 */
 }
+
+/* 雑談掲示板 回答画面全体の配置位置 */
+div#quest_container {
+    width: 1140px;
+    margin: 0 auto 50px;
+    padding: 23px 23px 23px 23px;
+    background-color: #fff;
+    border: 2px solid #999;
+    overflow: hidden;
+    clear: both;
+}
+
+/* 雑談掲示板 回答画面タイトル装飾 */
+div#quest_container .quest_header_title {
+    font-size: 25px;
+	display: inline-block;
+	width: 1010px;
+}
+
+/* 雑談掲示板 回答画面スタンプ配置位置 */
+div#quest_container .quest_usericon_img {
+    display: inline-block;
+}
