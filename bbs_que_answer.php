@@ -23,13 +23,13 @@ foreach ($rows as $row) {
         switch ($ext) {
             case 'jpeg':
             case 'png':
-                $views[] = '<img style="height: 50px;" src="' . $attach_url . '">';
+                $views[] = '<img style="height:350px;width:530px" src="' . $attach_url . '">';
                 break;
             case 'mp4':
-                $views[] = '<video style="height: 50px;" src="' . $attach_url . '">';
+                $views[] = '<video style="height:350px;width:530px" src="' . $attach_url . '">';
                 break;
             case 'pdf':
-                $views[] = '<iframe style="height: 50px;" src="' . $attach_url . '"></iframe>';
+                $views[] = '<iframe style="height:350px;width:530px" src="' . $attach_url . '"></iframe>';
                 break;
             default:
                 break;
