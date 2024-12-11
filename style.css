@@ -1590,7 +1590,7 @@ div#feed4-layout {
 }
 
 /* 雑談掲示板 回答画面全体の配置位置 */
-div#quest_container {
+div#main_container {
     width: 1140px;
     margin: 0 auto 50px;
     padding: 23px 23px 23px 23px;
@@ -1607,7 +1607,13 @@ div#quest_container .quest_header_title {
 	width: 1010px;
 }
 
-/* 雑談掲示板 回答画面スタンプ配置位置 */
+/* 雑談掲示板 回答画面スタンプ画像配置位置 */
 div#quest_container .quest_usericon_img {
     display: inline-block;
+}
+
+/* 雑談掲示板 回答画面スタンプ画像デザイン */
+input[type=radio]+label.quest_stamp_label:before {
+    width: 20px;
+    height: 20px;
 }

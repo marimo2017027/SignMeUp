@@ -6,8 +6,9 @@ Template Name: bbs_que_answer
 header('X-FRAME-OPTIONS: SAMEORIGIN');
 get_header();
 // get_header('menu'); 必要なコードか分からない
-$sql = 'SELECT * FROM sortable';
-$query = $wpdb->prepare($sql);
+$unique_id = substr($_SERVER['REQUEST_URI'], -36);
+$sql = 'SELECT * FROM sortable WHERE unique_id = %s';
+$query = $wpdb->prepare($sql, $unique_id);
 $rows = $wpdb->get_results($query);
 // アップロードディレクトリ（パス名）を取得する
 $upload_dir = wp_upload_dir();
@@ -35,6 +36,20 @@ foreach ($rows as $row) {
                 break;
         }
     }
+    $count = count($views);
+    if ($count == 1) {
+        // 1がtrueの場合
+        // ここの処理が実行される
+        $bmfloatLeft = 'left'; // 画像が2つの場合のみ
+    } elseif ($count == 2) {
+        // 1がfalseで2がtrueの場合
+        // ここの処理が実行される
+        $bmfloatLeft = 'left'; // 画像が2つの場合のみ
+    } else {
+        // それ以外（1、2ともにfalse）の場合
+        // ここの処理が実行される
+        $buafloatLeft = 'left'; // 画像が3つの場合のみ
+    }
     if (empty($row->usericon)) {
         $usericon_src = 'wp-content/themes/sample_theme/images/noimage.png';
     } else {
@@ -42,15 +57,20 @@ foreach ($rows as $row) {
     }
     // echo '<div><a href="'.$url.'">'.$row->unique_id.'</a></div>';
     echo '<div class="quest_header_title">' . mb_strimwidth($row->title, 0, 40, '･･･') . '</div>'; // タイトル30文字
-    echo '<div class="quest_usericon_img"><input type="radio" name="stamp" value="' . $row->stamp . '" id="stamp"><label for="stamp"></label></div>'; // スタンプ画像
-    foreach ($views as $view) {
-        echo '<div class="quest_markdown">' . $view . '</div>';  // アップロードファイル
+    echo '<div class="quest_usericon_img"><input type="radio" name="stamp" value="' . $row->stamp . '" id="stamp"><label for="stamp" class="quest_stamp_label"></label></div>'; // スタンプ画像
+
+    // 全体にのみ float: left;
+    echo '<div class="quest_markdown">';
+    foreach ($views as $view) { // 個別にのみ float: left;
+        echo '<div class="quest_item">' . $view . '</div>'; // アップロードファイル
     }
-    echo '<div class="quest_container">' . mb_strimwidth($row->text, 0, 40, '･･･') . '</div>'; // 質問文
+    echo '</div>';
+
+    echo '<div class="quest_overview">' . mb_strimwidth($row->text, 0, 40, '･･･') . '</div>'; // 質問文
     echo '<div class="quest_usericon_img"><img src="' . $usericon_src . '"></div>'; // アイコン画像
     echo '<div class="quest_username">' . mb_strimwidth($row->name, 0, 10, '･･･') . '</div>'; // 名前
 }
-echo '</div>';
+echo '</div>'; //<div class="quest_container"> の閉じタグ
 // var_dump($attach_dir);
 //ここから回答機能
 //追加コード

@@ -1,52 +1,47 @@
 <?php
+/*
+Template Name: bbs_que_answer
+固定ページ: 回答画面
+*/
+header('X-FRAME-OPTIONS: SAMEORIGIN');
+get_header();
+// get_header('menu'); 必要なコードか分からない
+$unique_id = substr($_SERVER['REQUEST_URI'], -36);
+$sql = 'SELECT * FROM sortable WHERE unique_id = %s';
+$query = $wpdb->prepare($sql, $unique_id);
+$rows = $wpdb->get_results($query);
+// アップロードディレクトリ（パス名）を取得する
+$upload_dir = wp_upload_dir();
 echo '<div id="main_container">';
 echo '<div class="quest_container">';
 foreach ($rows as $row) {
-    //データベースからタイトルを取得
-    $title = $row["title"];
-    //データベースからスタンプ画像を取得
-    $stamp = $row["stamp"];
-    //データベースからコメントを取得
-    $text = $row["text"];
-    //データベースからコメントを取得
-    $name = $row["name"];
-
     $files = array_filter([$row->attach1, $row->attach2, $row->attach3]);
     $views = []; //ＨＴＭＬをため込む配列の初期化する
-
     foreach ($files as $file) {
         $info = pathinfo($file);
         $attach_url = $upload_dir['baseurl'] . '/attach/' . $info['basename'];
         $ext = $info['extension'];
-
         switch ($ext) {
             case 'jpeg':
             case 'png':
                 $views[] = '<img style="height:350px;width:530px" src="' . $attach_url . '">';
-                ++$image_count;
                 break;
             case 'mp4':
                 $views[] = '<video style="height:350px;width:530px" src="' . $attach_url . '">';
-                ++$image_count;
                 break;
             case 'pdf':
                 $views[] = '<iframe style="height:350px;width:530px" src="' . $attach_url . '"></iframe>';
-                ++$image_count;
                 break;
             default:
                 break;
         }
     }
-    // echo $image_count; 恐らく必要ない
-
-    // 使用する変数を空文字で初期化
-    $buafloatLeft = 'none'; // 画像が2つの場合のみ
-    $bmfloatLeft = 'none'; // 画像が3つの場合のみ
-    if ($image_count == 1) {
+    $count = count($views);
+    if ($count == 1) {
         // 1がtrueの場合
         // ここの処理が実行される
         $bmfloatLeft = 'left'; // 画像が2つの場合のみ
-    } elseif ($image_count == 2) {
+    } elseif ($count == 2) {
         // 1がfalseで2がtrueの場合
         // ここの処理が実行される
         $bmfloatLeft = 'left'; // 画像が2つの場合のみ
@@ -55,31 +50,34 @@ foreach ($rows as $row) {
         // ここの処理が実行される
         $buafloatLeft = 'left'; // 画像が3つの場合のみ
     }
-
     if (empty($row->usericon)) {
         $usericon_src = 'wp-content/themes/sample_theme/images/noimage.png';
     } else {
         $usericon_src = $upload_dir['baseurl'] . '/attach/' . $row->usericon;
     }
+    // echo '<div><a href="'.$url.'">'.$row->unique_id.'</a></div>';
+    echo '<div class="quest_header_title">' . mb_strimwidth($row->title, 0, 40, '･･･') . '</div>'; // タイトル30文字
+    echo '<div class="quest_usericon_img"><input type="radio" name="stamp" value="' . $row->stamp . '" id="stamp"><label for="stamp" class="quest_stamp_label"></label></div>'; // スタンプ画像
+
+    // 全体にのみ float: left;
+    echo '<div class="quest_markdown">';
+    foreach ($views as $view) { // 個別にのみ float: left;
+        echo '<div class="quest_item">' . $view . '</div>'; // アップロードファイル
+    }
+    echo '</div>';
+
+    echo '<div class="quest_overview">' . mb_strimwidth($row->text, 0, 40, '･･･') . '</div>'; // 質問文
+    echo '<div class="quest_usericon_img"><img src="' . $usericon_src . '"></div>'; // アイコン画像
+    echo '<div class="quest_username">' . mb_strimwidth($row->name, 0, 10, '･･･') . '</div>'; // 名前
 }
-// echo '<div><a href="'.$url.'">'.$row->unique_id.'</a></div>';
-echo '<div class="quest_header_title">' . mb_strimwidth($title->title, 0, 40, '･･･') . '</div>'; // タイトル30文字
-echo '<div class="quest_usericon_img"><input type="radio" name="stamp" value="' . $stamp->stamp . '" id="stamp"><label for="stamp"></label></div>'; // スタンプ画像
+echo '</div>'; //<div class="quest_container"> の閉じタグ
 
-// 全体にのみ float: left;
-// 個別にのみ float: left;
-echo '<div class="quest_markdown">';
-foreach ($views as $view) {
-    echo '<div class="quest_item">' . $view . '</div>'; // アップロードファイル
-}
-echo '</div>';
-
-echo '<div class="quest_container">' . mb_strimwidth($text->text, 0, 40, '･･･') . '</div>'; // 質問文
-echo '<div class="quest_usericon_img"><img src="' . $usericon_src . '"></div>'; // アイコン画像
-echo '<div class="quest_username">' . mb_strimwidth($name->name, 0, 10, '･･･') . '</div>'; // 名前
-
-echo '</div>';
-echo '</div>'; //<div id="main_container"> の閉じタグ
+// var_dump($attach_dir);
+//ここから回答機能
+//追加コード
+// $upload_dir = wp_upload_dir();
+$camera_url = $upload_dir['baseurl'] . '/camera.png';
+$noimage_url = $upload_dir['baseurl'] . '/noimage.png';
 
 echo '<div class="board_respond" id="js_board_respond">';
 echo '<div id="input_area">';
@@ -153,6 +151,7 @@ echo '<div id="result_area"></div>';
 echo '
 </div>';
 echo '</div>';
+echo '</div>'; //<div id="main_container"> の閉じタグ
 ?>
 
 <style>
