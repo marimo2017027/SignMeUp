@@ -12,7 +12,7 @@ $query = $wpdb->prepare($sql, $unique_id);
 $rows = $wpdb->get_results($query);
 // アップロードディレクトリ（パス名）を取得する
 $upload_dir = wp_upload_dir();
-echo '<div id="main_container">';
+echo '<div class="main_container">';
 echo '<div class="quest_container">';
 foreach ($rows as $row) {
     $files = array_filter([$row->attach1, $row->attach2, $row->attach3]);
