@@ -1634,6 +1634,12 @@ div#feed4-layout {
     padding: 0px 18px 0px 5px;
 }
 
+/* ファイルが1か2件の場合 */
+.image-partial {
+    float: <?php echo $bmfloatLeft;
+    ?>;
+}
+
 /* 雑談掲示板 回答画面コメント配置位置 */
 .quest_container .quest_overview {
     color: #e52d77;
@@ -1641,9 +1647,4 @@ div#feed4-layout {
     font-weight: 700;
     width: 1098px !important;
     margin-top: 25px;
-}
-
-/* ファイルが1か2件の場合 */
-.image-partial {
-    float: <?php echo $bmfloatLeft;?>;
 }
