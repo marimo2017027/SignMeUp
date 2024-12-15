@@ -37,6 +37,7 @@ foreach ($rows as $row) {
         }
     }
     $count = count($views);
+	var_dump($count);
     if ($count == 1) {
         // 1がtrueの場合
         // ここの処理が実行される
@@ -67,11 +68,11 @@ foreach ($rows as $row) {
     echo '</div>';
 
     echo '<div class="quest_overview">' . mb_strimwidth($row->text, 0, 40, '･･･') . '</div>'; // 質問文
+	// echo '</div>';
     echo '<div class="quest_usericon_img"><img src="' . $usericon_src . '"></div>'; // アイコン画像
     echo '<div class="quest_username">' . mb_strimwidth($row->name, 0, 10, '･･･') . '</div>'; // 名前
 }
 echo '</div>'; //<div class="quest_container"> の閉じタグ
-// var_dump($attach_dir);
 //ここから回答機能
 //追加コード
 // $upload_dir = wp_upload_dir();
