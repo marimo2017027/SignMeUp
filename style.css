@@ -1264,7 +1264,7 @@ input[type=radio]+label:before {
 }
 
 /* 雑談掲示板 入力画面スタンプ画像装飾 */
-input[type=radio]:checked+label::before {
+.board_form_partial div#input_area input[type=radio]:checked+label::before {
     background-color: #f7c0d6;
     box-sizing: border-box;
     /* margin-top: 25px; */
@@ -1593,7 +1593,7 @@ div#feed4-layout {
 .main_container {
     width: 1140px;
     margin: 0 auto 50px;
-    padding: 23px 23px 23px 23px;
+    padding: 23px 0px 23px 19px;
     background-color: #fff;
     border: 2px solid #999;
     overflow: hidden;
@@ -1604,6 +1604,7 @@ div#feed4-layout {
 .quest_container .quest_header_title {
     font-size: 25px;
 	display: inline-block;
+	vertical-align: top;
 	width: 1010px;
 }
 
@@ -1613,7 +1614,36 @@ div#feed4-layout {
 }
 
 /* 雑談掲示板 回答画面スタンプ画像デザイン */
-input[type=radio]+label.quest_stamp_label:before {
-    width: 20px;
-    height: 20px;
+.quest_container input[type=radio]+label.quest_stamp_label:before {
+	content: "";
+    display: inline-block;
+	background-color: rgba(0,0,0,0.4);
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 80px;
+    height: 80px;
+	margin-bottom: 20px;
+}
+
+/* 雑談掲示板 回答画面ファイルアップロードを並べる */
+/* ファイルが3件の場合 */
+.quest_container .quest_item {
+    float: <?php echo $buafloatLeft; ?>;
+    display: inline-block;
+    margin-bottom: 30px;
+    padding: 0px 18px 0px 5px;
+}
+
+/* 雑談掲示板 回答画面コメント配置位置 */
+.quest_container .quest_overview {
+    color: #e52d77;
+    font-size: 150%;
+    font-weight: 700;
+    width: 1098px !important;
+    margin-top: 25px;
+}
+
+/* ファイルが1か2件の場合 */
+.image-partial {
+    float: <?php echo $bmfloatLeft;?>;
 }
