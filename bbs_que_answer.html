@@ -1,255 +1,211 @@
-<div class="board_respond" id="js_board_respond">
-  <div id="input_area" style="display: none">
-    <form name="answer_Input_form">
-      <div class="user-area">
-        <label>
-          <div class="user-icon">
-            <img
-              src="http://www.irasuto.cfbx.jp/wp-content/uploads/noimage.png"
-              class="changeImg"
-              style="height: 90px; width: 90px"
-            />
-          </div>
-          <input
-            type="file"
-            class="attach"
-            name="attach[]"
-            data-maxsize="5"
-            accept=".png, .jpg, .jpeg"
-            style="display: none"
-          />
-        </label>
-        <div class="viewer" style="display: block">
-          <img
-            src="blob:https://www.irasuto.cfbx.jp/0ba171ca-4576-461c-a098-25e64b9043ef"
-            style="height: 85px; width: 85px"
-          />
-        </div>
-        <button type="button" class="attachclear">clear</button>
-      </div>
 
-      <div class="answer-name-area">
-        <div class="contents">
-          <input
-            class="input"
-            type="text"
-            name="name"
-            id="name"
-            data-length="50"
-            data-minlength="0"
-            placeholder="未入力の場合は、匿名で表示されます"
-          />
-          <div class="msg_partial" style="color: black">
-            残り<strong>0</strong>文字入力できます。
-          </div>
-        </div>
-      </div>
+<div class="main_container">
+  <div class="quest_container">
+    <div class="quest_header_title">
+      タイトルテスト１タイトルテスト１タイ･･･
+    </div>
+    <div class="quest_usericon_img">
+      <input type="radio" name="stamp" value="1" id="stamp" /><label
+        for="stamp"
+        class="quest_stamp_label"
+      ></label>
+    </div>
 
-      <div class="answer-text-area">
-        <!-- answer-text-area -->
-        <div class="contents">
-          <textarea
-            class="input"
-            name="text"
-            id="text"
-            data-length="500"
-            data-minlength="1"
-            placeholder="荒らし行為や誹謗中傷や著作権の侵害はご遠慮ください"
-          ></textarea>
-          <div class="msg_partial" style="color: black">
-            残り<strong>0</strong>文字入力できます。
-          </div>
-        </div>
+    <div class="quest_markdown">
+      <div class="quest_item">
+        <img
+          style="height: 350px; width: 530px"
+          src="http://www.irasuto.cfbx.jp/wp-content/uploads/attach/b0412a83-70f2-11ef-a17b-e4434ba51b4c_1.jpeg"
+        />
       </div>
-
-      <div class="uploadfile-area">
-        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-        <div class="image-selector-button">
+      <div class="quest_item">
+        <img
+          style="height: 350px; width: 530px"
+          src="http://www.irasuto.cfbx.jp/wp-content/uploads/attach/b0412a83-70f2-11ef-a17b-e4434ba51b4c_2.jpeg"
+        />
+      </div>
+      <div class="quest_item">
+        <img
+          style="height: 350px; width: 530px"
+          src="http://www.irasuto.cfbx.jp/wp-content/uploads/attach/b0412a83-70f2-11ef-a17b-e4434ba51b4c_3.jpeg"
+        />
+      </div>
+    </div>
+    <div class="quest_overview">コメントテスト１コメントテスト１コメ･･･</div>
+    <div class="quest_usericon_img">
+      <img
+        src="http://www.irasuto.cfbx.jp/wp-content/uploads/attach/b0412a83-70f2-11ef-a17b-e4434ba51b4c_usericon.png"
+      />
+    </div>
+    <div class="quest_username">名前テ･･･</div>
+  </div>
+  <div class="board_respond" id="js_board_respond">
+    <div id="input_area">
+      <form name="answer_Input_form">
+        <div class="user-area">
           <label>
-            <div class="image-camera-icon hideItems">
+            <div class="user-icon">
               <img
-                src="http://www.irasuto.cfbx.jp/wp-content/uploads/camera.png"
+                src="http://www.irasuto.cfbx.jp/wp-content/uploads/noimage.png"
                 class="changeImg"
-                style="height: 150px; width: 150px"
+                style="height: 90px; width: 90px"
               />
             </div>
             <input
               type="file"
               class="attach"
               name="attach[]"
-              accept=".png, .jpg, .jpeg, .pdf, .mp4"
+              data-maxsize="5"
+              accept=".png, .jpg, .jpeg"
               style="display: none"
             />
           </label>
-          <div class="viewer" style="display: block">
-            <img
-              src="blob:https://www.irasuto.cfbx.jp/b80d5e42-90b6-420d-9e48-096816cd5514"
-              style="height: 350px; width: 530px"
-            />
-          </div>
+          <div class="viewer" style="display: none"></div>
           <button type="button" class="attachclear">clear</button>
         </div>
-        <div class="image-selector-button">
-          <label>
-            <div class="image-camera-icon hideItems">
-              <img
-                src="http://www.irasuto.cfbx.jp/wp-content/uploads/camera.png"
-                class="changeImg"
-                style="height: 150px; width: 150px"
-              />
-            </div>
+        <div class="answer-name-area">
+          <div class="parts">
             <input
-              type="file"
-              class="attach"
-              name="attach[]"
-              accept=".png, .jpg, .jpeg, .pdf, .mp4"
-              style="display: none"
+              class="input"
+              type="text"
+              name="name"
+              id="name"
+              data-length="50"
+              data-minlength="0"
+              placeholder="未入力の場合は、匿名で表示されます"
             />
-          </label>
-          <div class="viewer" style="display: block">
-            <img
-              src="blob:https://www.irasuto.cfbx.jp/a18274a1-18dd-4c00-a566-5f89d0c2a17c"
-              style="height: 350px; width: 530px"
-            />
+            <div></div>
           </div>
-          <button type="button" class="attachclear">clear</button>
         </div>
-        <div class="image-selector-button">
-          <label>
-            <div class="image-camera-icon hideItems">
-              <img
-                src="http://www.irasuto.cfbx.jp/wp-content/uploads/camera.png"
-                class="changeImg"
-                style="height: 150px; width: 150px"
+        <div class="answer-text-area">
+          <div class="parts">
+            <textarea
+              class="input"
+              name="text"
+              id="text"
+              data-length="500"
+              data-minlength="1"
+              placeholder="荒らし行為や誹謗中傷や著作権の侵害はご遠慮ください"
+            ></textarea>
+            <div></div>
+          </div>
+        </div>
+        <div class="uploadfile-area">
+          <div class="uploadfile-selector-button">
+            <label>
+              <div class="uploadfile-camera-icon">
+                <img
+                  src="http://www.irasuto.cfbx.jp/wp-content/uploads/camera.png"
+                  class="changeImg"
+                  style="height: 150px; width: 150px"
+                />
+              </div>
+              <input
+                type="file"
+                class="attach"
+                name="attach[]"
+                accept=".png, .jpg, .jpeg, .pdf, .mp4"
+                style="display: none"
               />
-            </div>
-            <input
-              type="file"
-              class="attach"
-              name="attach[]"
-              accept=".png, .jpg, .jpeg, .pdf, .mp4"
-              style="display: none"
-            />
-          </label>
-          <div class="viewer" style="display: block">
-            <img
-              src="blob:https://www.irasuto.cfbx.jp/6a62fee0-f3c0-43f5-bf1d-708c276197c1"
-              style="height: 350px; width: 530px"
-            />
+            </label>
+            <div class="viewer" style="display: none"></div>
+            <button type="button" class="attachclear">clear</button>
           </div>
-          <button type="button" class="attachclear">clear</button>
+          <div class="uploadfile-selector-button">
+            <label>
+              <div class="uploadfile-camera-icon">
+                <img
+                  src="http://www.irasuto.cfbx.jp/wp-content/uploads/camera.png"
+                  class="changeImg"
+                  style="height: 150px; width: 150px"
+                />
+              </div>
+              <input
+                type="file"
+                class="attach"
+                name="attach[]"
+                accept=".png, .jpg, .jpeg, .pdf, .mp4"
+                style="display: none"
+              />
+            </label>
+            <div class="viewer" style="display: none"></div>
+            <button type="button" class="attachclear">clear</button>
+          </div>
+          <div class="uploadfile-selector-button">
+            <label>
+              <div class="uploadfile-camera-icon">
+                <img
+                  src="http://www.irasuto.cfbx.jp/wp-content/uploads/camera.png"
+                  class="changeImg"
+                  style="height: 150px; width: 150px"
+                />
+              </div>
+              <input
+                type="file"
+                class="attach"
+                name="attach[]"
+                accept=".png, .jpg, .jpeg, .pdf, .mp4"
+                style="display: none"
+              />
+            </label>
+            <div class="viewer" style="display: none"></div>
+            <button type="button" class="attachclear">clear</button>
+          </div>
         </div>
-      </div>
-      <style>
-        .hideItems {
-          display: none;
-        }
-
-        .concealItems {
-          display: none;
-        }
-
-        .wait {
-          height: 40px;
-          width: 40px;
-          border-radius: 40px;
-          border: 3px solid;
-          border-color: #bbbbbb;
-          border-left-color: #1ecd97;
-          font-size: 0;
-          animation: rotating 2s 0.25s linear infinite;
-        }
-
-        @keyframes rotating {
-          from {
-            transform: rotate(0deg);
+        <style>
+          .hideItems {
+            /* カメラ画像 */
+            display: none;
           }
 
-          to {
-            transform: rotate(360deg);
+          .concealItems {
+            display: none;
           }
-        }
-      </style>
 
-      <div class="filesize-restriction-area">
-        動画・画像をアップロード(Upload video・image)<span class="required"
-          >※ファイルサイズ15MB以内、JPG/GIF/PNG/MP4</span
-        >
-      </div>
+          .wait {
+            /* ローディング画像 */
+            height: 40px;
+            width: 40px;
+            border-radius: 40px;
+            border: 3px solid;
+            border-color: #bbbbbb;
+            border-left-color: #1ecd97;
+            font-size: 0;
+            animation: rotating 2s 0.25s linear infinite;
+          }
 
-      <div class="post-button">
-        <!-- ボタンを押せなくする -->
-        <button
-          type="button"
-          id="submit_button"
-          name="mode"
-          value="confirm"
-          class=""
-        >
-          確認画面へ進む
-        </button>
-      </div>
-      <!-- type、name、id、valueの順番 -->
-    </form>
-  </div>
+          @keyframes rotating {
+            /* ローディング画像 */
+            from {
+              transform: rotate(0deg);
+            }
 
-  <!-- ここから確認画面 -->
-  <div id="confirm_area" style="display: block">
-    <div class="user-area">
-      <div class="user-icon">
-        <img
-          src="blob:https://www.irasuto.cfbx.jp/0ba171ca-4576-461c-a098-25e64b9043ef"
-          style="max-height: 85px; max-width: 85px"
-        />
-      </div>
+            to {
+              transform: rotate(360deg);
+            }
+          }
+        </style>
+        <div class="filesize-restriction-area">
+          動画・画像をアップロード(Upload video・image)<span class="required"
+            >※ファイルサイズ15MB以内、JPG/GIF/PNG/MP4</span
+          >
+        </div>
+        <div class="post-button">
+          <!-- ボタンを押せなくする -->
+          <button
+            type="button"
+            id="submit_button"
+            name="mode"
+            value="confirm"
+            disabled=""
+          >
+            確認画面へ進む
+          </button>
+        </div>
+        <!-- type、name、id、valueの順番 -->
+      </form>
     </div>
-
-    <div class="answer-name-area">
-      <p style="display: inline-block">
-        名前テスト1名前テスト1名前テスト1名前テスト1名前テスト1名前テスト1名前テスト1名前テスト1名前
-      </p>
-    </div>
-
-    <div class="answer-text-area" style="font-size: 150%">
-      <p>
-        コメントテスト1コメントテスト1コメントテスト1コメントテスト1コメントテスト1コメントテスト1コメントテスト1コメントテスト1コメントテスト1コメントテスト1コメントテスト1コメントテスト1コメントテスト1コメントテスト1コメントテスト1コメントテスト1コメントテスト1コメントテスト1コメントテスト1コメントテスト1コメントテスト1コメントテスト1コメントテスト1コメントテスト1コメントテスト1コメントテスト1コメントテスト1コメントテスト1コメントテスト1コメントテスト1コメントテスト1コメントテスト1コメントテスト1コメントテスト1コメントテスト1コメントテスト1コメントテスト1コメントテスト1コメントテスト1コメントテスト1コメントテスト1コメントテスト1コメントテスト1コメントテスト1コメントテスト1コメントテスト1コメントテスト1コメントテスト1コメントテスト1コメントテスト1コメントテスト1コメントテスト1コメントテスト1コメントテスト1コメントテスト1コメントテスト1コメントテスト1コメントテスト1コメントテスト1コメントテスト1コメントテスト1コメントテスト1コメント
-      </p>
-    </div>
-
-    <div class="uploadfile-area">
-      <div class="uploadfile-camera-icon" style="float: left">
-        <img
-          class="changeImg"
-          src="blob:https://www.irasuto.cfbx.jp/b80d5e42-90b6-420d-9e48-096816cd5514"
-          style="height: 350px; width: 530px"
-        />
-      </div>
-      <div class="uploadfile-camera-icon" style="float: left">
-        <img
-          class="changeImg"
-          src="blob:https://www.irasuto.cfbx.jp/a18274a1-18dd-4c00-a566-5f89d0c2a17c"
-          style="height: 350px; width: 530px"
-        />
-      </div>
-      <div class="uploadfile-camera-icon" style="float: left">
-        <img
-          class="changeImg"
-          src="blob:https://www.irasuto.cfbx.jp/6a62fee0-f3c0-43f5-bf1d-708c276197c1"
-          style="height: 350px; width: 530px"
-        />
-      </div>
-    </div>
-  </div>
-
-  <div class="filesize-restriction-area">
-    動画・画像をアップロード(Upload video・image)<span class="required"
-      >※ファイルサイズ15MB以内、JPG/GIF/PNG/MP4</span
-    >
-  </div>
-
-  <div class="post-button">
-    <button type="button">入力画面へ戻る</button
-    ><button type="button" name="output">結果画面へ進む</button>
+    <div id="confirm_area"></div>
+    <div id="result_area"></div>
   </div>
 </div>
-<div id="result_area"></div>
