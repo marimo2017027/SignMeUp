@@ -37,19 +37,22 @@ foreach ($rows as $row) {
         }
     }
     $count = count($views);
-	var_dump($count);
+    var_dump($count);
     if ($count == 1) {
         // 1がtrueの場合
         // ここの処理が実行される
-        $bmfloatLeft = 'left'; // 画像が2つの場合のみ
+        $qmfloatLeft = 'left'; // 画像が2つの場合のみ
+        $qmdisplayBlock = 'block'; // 画像が2つの場合のみ
     } elseif ($count == 2) {
         // 1がfalseで2がtrueの場合
         // ここの処理が実行される
-        $bmfloatLeft = 'left'; // 画像が2つの場合のみ
+        $qmfloatLeft = 'left'; // 画像が2つの場合のみ
+        $qmdisplayBlock = 'block'; // 画像が2つの場合のみ
     } else {
         // それ以外（1、2ともにfalse）の場合
         // ここの処理が実行される
-        $buafloatLeft = 'left'; // 画像が3つの場合のみ
+        $qifloatLeft = 'left'; // 画像が3つの場合のみ
+        $qmdisplayInlineblock = 'inline-block'; // 画像が3つの場合のみ
     }
     if (empty($row->usericon)) {
         $usericon_src = 'wp-content/themes/sample_theme/images/noimage.png';
@@ -68,7 +71,7 @@ foreach ($rows as $row) {
     echo '</div>';
 
     echo '<div class="quest_overview">' . mb_strimwidth($row->text, 0, 40, '･･･') . '</div>'; // 質問文
-	// echo '</div>';
+    // echo '</div>';
     echo '<div class="quest_usericon_img"><img src="' . $usericon_src . '"></div>'; // アイコン画像
     echo '<div class="quest_username">' . mb_strimwidth($row->name, 0, 10, '･･･') . '</div>'; // 名前
 }
@@ -167,6 +170,20 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
                     to {
                         transform: rotate(360deg);
                     }
+                }
+
+                /* ファイルが1か2件の場合 */
+                .quest_container .quest_markdown {
+                    float: <?php echo $qmfloatLeft; ?>;
+                }
+
+                /* 雑談掲示板 回答画面ファイルアップロードを並べる */
+                .quest_container .quest_item {
+                    float: <?php echo $qifloatLeft; ?>;
+                    display: <?php echo $qmdisplayInlineblock; ?>;
+                    display: <?php echo $qmdisplayBlock; ?>;
+                    margin-bottom: 30px;
+                    padding: 0px 18px 0px 5px;
                 }
             </style>
             <div class="filesize-restriction-area">
