@@ -1625,21 +1625,6 @@ div#feed4-layout {
 	margin-bottom: 20px;
 }
 
-/* 雑談掲示板 回答画面ファイルアップロードを並べる */
-/* ファイルが3件の場合 */
-.quest_container .quest_item {
-    float: <?php echo $buafloatLeft; ?>;
-    display: inline-block;
-    margin-bottom: 30px;
-    padding: 0px 18px 0px 5px;
-}
-
-/* ファイルが1か2件の場合 */
-.image-partial {
-    float: <?php echo $bmfloatLeft;
-    ?>;
-}
-
 /* 雑談掲示板 回答画面コメント配置位置 */
 .quest_container .quest_overview {
     color: #e52d77;
