@@ -41,18 +41,21 @@ foreach ($rows as $row) {
     if ($count == 1) {
         // 1がtrueの場合
         // ここの処理が実行される
-        $qmfloatLeft = 'left'; // 画像が2つの場合のみ
-        $qmdisplayBlock = 'block'; // 画像が2つの場合のみ
+        $qmfloat = 'left'; // 画像が2つの場合のみ
+        $qifloat = 'none';
+        $qidisplay = 'block'; // 画像が2つの場合のみ
     } elseif ($count == 2) {
         // 1がfalseで2がtrueの場合
         // ここの処理が実行される
-        $qmfloatLeft = 'left'; // 画像が2つの場合のみ
-        $qmdisplayBlock = 'block'; // 画像が2つの場合のみ
+        $qmfloat = 'left'; // 画像が2つの場合のみ
+        $qifloat = 'none';
+        $qidisplay = 'block'; // 画像が2つの場合のみ
     } else {
         // それ以外（1、2ともにfalse）の場合
         // ここの処理が実行される
-        $qifloatLeft = 'left'; // 画像が3つの場合のみ
-        $qmdisplayInlineblock = 'inline-block'; // 画像が3つの場合のみ
+        $qmfloat = 'none';
+        $qifloat = 'left'; // 画像が3つの場合のみ
+        $qidisplay = 'inline-block'; // 画像が3つの場合のみ
     }
     if (empty($row->usericon)) {
         $usericon_src = 'wp-content/themes/sample_theme/images/noimage.png';
@@ -174,14 +177,13 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
 
                 /* ファイルが1か2件の場合 */
                 .quest_container .quest_markdown {
-                    float: <?php echo $qmfloatLeft; ?>;
+                    float: <?php echo $qmfloat; ?>;
                 }
 
                 /* 雑談掲示板 回答画面ファイルアップロードを並べる */
                 .quest_container .quest_item {
-                    float: <?php echo $qifloatLeft; ?>;
-                    display: <?php echo $qmdisplayInlineblock; ?>;
-                    display: <?php echo $qmdisplayBlock; ?>;
+                    float: <?php echo $qifloat; ?>;
+                    display: <?php echo $qidisplay; ?>;
                     margin-bottom: 30px;
                     padding: 0px 18px 0px 5px;
                 }
