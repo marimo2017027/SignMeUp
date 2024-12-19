@@ -37,25 +37,12 @@ foreach ($rows as $row) {
         }
     }
     $count = count($views);
-    var_dump($count);
-    if ($count == 1) {
-        // 1がtrueの場合
-        // ここの処理が実行される
-        $qmfloat = 'left'; // 画像が2つの場合のみ
-        $qifloat = 'none';
-        $qidisplay = 'block'; // 画像が2つの場合のみ
-    } elseif ($count == 2) {
-        // 1がfalseで2がtrueの場合
-        // ここの処理が実行される
-        $qmfloat = 'left'; // 画像が2つの場合のみ
-        $qifloat = 'none';
-        $qidisplay = 'block'; // 画像が2つの場合のみ
+    if ($count == 1 || $count == 2) {
+        $qm = 'quest_markdown';
+        $qi = 'quest_item';
     } else {
-        // それ以外（1、2ともにfalse）の場合
-        // ここの処理が実行される
-        $qmfloat = 'none';
-        $qifloat = 'left'; // 画像が3つの場合のみ
-        $qidisplay = 'inline-block'; // 画像が3つの場合のみ
+        $qm = 'quest_markdown_group';
+        $qi = 'quest_item_group';
     }
     if (empty($row->usericon)) {
         $usericon_src = 'wp-content/themes/sample_theme/images/noimage.png';
@@ -64,19 +51,20 @@ foreach ($rows as $row) {
     }
     // echo '<div><a href="'.$url.'">'.$row->unique_id.'</a></div>';
     echo '<div class="quest_header_title">' . mb_strimwidth($row->title, 0, 40, '･･･') . '</div>'; // タイトル30文字
-    echo '<div class="quest_usericon_img"><input type="radio" name="stamp" value="' . $row->stamp . '" id="stamp"><label for="stamp" class="quest_stamp_label"></label></div>'; // スタンプ画像
+    echo '<div class="quest_feeling_stamp"><input type="radio" name="stamp" value="' . $row->stamp . '" id="stamp"><label for="stamp" class="quest_stamp_label"></label></div>'; // スタンプ画像
 
     // 全体にのみ float: left;
-    echo '<div class="quest_markdown">';
+    echo '<div class="' . $qm . '">';
     foreach ($views as $view) { // 個別にのみ float: left;
-        echo '<div class="quest_item">' . $view . '</div>'; // アップロードファイル
+        echo '<div class="' . $qi . '">' . $view . '</div>'; // アップロードファイル
     }
-    echo '</div>';
+    echo '</div>';  // quest_markdown の閉じタグ
 
     echo '<div class="quest_overview">' . mb_strimwidth($row->text, 0, 40, '･･･') . '</div>'; // 質問文
     // echo '</div>';
-    echo '<div class="quest_usericon_img"><img src="' . $usericon_src . '"></div>'; // アイコン画像
+    echo '<div class="quest_usericon_img"><img src="' . $usericon_src . '">'; // アイコン画像
     echo '<div class="quest_username">' . mb_strimwidth($row->name, 0, 10, '･･･') . '</div>'; // 名前
+    echo '</div>';  // アイコン画像
 }
 echo '</div>'; //<div class="quest_container"> の閉じタグ
 //ここから回答機能
@@ -173,19 +161,6 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
                     to {
                         transform: rotate(360deg);
                     }
-                }
-
-                /* ファイルが1か2件の場合 */
-                .quest_container .quest_markdown {
-                    float: <?php echo $qmfloat; ?>;
-                }
-
-                /* 雑談掲示板 回答画面ファイルアップロードを並べる */
-                .quest_container .quest_item {
-                    float: <?php echo $qifloat; ?>;
-                    display: <?php echo $qidisplay; ?>;
-                    margin-bottom: 30px;
-                    padding: 0px 18px 0px 5px;
                 }
             </style>
             <div class="filesize-restriction-area">

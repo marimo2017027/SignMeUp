@@ -1255,7 +1255,7 @@ textarea#text:hover {
 input[type=radio]+label:before {
     content: "";
     display: inline-block;
-    background-color: rgba(0,0,0,0.4);
+    background-color: rgba(0, 0, 0, 0.4);
     background-size: contain;
     background-repeat: no-repeat;
     /* margin-top: 25px; */
@@ -1478,13 +1478,13 @@ div#confirm_area .user-partial-Header {
     float: right;
     /* margin-top: 25px; */
     margin-right: 22px;
-	display: inline-block;
+    display: inline-block;
 }
 
 /* 雑談掲示板 確認画面アイコン画像配置位置 */
 .board_form_partial div#confirm_area .name-partial-parts img {
     display: inline-block;
-	height: 85px;
+    height: 85px;
     width: 85px;
 }
 
@@ -1503,7 +1503,7 @@ div#confirm_area .user-partial-Header {
     vertical-align: top;
     margin-left: 20px;
     padding: 10px;
-    width: 89%; 
+    width: 89%;
     overflow: hidden;
     text-align: left;
 }
@@ -1603,26 +1603,46 @@ div#feed4-layout {
 /* 雑談掲示板 回答画面タイトル装飾 */
 .quest_container .quest_header_title {
     font-size: 25px;
-	display: inline-block;
-	vertical-align: top;
-	width: 1010px;
+    display: inline-block;
+    vertical-align: top;
+    width: 1010px;
 }
 
 /* 雑談掲示板 回答画面スタンプ画像配置位置 */
-.quest_container .quest_usericon_img {
+.quest_container .quest_feeling_stamp {
     display: inline-block;
 }
 
 /* 雑談掲示板 回答画面スタンプ画像デザイン */
 .quest_container input[type=radio]+label.quest_stamp_label:before {
-	content: "";
+    content: "";
     display: inline-block;
-	background-color: rgba(0,0,0,0.4);
+    background-color: rgba(0, 0, 0, 0.4);
     background-size: contain;
     background-repeat: no-repeat;
     width: 80px;
     height: 80px;
-	margin-bottom: 20px;
+    margin-bottom: 20px;
+}
+
+/* 雑談掲示板 回答画面質問表示 ファイルが1か2件の場合 */
+.quest_container .quest_markdown {
+    float: left;
+}
+
+/* 雑談掲示板 回答画面ファイルアップロードを並べる */
+.quest_container .quest_item {
+    display: block;
+    margin-bottom: 30px;
+    padding: 0px 18px 0px 5px;
+}
+
+/* 雑談掲示板 回答画面ファイルアップロードを並べる ファイルが3件の場合 */
+.quest_container .quest_item_group {
+    float: left;
+    display: inline-block;
+    margin-bottom: 30px;
+    padding: 0px 18px 0px 5px;
 }
 
 /* 雑談掲示板 回答画面コメント配置位置 */
@@ -1632,4 +1652,56 @@ div#feed4-layout {
     font-weight: 700;
     width: 1098px !important;
     margin-top: 25px;
+}
+
+/* 雑談掲示板 回答画面アイコン画像配置位置 */
+.quest_container .quest_usericon_img {
+    display: inline-block;
+    width: 89%;
+}
+
+/* 雑談掲示板 回答画面アイコン画像配置位置 */
+.quest_container .quest_usericon_img img {
+    margin: 0 0 0 5px;
+    display: inline-block;
+    height: 85px;
+    width: 85px;
+}
+
+/* 雑談掲示板 回答画面名前配置位置 */
+.quest_container .quest_username {
+    border: 2px solid #F7859C;
+    font-size: 150%;
+    font-weight: 700;
+    letter-spacing: .1em;
+    vertical-align: top;
+    margin-left: 20px;
+    padding: 10px;
+    display: inline-block;
+    width: 89%;
+    overflow: hidden;
+    text-align: left;
+}
+
+/* 雑談掲示板 回答画面回答機能配置位置 */
+div#js_board_respond div#input_area form {
+    margin-top: 50px;
+}
+
+/* 雑談掲示板 回答画面アイコン画像 */
+div#js_board_respond div#input_area form .user-area {
+    display: inline-block;
+    vertical-align: top;
+}
+
+/* 雑談掲示板 回答画面クリアボタン配置位置 */
+div#js_board_respond div#input_area form .user-area button.attachclear {
+    font-size: 140%;
+    font-weight: 700;
+    margin: 0 0 0 30px;
+}
+
+/* 雑談掲示板 回答画面名前配置位置 */
+div#js_board_respond div#input_area form .answer-name-area {
+    display: inline-block;
 }
