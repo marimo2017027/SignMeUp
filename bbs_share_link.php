@@ -19,6 +19,7 @@ Template Name: bbs_share_link
         display: none;
     }
 
+    /* ポップアップ時に表示されるコンテンツ位置 */
     .popup-inside {
         text-align: center;
         width: 100%;
