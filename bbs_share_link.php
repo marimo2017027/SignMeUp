@@ -9,6 +9,33 @@ Template Name: bbs_share_link
         vertical-align: text-bottom;
     }
 
+    .popup-wrapper {
+        background-color: rgba(0, 0, 0, .5);
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: none;
+    }
+
+    .popup-inside {
+        text-align: center;
+        width: 100%;
+        max-width: 300px;
+        background: white;
+        margin: 10% auto;
+        padding: 20px;
+        position: relative;
+    }
+
+    .close {
+        position: absolute;
+        top: 0;
+        right: 5px;
+        cursor: pointer;
+    }
+
     .sns-share-links {
         display: flex;
         align-items: center;
@@ -48,32 +75,34 @@ Template Name: bbs_share_link
 </button>
 
 <div class="popup-wrapper">
-    <div class="close">x</div>
-    <div class="spread-information">
-        <!-- LINE -->
-        <a class="sns-link" href="//timeline.line.me/social-plugin/share?url=&text=" target="_blank" rel="nofollow noopener noreferrer">
-            <img src="./img/line.png">
-        </a>
+    <div class="popup-inside">
+        <div class="close">x</div>
+        <div class="spread-information">
+            <!-- LINE -->
+            <a class="sns-link" href="//timeline.line.me/social-plugin/share?url=&text=" target="_blank" rel="nofollow noopener noreferrer">
+                <img src="./img/line.png">
+            </a>
 
-        <!-- X -->
-        <a class="sns-link" href="//x.com/intent/post?text=&url=" target="_blank" rel="nofollow noopener noreferrer">
-            <img src="./img/x.png">
-        </a>
+            <!-- X -->
+            <a class="sns-link" href="//x.com/intent/post?text=&url=" target="_blank" rel="nofollow noopener noreferrer">
+                <img src="./img/x.png">
+            </a>
 
-        <!-- Facebook -->
-        <a class="sns-link" href="//www.facebook.com/sharer/sharer.php?u=&t=" target="_blank" rel="nofollow noopener noreferrer">
-            <img src="./img/facebook.png">
-        </a>
+            <!-- Facebook -->
+            <a class="sns-link" href="//www.facebook.com/sharer/sharer.php?u=&t=" target="_blank" rel="nofollow noopener noreferrer">
+                <img src="./img/facebook.png">
+            </a>
 
-        <!-- ピンタレスト -->
-        <a class="sns-link" href="//www.pinterest.com/pin/create/button/?url=&media=" target="_blank" rel="nofollow noopener noreferrer">
-            <img src="./img/pinterest.png">
-        </a>
+            <!-- ピンタレスト -->
+            <a class="sns-link" href="//www.pinterest.com/pin/create/button/?url=&media=" target="_blank" rel="nofollow noopener noreferrer">
+                <img src="./img/pinterest.png">
+            </a>
 
-        <!-- reddit -->
-        <a class="sns-link" href="//www.reddit.com/submit?url=" target="_blank" rel="nofollow noopener noreferrer">
-            <img src="./img/reddit.png">
-        </a>
+            <!-- reddit -->
+            <a class="sns-link" href="//www.reddit.com/submit?url=" target="_blank" rel="nofollow noopener noreferrer">
+                <img src="./img/reddit.png">
+            </a>
+        </div>
     </div>
 </div>
 
@@ -81,9 +110,9 @@ Template Name: bbs_share_link
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
 <script>
-    const questShareButton = document.querySelector('quest-shareButton');
-    const popupWrapper = document.querySelector('popup-wrapper');
-    const close = document.querySelector('close');
+    const questShareButton = document.querySelector('.quest-shareButton');
+    const popupWrapper = document.querySelector('.popup-wrapper');
+    const close = document.querySelector('.close');
 
     // ボタンをクリックしたときにポップアップを表示させる
     questShareButton.addEventListener('click', () => {
