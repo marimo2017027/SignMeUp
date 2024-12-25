@@ -81,28 +81,28 @@ Template Name: bbs_share_link
         <div class="spread-information">
             <!-- LINE -->
             <a class="sns-link" href="//timeline.line.me/social-plugin/share?url=&text=" target="_blank" rel="nofollow noopener noreferrer">
-                <img src="./img/line.png">
+                <img src="http://www.irasuto.cfbx.jp/wp-content/themes/sample_theme/images/line.png">
             </a>
 
             <!-- X -->
             <a class="sns-link" href="//x.com/intent/post?text=&url=" target="_blank" rel="nofollow noopener noreferrer">
-                <img src="./img/x.png">
+                <img src="http://www.irasuto.cfbx.jp/wp-content/themes/sample_theme/images/x.png">
             </a>
 
             <!-- Facebook -->
             <a class="sns-link" href="//www.facebook.com/sharer/sharer.php?u=&t=" target="_blank" rel="nofollow noopener noreferrer">
-                <img src="./img/facebook.png">
+                <img src="http://www.irasuto.cfbx.jp/wp-content/themes/sample_theme/images/facebook.png">
             </a>
 
             <!-- ピンタレスト -->
             <a class="sns-link" href="//www.pinterest.com/pin/create/button/?url=&media=" target="_blank" rel="nofollow noopener noreferrer">
-                <img src="./img/pinterest.png">
+                <img src="http://www.irasuto.cfbx.jp/wp-content/themes/sample_theme/images/pinterest.png">
             </a>
 
-            <!-- reddit -->
+            <!-- reddit
             <a class="sns-link" href="//www.reddit.com/submit?url=" target="_blank" rel="nofollow noopener noreferrer">
-                <img src="./img/reddit.png">
-            </a>
+                <img src="http://www.irasuto.cfbx.jp/wp-content/themes/sample_theme/images/reddit.png">
+            </a> -->
         </div>
 
         <!-- execCommandは廃止されている機能で利用が非推奨 -->
