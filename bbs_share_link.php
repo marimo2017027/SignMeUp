@@ -104,6 +104,9 @@ Template Name: bbs_share_link
                 <img src="./img/reddit.png">
             </a>
         </div>
+
+        <!-- execCommandは廃止されている機能で利用が非推奨 -->
+        <!-- スマートフォンでHTMLタグのonclick属性の挙動がおかしくしっかり作動しないことがあるので、今回はbuttonタグで作成 -->
     </div>
 </div>
 
@@ -113,12 +116,45 @@ Template Name: bbs_share_link
 <script>
     const questShareButton = document.querySelector('.quest-shareButton');
     const popupWrapper = document.querySelector('.popup-wrapper');
+    const popupInside = document.querySelector('.popup-inside'); //追加
     const close = document.querySelector('.close');
 
     // ボタンをクリックしたときにポップアップを表示させる
+    // ボタンをクリックしたときにポップアップを表示させる
     questShareButton.addEventListener('click', () => {
+        // 現在のページのURLを取得する
+        const textboxHref = location.href;
+
         popupWrapper.style.display = "block";
+
+        // ボタンをクリックしたときに HTML を生成
+        /* テキストボックス要素作成 */
+        const divScopeRenderer = document.createElement("input");
+        divScopeRenderer.type = 'text';
+        divScopeRenderer.classList.add("scope-renderer"); // classの追加
+
+        /* テキストボックスに出力されたURL表示 */
+        divScopeRenderer.innerHTML("textboxHref");
+
+        /* コピーするボタン要素作成 */
+        const divShapeText = document.createElement("div");
+        divShapeText.classList.add("shape-text"); // classの追加
+        divShapeText.textContent = "コピーするする"; // 文字表示
+
+        /* テキストボックス要素配置 */
+        popupInside.appendChild(divScopeRenderer); // popupInside (親要素) の末尾に div を追加
+
+        /* コピーするボタン要素配置 */
+        popupInside.appendChild(divShapeText); // popupInside (親要素) の末尾に div を追加
     });
+
+    // execCommandは廃止されている機能で利用が非推奨
+    // スマートフォンでHTMLタグのonclick属性の挙動がおかしくしっかり作動しないことがあるので、今回はbuttonタグで作成
+
+    /* コピーするボタンをクリック後コピーしましたに変更 */
+    divShapeText.onclick = function() {
+        divShapeText.innerHTML = "コピーされました";
+    };
 
     // ポップアップの外側又は「x」のマークをクリックしたときポップアップを閉じる
     popupWrapper.addEventListener('click', e => {
