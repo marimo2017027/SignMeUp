@@ -42,6 +42,11 @@ Template Name: bbs_share_link
         align-items: center;
         gap: 0px 50px;
     }
+
+    .spread-information img {
+        width: 20px;
+        height: 20px;
+    }
 </style>
 
 <button type="button" class="quest-shareButton">
@@ -120,7 +125,6 @@ Template Name: bbs_share_link
     const close = document.querySelector('.close');
 
     // ボタンをクリックしたときにポップアップを表示させる
-    // ボタンをクリックしたときにポップアップを表示させる
     questShareButton.addEventListener('click', () => {
         // 現在のページのURLを取得する
         const textboxHref = location.href;
@@ -134,12 +138,20 @@ Template Name: bbs_share_link
         divScopeRenderer.classList.add("scope-renderer"); // classの追加
 
         /* テキストボックスに出力されたURL表示 */
-        divScopeRenderer.innerHTML("textboxHref");
+        // divScopeRenderer.innerHTML("textboxHref");
+        divScopeRenderer.innerHTML = 'textboxHref';
 
         /* コピーするボタン要素作成 */
         const divShapeText = document.createElement("div");
         divShapeText.classList.add("shape-text"); // classの追加
-        divShapeText.textContent = "コピーするする"; // 文字表示
+        divShapeText.textContent = "コピーする"; // 文字表示
+
+        // execCommandは廃止されている機能で利用が非推奨
+        // スマートフォンでHTMLタグのonclick属性の挙動がおかしくしっかり作動しないことがあるので、今回はbuttonタグで作成
+        /* コピーするボタンをクリック後コピーしましたに変更 */
+        divShapeText.onclick = function() {
+            divShapeText.innerHTML = "コピーされました";
+        };
 
         /* テキストボックス要素配置 */
         popupInside.appendChild(divScopeRenderer); // popupInside (親要素) の末尾に div を追加
@@ -147,14 +159,6 @@ Template Name: bbs_share_link
         /* コピーするボタン要素配置 */
         popupInside.appendChild(divShapeText); // popupInside (親要素) の末尾に div を追加
     });
-
-    // execCommandは廃止されている機能で利用が非推奨
-    // スマートフォンでHTMLタグのonclick属性の挙動がおかしくしっかり作動しないことがあるので、今回はbuttonタグで作成
-
-    /* コピーするボタンをクリック後コピーしましたに変更 */
-    divShapeText.onclick = function() {
-        divShapeText.innerHTML = "コピーされました";
-    };
 
     // ポップアップの外側又は「x」のマークをクリックしたときポップアップを閉じる
     popupWrapper.addEventListener('click', e => {
