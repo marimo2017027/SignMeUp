@@ -5,13 +5,18 @@ Template Name: bbs_lile_count
 */
 ?>
 <style>
-    .quest_likeButton svg {
+    .quest-likeButton svg {
         vertical-align: text-bottom;
+    }
+
+    .quest-likeButton {
+        height: 100px;
+        width: 100px;
     }
 </style>
 
-<button type="button" class="quest_likeButton">
-    <svg version="1.1" class="likeButton_icon" id="レイヤー_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
+<button type="button" class="quest-likeButton">
+    <svg version="1.1" class="likeButton-icon" id="レイヤー_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
         y="0px" viewBox="0 0 256 256" style="enable-background:new 0 0 256 256;" xml:space="preserve">
         <style type="text/css">
             .st0 {
@@ -37,7 +42,7 @@ Template Name: bbs_lile_count
         // カウント用の変数
         let count = 0;
         // いいねボタンの要素を取得
-        const likeButtonIcon = document.querySelector("likeButton_icon");
+        const likeButtonIcon = document.querySelector(".likeButton-icon");
         // 取得したいいねボタンがクリックされた時、カウントを1つ増やして再代入する
         likeButtonIcon.addEventListener("click", function() {
             count++;
