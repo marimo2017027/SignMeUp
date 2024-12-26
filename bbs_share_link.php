@@ -139,7 +139,7 @@ Template Name: bbs_share_link
 
         /* テキストボックスに出力されたURL表示 */
         // divScopeRenderer.innerHTML("textboxHref");
-        divScopeRenderer.innerHTML = 'textboxHref';
+        divScopeRenderer.value = textboxHref;
 
         /* コピーするボタン要素作成 */
         const divShapeText = document.createElement("div");
