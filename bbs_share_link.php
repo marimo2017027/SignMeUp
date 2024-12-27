@@ -122,7 +122,6 @@ Template Name: bbs_share_link
     const questShareButton = document.querySelector('.quest-shareButton');
     const popupWrapper = document.querySelector('.popup-wrapper');
     const popupInside = document.querySelector('.popup-inside'); //追加
-    const close = document.querySelector('.close');
 
     // ボタンをクリックしたときにポップアップを表示させる
     questShareButton.addEventListener('click', () => {
@@ -162,7 +161,7 @@ Template Name: bbs_share_link
 
     // ポップアップの外側又は「x」のマークをクリックしたときポップアップを閉じる
     popupWrapper.addEventListener('click', e => {
-        if (e.target.id === popupWrapper.id || e.target.id === close.id) {
+        if ((e.target.id === popupWrapper.id || e.target.id === close.id) && !e.target.classList.contains("shape-text")) {
             popupWrapper.style.display = 'none';
         }
     });
