@@ -147,6 +147,7 @@ Template Name: bbs_share_link
 
         // execCommandは廃止されている機能で利用が非推奨
         // スマートフォンでHTMLタグのonclick属性の挙動がおかしくしっかり作動しないことがあるので、今回はbuttonタグで作成
+        // onclick だとイベントが重複登録され押すごとに追加される
         /* コピーするボタンをクリック後コピーしましたに変更 */
         divShapeText.onclick = function() {
             divShapeText.innerHTML = "コピーされました";
