@@ -176,7 +176,7 @@ Template Name: bbs_share_link
         let href = snsLinks.eq(i).attr('href');
         //シェアページのURL上書き
         href = href.replace("u=", "u=" + url) //facebook
-        href = href.replace("url=", "url=" + url) //LINE,X,ピンタレスト,reddit
+        href = href.replace("url=", "url=" + url) //LINE,X,ピンタレスト
         snsLinks.eq(i).attr('href', href);
     }
 </script>
