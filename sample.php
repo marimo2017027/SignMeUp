@@ -41,9 +41,9 @@ Template Name: bbs_lile_count
 	C94.7,114.4,101.5,113.4,101.5,120.8z" />
             <?php
             if (isGood($_SESSION['unique_id'])) { //いいね押したらぐっどが塗りつぶされる
-                echo ' liked';
+                echo ' good';
             } else { //いいねを取り消したらぐっどのスタイルが取り消される
-                echo ' liker';
+                echo ' likeButton-icon';
             }; ?>">
         </svg>
         <!-- いいねの数 -->
