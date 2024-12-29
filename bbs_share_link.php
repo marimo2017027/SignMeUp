@@ -83,35 +83,34 @@ Template Name: bbs_share_link
 <div class="popup-wrapper">
     <div class="popup-inside">
         <div class="close">x</div>
-        <div class="spread-information">
-            <!-- LINE -->
-            <a class="sns-link" href="//timeline.line.me/social-plugin/share?url=&text=" target="_blank" rel="nofollow noopener noreferrer">
-                <img src="http://www.irasuto.cfbx.jp/wp-content/themes/sample_theme/images/line.png">
-            </a>
+        <div class="link-renderer">
+            <div class="spread-information">
+                <!-- LINE -->
+                <a class="sns-link" href="//timeline.line.me/social-plugin/share?url=&text=" target="_blank" rel="nofollow noopener noreferrer">
+                    <img src="http://www.irasuto.cfbx.jp/wp-content/themes/sample_theme/images/line.png">
+                </a>
 
-            <!-- X -->
-            <a class="sns-link" href="//x.com/intent/post?text=&url=" target="_blank" rel="nofollow noopener noreferrer">
-                <img src="http://www.irasuto.cfbx.jp/wp-content/themes/sample_theme/images/x.png">
-            </a>
+                <!-- X -->
+                <a class="sns-link" href="//x.com/intent/post?text=&url=" target="_blank" rel="nofollow noopener noreferrer">
+                    <img src="http://www.irasuto.cfbx.jp/wp-content/themes/sample_theme/images/x.png">
+                </a>
 
-            <!-- Facebook -->
-            <a class="sns-link" href="//www.facebook.com/sharer/sharer.php?u=&t=" target="_blank" rel="nofollow noopener noreferrer">
-                <img src="http://www.irasuto.cfbx.jp/wp-content/themes/sample_theme/images/facebook.png">
-            </a>
+                <!-- Facebook -->
+                <a class="sns-link" href="//www.facebook.com/sharer/sharer.php?u=&t=" target="_blank" rel="nofollow noopener noreferrer">
+                    <img src="http://www.irasuto.cfbx.jp/wp-content/themes/sample_theme/images/facebook.png">
+                </a>
 
-            <!-- ピンタレスト -->
-            <a class="sns-link" href="//www.pinterest.com/pin/create/button/?url=&media=" target="_blank" rel="nofollow noopener noreferrer">
-                <img src="http://www.irasuto.cfbx.jp/wp-content/themes/sample_theme/images/pinterest.png">
-            </a>
+                <!-- ピンタレスト -->
+                <a class="sns-link" href="//www.pinterest.com/pin/create/button/?url=&media=" target="_blank" rel="nofollow noopener noreferrer">
+                    <img src="http://www.irasuto.cfbx.jp/wp-content/themes/sample_theme/images/pinterest.png">
+                </a>
 
-            <!-- reddit
+                <!-- reddit
             <a class="sns-link" href="//www.reddit.com/submit?url=" target="_blank" rel="nofollow noopener noreferrer">
                 <img src="http://www.irasuto.cfbx.jp/wp-content/themes/sample_theme/images/reddit.png">
             </a> -->
+            </div>
         </div>
-
-        <!-- execCommandは廃止されている機能で利用が非推奨 -->
-        <!-- スマートフォンでHTMLタグのonclick属性の挙動がおかしくしっかり作動しないことがあるので、今回はbuttonタグで作成 -->
     </div>
 </div>
 
@@ -122,6 +121,8 @@ Template Name: bbs_share_link
     const questShareButton = document.querySelector('.quest-shareButton');
     const popupWrapper = document.querySelector('.popup-wrapper');
     const popupInside = document.querySelector('.popup-inside'); //追加
+    const spreadInformation = document.querySelector('.spread-information'); //SNSのシェアリンクアイコン
+    const linkRenderer = document.querySelector('.link-renderer'); //URLをコピーする要素を削除
 
     // ボタンをクリックしたときにポップアップを表示させる
     questShareButton.addEventListener('click', () => {
@@ -154,16 +155,17 @@ Template Name: bbs_share_link
         };
 
         /* テキストボックス要素配置 */
-        popupInside.appendChild(divScopeRenderer); // popupInside (親要素) の末尾に div を追加
+        linkRenderer.appendChild(divScopeRenderer); // popupInside (親要素) の末尾に div を追加
 
         /* コピーするボタン要素配置 */
-        popupInside.appendChild(divShapeText); // popupInside (親要素) の末尾に div を追加
+        linkRenderer.appendChild(divShapeText); // popupInside (親要素) の末尾に div を追加
     });
 
     // ポップアップの外側又は「x」のマークをクリックしたときポップアップを閉じる
     popupWrapper.addEventListener('click', e => {
         if ((e.target.id === popupWrapper.id || e.target.id === close.id) && !e.target.classList.contains("shape-text")) {
             popupWrapper.style.display = 'none';
+            linkRenderer.remove();
         }
     });
 
