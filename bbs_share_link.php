@@ -123,21 +123,15 @@ Template Name: bbs_share_link
     const popupWrapper = document.querySelector('.popup-wrapper');
     const popupInside = document.querySelector('.popup-inside'); // 追加
     const spreadInformation = document.querySelector('.spread-information'); // SNSのシェアリンクアイコン
-    const divScopeRenderer = document.querySelector("scope-renderer"); // テキストボックス
-    const divShapeText = document.querySelector("shape-text"); // コピーするボタン
+    const divScopeRenderer = document.querySelector(".scope-renderer"); // テキストボックス
+    const divShapeText = document.querySelector(".shape-text"); // コピーするボタン
 
     // ボタンをクリックしたときにポップアップを表示させる
     questShareButton.addEventListener('click', () => {
-        // 現在のページのURLを取得する
-        const textboxHref = location.href;
-
         popupWrapper.style.display = "block";
 
-        // ボタンをクリックしたときに HTML を生成
-        /* テキストボックス要素作成 */
-        // const divScopeRenderer = document.createElement("input");
-        // divScopeRenderer.type = 'text';
-        // divScopeRenderer.classList.add("scope-renderer"); // classの追加
+        // 現在のページのURLを取得する
+        const textboxHref = location.href;
 
         /* テキストボックスに出力されたURL表示 */
         // divScopeRenderer.innerHTML("textboxHref");
@@ -156,11 +150,26 @@ Template Name: bbs_share_link
             divShapeText.innerHTML = "コピーされました";
         };
 
+        // ボタンをクリックしたときに HTML を生成
+        /* テキストボックス要素作成 */
+        // const divScopeRenderer = document.createElement("input");
+        // divScopeRenderer.type = 'text';
+        // divScopeRenderer.classList.add("scope-renderer"); // classの追加
+
         /* テキストボックス要素配置 */
         // popupInside.appendChild(divScopeRenderer); // popupInside (親要素) の末尾に div を追加
 
         /* コピーするボタン要素配置 */
         // popupInside.appendChild(divShapeText); // popupInside (親要素) の末尾に div を追加
+    });
+
+    /* コピーするボタンをクリック */
+    divShapeText.addEventListener('click', () => {
+        /* select() で設定したURLを選択した状態にする */
+        divScopeRenderer.select();
+
+        /* document.execCommand('copy') でコピーを実行する */
+        document.execCommand('copy');
     });
 
     // ポップアップの外側又は「x」のマークをクリックしたときポップアップを閉じる
