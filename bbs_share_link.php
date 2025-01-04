@@ -147,7 +147,7 @@ Template Name: bbs_share_link
         // onclick だとイベントが重複登録され押すごとに追加される
         /* コピーするボタンをクリック後コピーしましたに変更 */
         divShapeText.onclick = function() {
-            divShapeText.innerHTML = "コピーされました";
+            divShapeText.textContent = "コピーされました";
         };
 
         // ボタンをクリックしたときに HTML を生成
