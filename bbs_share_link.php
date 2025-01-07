@@ -130,12 +130,9 @@ Template Name: bbs_share_link
     questShareButton.addEventListener('click', () => {
         popupWrapper.style.display = "block";
 
-        // 現在のページのURLを取得する
-        const textboxHref = location.href;
-
         /* テキストボックスに出力されたURL表示 */
         // divScopeRenderer.innerHTML("textboxHref");
-        divScopeRenderer.value = textboxHref;
+        divScopeRenderer.value = location.href;
 
         /* コピーするボタン要素作成 */
         // const divShapeText = document.createElement("div");
@@ -146,9 +143,9 @@ Template Name: bbs_share_link
         // スマートフォンでHTMLタグのonclick属性の挙動がおかしくしっかり作動しないことがあるので、今回はbuttonタグで作成
         // onclick だとイベントが重複登録され押すごとに追加される
         /* コピーするボタンをクリック後コピーしましたに変更 */
-        divShapeText.onclick = function() {
+        divShapeText.addEventListener('click', () => {
             divShapeText.textContent = "コピーされました";
-        };
+        });
 
         // ボタンをクリックしたときに HTML を生成
         /* テキストボックス要素作成 */
@@ -179,13 +176,11 @@ Template Name: bbs_share_link
         }
     });
 
-    let url = location.href
-    let snsLinks = $(".sns-link")
-    for (let i = 0; i < snsLinks.length; i++) {
-        let href = snsLinks.eq(i).attr('href');
-        //シェアページのURL上書き
-        href = href.replace("u=", "u=" + url) //facebook
-        href = href.replace("url=", "url=" + url) //LINE,X,ピンタレスト
-        snsLinks.eq(i).attr('href', href);
-    }
+    let snsLinks = document.querySelectorAll(".sns-link")
+    snsLinks.forEach(snsLink => {
+        let href = snsLink.getAttribute('href');
+        href = href.replace("u=", "u=" + url)
+        href = href.replace("url=", "url=" + url)
+        snsLink.setAttribute('href', href);
+    });
 </script>
