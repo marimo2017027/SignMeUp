@@ -82,14 +82,14 @@ if (!empty($_POST["post_id"]) === true or !empty($_POST["unique_id"]) === true) 
     global $wpdb;
 
     // goodテーブルから k_code（質問を一意に識別する番号）と g_unique（いいねを押した UUID（IPアドレス））が一致したレコードを取得するSQL文
-    $sql = "SELECT * FROM good WHERE k_code=? AND g_unique=?";
+    $sql = "SELECT * FROM good WHERE k_code=%s AND g_unique=%s";
     // エスケープ処理されたSQL文をクエリ実行
-    $query = $wpdb->query($wpdb->prepare($sql));
+    $query = $wpdb->prepare(
+        $sql,
+        $post_id,
+        $unique_id
+    );
 
-    $data[] = $post_id;
-    $data[] = $unique_id;
-    // エスケープ処理されたSQL文をクエリ実行
-    $query = $wpdb->query($wpdb->prepare($data));
     $data = array();
 
     //Wordpress で SELECT クエリからすべてのデータを連想行の配列として取得する
@@ -97,25 +97,17 @@ if (!empty($_POST["post_id"]) === true or !empty($_POST["unique_id"]) === true) 
 
     //もしいいねテーブルにて質問IDといいねを押した UUID（IPアドレス）が存在しなければ
     if (!empty($rec) === true) {
-        $sql = "DELETE FROM good WHERE k_code=? AND g_unique=?";
+        // goodテーブルから k_code（質問を一意に識別する番号）と g_unique（いいねを押した UUID（IPアドレス））が一致したレコードを取得するSQL文
+        $sql = "SELECT * FROM good WHERE k_code=%s AND g_unique=%s";
         // エスケープ処理されたSQL文をクエリ実行
-        $query = $wpdb->query($wpdb->prepare($sql));
+        $query = $wpdb->prepare($sql, $post_id, $unique_id);
 
-        $data[] = $post_id;
-        $data[] = $unique_id;
-        // エスケープ処理されたSQL文をクエリ実行
-        $query = $wpdb->query($wpdb->prepare($data));
         $data = array();
         //header('Content-type: application/json; charset=utf-8');
     } else {
         $sql = "INSERT INTO good(k_code, g_unique, good) VALUES(?,?,1)";
         // エスケープ処理されたSQL文をクエリ実行
-        $query = $wpdb->query($wpdb->prepare($sql));
-
-        $data[] = $post_id;
-        $data[] = $unique_id;
-        // エスケープ処理されたSQL文をクエリ実行
-        $query = $wpdb->query($wpdb->prepare($sql));
+        $query = $wpdb->prepare($sql, $post_id, $unique_id);
 
         //header('Content-type: application/json; charset=utf-8');
     }
@@ -128,7 +120,7 @@ if (!empty($_POST["post_id"]) === true or !empty($_POST["unique_id"]) === true) 
 global $wpdb;
 
 //lile_countテーブルから m_w（ユーザーの回答）のレコードを取得するSQL文
-$sql = "SELECT * FROM lile_count WHERE m_w = ? ORDER BY time DESC";
+$sql = "SELECT * FROM lile_count WHERE m_w = %s ORDER BY time DESC";
 // エスケープ処理されたSQL文をクエリ実行
 $query = $wpdb->query($wpdb->prepare($sql));
 $data[] = $day;
@@ -151,7 +143,7 @@ while (true) {
     print '<div class="ico">';
 
     //userテーブルから name（名前）のレコードを取得するSQL文
-    $sql = "SELECT img FROM user WHERE name=?";
+    $sql = "SELECT img FROM user WHERE name=%s";
     // エスケープ処理されたSQL文をクエリ実行
     $wpdb2 = $wpdb->query($wpdb->prepare($sql));
 
@@ -192,7 +184,7 @@ while (true) {
     //もし名前がなければ
     if (!empty($name) === true) {
         //goodテーブルから k_code（質問を一意に識別する番号）と g_unique（いいねを押した UUID（IPアドレス））のレコードを取得するSQL文
-        $sql = "SELECT * FROM good WHERE k_code=? AND g_unique=?";
+        $sql = "SELECT * FROM good WHERE k_code=%s AND g_unique=%s";
         // エスケープ処理されたSQL文をクエリ実行
         $wpdb3 = $wpdb->query($wpdb->prepare($sql));
         $data[] = $rec["code"];
@@ -225,7 +217,7 @@ while (true) {
     }
 
     //goodテーブルから k_code（質問を一意に識別する番号）のレコードを取得するSQL文
-    $sql = "SELECT * FROM good WHERE k_code=?";
+    $sql = "SELECT * FROM good WHERE k_code=%s";
     // エスケープ処理されたSQL文をクエリ実行
     $wpdb4 = $wpdb->query($wpdb->prepare($sql));
     //回答を一意に識別する番号
