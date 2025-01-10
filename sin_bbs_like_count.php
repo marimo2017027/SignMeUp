@@ -93,12 +93,12 @@ if (!empty($_POST["post_id"]) === true or !empty($_POST["unique_id"]) === true) 
     $data = array();
 
     //Wordpress で SELECT クエリからすべてのデータを連想行の配列として取得する
-    $rec = $wpdb->get_results('SELECT * FROM good', ARRAY_A);
+    $rec = $wpdb->get_results($query, ARRAY_A);
 
     //もしいいねテーブルにて質問IDといいねを押した UUID（IPアドレス）が存在しなければ
     if (!empty($rec) === true) {
         // goodテーブルから k_code（質問を一意に識別する番号）と g_unique（いいねを押した UUID（IPアドレス））が一致したレコードを取得するSQL文
-        $sql = "SELECT * FROM good WHERE k_code=%s AND g_unique=%s";
+        $sql = "DELETE * FROM good WHERE k_code=%s AND g_unique=%s";
         // エスケープ処理されたSQL文をクエリ実行
         $query = $wpdb->prepare($sql, $post_id, $unique_id);
 
@@ -132,7 +132,7 @@ $data = array();
 //while文とは、繰り返し処理の１つで、指定された条件式がTrueの間は処理が繰り返し実行されます。
 while (true) {
     //Wordpress で SELECT クエリからすべてのデータを連想行の配列として取得する
-    $rec = $wpdb->get_results('SELECT * FROM lile_count', ARRAY_A);
+    $rec = $wpdb->get_results($query, ARRAY_A);
 
     //もしデータがなければ終了する
     if (empty($rec) === true) {
