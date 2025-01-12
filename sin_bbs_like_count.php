@@ -49,6 +49,7 @@ Template Name: sin_bbs_lile_count
                 }
             }
 
+            /*
             fetch("<?php echo home_url('wp-admin/admin-ajax.php'); ?>", require)
                 .then(res => {
                     // return data.json();
@@ -60,7 +61,7 @@ Template Name: sin_bbs_lile_count
                 .catch(error => {
                     console.log(error);
                 });
-
+            */
             //dataType : "json"
         });
     });
@@ -130,6 +131,7 @@ $data = array();
 //$dbh = null;
 
 //while文とは、繰り返し処理の１つで、指定された条件式がTrueの間は処理が繰り返し実行されます。
+//ユーザーの回答はトップ画面にカード形式で反映
 while (true) {
     //Wordpress で SELECT クエリからすべてのデータを連想行の配列として取得する
     $rec = $wpdb->get_results($query, ARRAY_A);
@@ -138,9 +140,9 @@ while (true) {
     if (empty($rec) === true) {
         break;
     }
-    print '<div class="card">';
-    print '<div class="card-in">';
-    print '<div class="ico">';
+    //print '<div class="card">';
+    //print '<div class="card-in">';
+    //print '<div class="ico">';
 
     //userテーブルから name（名前）のレコードを取得するSQL文
     $sql = "SELECT img FROM user WHERE name=%s";
@@ -155,6 +157,7 @@ while (true) {
     //Wordpress で SELECT クエリからすべてのデータを連想行の配列として取得する
     $rec2 = $wpdb2->get_results('SELECT * FROM user', ARRAY_A);
 
+    /*ユーザーアイコン画像は必要ない
     //もしユーザーアイコン画像がなければ
     if (empty($rec2["img"]) === true) {
         $nanasi = "nanasi.png";
@@ -178,6 +181,7 @@ while (true) {
     print '<div class="kaitou">';
     print $rec["comment"];
     print "</div>";
+    */
     $code = $rec["code"];
     print "<div class='goodiine'>";
 
@@ -268,9 +272,8 @@ if (!empty($name) === true) {
 }
 print "<div id='goodnon'></div>";
 
-$dbh = null;
+//$dbh = null;
 ?>
-
 
 <div id="scrolltop" class="st">top</div>
 <div id="scrollmenu" class="sm">menu</div>
