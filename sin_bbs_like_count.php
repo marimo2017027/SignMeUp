@@ -6,11 +6,11 @@ Template Name: sin_bbs_lile_count
 ?>
 <!-- いいねのクリックイベント -->
 <script>
-    let nongood = document.getElementById("nongood");
+    //let nongood = document.getElementById("nongood");
     let kazu = code.length;
     //let kazu = count(code);
 
-    kazu.forEach(code.length => {
+    for (let i = 0; i < kazu; i++) {
         // +[]は0
         let good = +code[i];
         let iine = +code[i];
@@ -49,7 +49,6 @@ Template Name: sin_bbs_lile_count
                 }
             }
 
-            /*
             fetch("<?php echo home_url('wp-admin/admin-ajax.php'); ?>", require)
                 .then(res => {
                     // return data.json();
@@ -61,58 +60,36 @@ Template Name: sin_bbs_lile_count
                 .catch(error => {
                     console.log(error);
                 });
-            */
+
             //dataType : "json"
         });
-    });
+    };
 </script>
 
 <!-- いいねをデータベースに登録 -->
 <?php
-//もしいいねテーブルにて質問IDといいねを押した UUID（IPアドレス）と照合させる
-if (!empty($_POST["post_id"]) === true or !empty($_POST["unique_id"]) === true) {
-    //and (date("w") != 6) {
+$post_id = $_POST["post_id"];
+$unique_id = $_POST["unique_id"];
 
-    //require_once("/common.php");
+// $wpdbでSQLを実行
+global $wpdb;
 
-    //$post = sanitize($_POST);
-    $post_id = $_POST["post_id"];
-    $unique_id = $_POST["unique_id"];
+// sortableテーブルから post_id（質問を一意に識別する番号）と unique_id（いいねを押した UUID（IPアドレス））が一致したレコードを取得するSQL文
+$sql = "SELECT * FROM sortable WHERE post_id=%s AND unique_id=%s";
+$query = $wpdb->prepare($sql);
 
-    // $wpdbでSQLを実行
-    global $wpdb;
+$sql = array();
 
-    // goodテーブルから k_code（質問を一意に識別する番号）と g_unique（いいねを押した UUID（IPアドレス））が一致したレコードを取得するSQL文
-    $sql = "SELECT * FROM good WHERE k_code=%s AND g_unique=%s";
+//Wordpress で SELECT クエリからすべてのデータを連想行の配列として取得する
+$rec = $wpdb->get_results($query, ARRAY_A);
+
+if (!empty($rec) === false) {
+    $sql = "INSERT INTO sortable(good) VALUES(1)";
+
     // エスケープ処理されたSQL文をクエリ実行
-    $query = $wpdb->prepare(
-        $sql,
-        $post_id,
-        $unique_id
-    );
-
-    $data = array();
-
-    //Wordpress で SELECT クエリからすべてのデータを連想行の配列として取得する
-    $rec = $wpdb->get_results($query, ARRAY_A);
-
-    //もしいいねテーブルにて質問IDといいねを押した UUID（IPアドレス）が存在しなければ
-    if (!empty($rec) === true) {
-        // goodテーブルから k_code（質問を一意に識別する番号）と g_unique（いいねを押した UUID（IPアドレス））が一致したレコードを取得するSQL文
-        $sql = "DELETE * FROM good WHERE k_code=%s AND g_unique=%s";
-        // エスケープ処理されたSQL文をクエリ実行
-        $query = $wpdb->prepare($sql, $post_id, $unique_id);
-
-        $data = array();
-        //header('Content-type: application/json; charset=utf-8');
-    } else {
-        $sql = "INSERT INTO good(k_code, g_unique, good) VALUES(?,?,1)";
-        // エスケープ処理されたSQL文をクエリ実行
-        $query = $wpdb->prepare($sql, $post_id, $unique_id);
-
-        //header('Content-type: application/json; charset=utf-8');
-    }
+    $query = $wpdb->prepare($sql);
 }
+//}
 ?>
 
 <!-- いいねの表示について -->
@@ -131,7 +108,6 @@ $data = array();
 //$dbh = null;
 
 //while文とは、繰り返し処理の１つで、指定された条件式がTrueの間は処理が繰り返し実行されます。
-//ユーザーの回答はトップ画面にカード形式で反映
 while (true) {
     //Wordpress で SELECT クエリからすべてのデータを連想行の配列として取得する
     $rec = $wpdb->get_results($query, ARRAY_A);
@@ -140,24 +116,22 @@ while (true) {
     if (empty($rec) === true) {
         break;
     }
-    //print '<div class="card">';
-    //print '<div class="card-in">';
-    //print '<div class="ico">';
+    print '<div class="card">';
+    print '<div class="card-in">';
+    print '<div class="ico">';
 
     //userテーブルから name（名前）のレコードを取得するSQL文
     $sql = "SELECT img FROM user WHERE name=%s";
     // エスケープ処理されたSQL文をクエリ実行
     $wpdb2 = $wpdb->query($wpdb->prepare($sql));
-
-    $data[] = $rec["name"];
+    $data[] = $rec["code"];
+    $data[] = $unique_id;
     // エスケープ処理されたSQL文をクエリ実行
     $wpdb2 = $wpdb->query($wpdb->prepare($data));
     $data = array();
-    //$rec2 = $stmt2->fetch(PDO::FETCH_ASSOC);
     //Wordpress で SELECT クエリからすべてのデータを連想行の配列として取得する
-    $rec2 = $wpdb2->get_results('SELECT * FROM user', ARRAY_A);
+    $rec2 = $wpdb2->get_results('SELECT * FROM good', ARRAY_A);
 
-    /*ユーザーアイコン画像は必要ない
     //もしユーザーアイコン画像がなければ
     if (empty($rec2["img"]) === true) {
         $nanasi = "nanasi.png";
@@ -181,7 +155,6 @@ while (true) {
     print '<div class="kaitou">';
     print $rec["comment"];
     print "</div>";
-    */
     $code = $rec["code"];
     print "<div class='goodiine'>";
 
@@ -220,44 +193,37 @@ while (true) {
         print "<div id='good$code'><img src='./img/ハートのマーク3.png'></div>";
     }
 
-    //goodテーブルから k_code（質問を一意に識別する番号）のレコードを取得するSQL文
-    $sql = "SELECT * FROM good WHERE k_code=%s";
-    // エスケープ処理されたSQL文をクエリ実行
-    $wpdb4 = $wpdb->query($wpdb->prepare($sql));
-    //回答を一意に識別する番号
-    $data[] = $code;
-    // エスケープ処理されたSQL文をクエリ実行
-    $wpdb4 = $wpdb->query($wpdb->prepare($data));
-    $data = array();
-    $iine = 0;
+//goodテーブルから post_id（質問を一意に識別する番号）のレコードを取得するSQL文
+$sql = "SELECT * FROM good WHERE post_id=%s";
 
-    while (true) {
-        //Wordpress で SELECT クエリからすべてのデータを連想行の配列として取得する
-        $rec4 = $wpdb4->get_results('SELECT * FROM user', ARRAY_A);
-        //もしいいねがなければ
-        if (!empty($rec4["good"]) === true) {
-            //いいねを登録する
-            $g_i[] = $rec4["good"];
-        } else {
-            break;
-        }
-        //いいね数をカウントする
-        $iine = count($g_i);
+// エスケープ処理されたSQL文をクエリ実行
+//$wpdb4 = $wpdb->query($wpdb->prepare($sql));
+$wpdb3 = $wpdb->query($wpdb->prepare($sql));
+
+$iine = 0;
+
+while (true) {
+    //Wordpress で SELECT クエリからすべてのデータを連想行の配列として取得する
+    $rec3 = $wpdb3->get_results('SELECT * FROM good', ARRAY_A);
+
+    //もしいいねがなければ
+    if (!empty($rec3["good"]) === true) {
+        //いいねを登録する
+        $g_i[] = $rec3["good"];
+    } else {
+        break;
     }
-    $g_i = array();
-    print "<div id='iine$code'>$iine</div>";
-    print "</div>";
-    print "</div>";
-    //もし名前がなければ
-    if (!empty($name) === true) {
-        //登録する
-        if ($rec["name"] === $name) {
-            $code = "non";
-        }
-    }
-    $k_code[] = $code;
-    $g_iine[] = $iine;
+    //いいね数をカウントする
+    $iine = count($g_i);
 }
+$g_i = array();
+//print "<div id='iine$code'>$iine</div>";
+print "<div id='iine'>$iine</div>";
+print "</div>";
+print "</div>";
+
+$g_iine[] = $iine;
+
 //もしいいね数がカウントされてなければ
 if (!empty($g_iine) === true) {
     $g_iine = json_encode($g_iine);
@@ -272,7 +238,7 @@ if (!empty($name) === true) {
 }
 print "<div id='goodnon'></div>";
 
-//$dbh = null;
+$dbh = null;
 ?>
 
 <div id="scrolltop" class="st">top</div>
@@ -284,9 +250,6 @@ print "<div id='goodnon'></div>";
 <script src="anime.min.js"></script>
 <script src="footerFixed.js"></script>
 <script type="text/javascript">
-    //let name = 
-    let code = <?php echo $k_code; ?>;
-    let name = <?php echo $name; ?>;
     let g_iine = <?php echo $g_iine; ?>;
 </script>
 <script src="sub.js"></script>
