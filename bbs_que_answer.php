@@ -14,6 +14,7 @@ $rows = $wpdb->get_results($query);
 $upload_dir = wp_upload_dir();
 echo '<div class="main_container">';
 echo '<div class="quest_container">';
+// var_dump($rows);
 foreach ($rows as $row) {
     $files = array_filter([$row->attach1, $row->attach2, $row->attach3]);
     $views = []; //ＨＴＭＬをため込む配列の初期化する
@@ -348,3 +349,51 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
             });
     }
 </script>
+
+
+<!-- ここから回答表示 -->
+<?php
+$sql = 'SELECT * FROM sortable WHERE parent_id = %s';
+$query = $wpdb->prepare($sql);
+$rows = $wpdb->get_results($query);
+// アップロードディレクトリ（パス名）を取得する
+$upload_dir = wp_upload_dir();
+echo '<div class="author_contents">';
+foreach ($rows as $row) {
+    $files = array_filter([$row->attach1, $row->attach2, $row->attach3]);
+    $views = []; //ＨＴＭＬをため込む配列の初期化する
+    foreach ($files as $file) {
+        $info = pathinfo($file);
+        $attach_url = $upload_dir['baseurl'] . '/attach/' . $info['basename'];
+        $ext = $info['extension'];
+        switch ($ext) {
+            case 'jpeg':
+            case 'png':
+                $views[] = '<img style="height:350px;width:530px" src="' . $attach_url . '">';
+                break;
+            case 'mp4':
+                $views[] = '<video style="height:350px;width:530px" src="' . $attach_url . '">';
+                break;
+            case 'pdf':
+                $views[] = '<iframe style="height:350px;width:530px" src="' . $attach_url . '"></iframe>';
+                break;
+            default:
+                break;
+        }
+    }
+
+    if (empty($row->usericon)) {
+        $usericon_src = 'wp-content/themes/sample_theme/images/noimage.png';
+    } else {
+        $usericon_src = $upload_dir['baseurl'] . '/attach/' . $row->usericon;
+    }
+    // echo '<div><a href="'.$url.'">'.$row->unique_id.'</a></div>';
+    echo '<div class="author_container">' . $view . '</div>'; // アップロードファイル
+    echo '<div class="author_username">' . mb_strimwidth($row->name, 0, 10, '･･･') . '</div>'; // 名前
+    echo '<div class="author_timetext">' . $row->ts . '</div>'; // 日時
+    echo '<div class="author_overview">' . mb_strimwidth($row->text, 0, 40, '･･･') . '</div>'; // 回答
+    // echo '</div>';
+    echo '<div class="author_usericon_img"><img src="' . $usericon_src . '">'; // アイコン画像
+    echo '</div>';  // アイコン画像
+}
+echo '</div>'; //<div class="author_contents"> の閉じタグ
