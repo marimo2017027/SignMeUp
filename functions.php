@@ -609,6 +609,74 @@ function bbs_quest_confirm()
 add_action('wp_ajax_bbs_quest_confirm', 'bbs_quest_confirm');
 add_action('wp_ajax_nopriv_bbs_quest_confirm', 'bbs_quest_confirm');
 
+/* 回答タイトルとスタンプ画像なし（回答掲示板) */
+function bbs_answer_confirm()
+{
+    // 新しいセッションを開始、あるいは既存のセッションを再開する
+    session_start();
+    // 何もせず終わる処理
+    if (empty($_SESSION['text'])) {
+        exit;
+    }
+    // $wpdbでSQLを実行
+    global $wpdb;
+    // どのようなデータをどのテーブルに登録するか
+    $sql = 'INSERT INTO sortable(text,name,ip) VALUES(%s,%s,%s)';
+    // セッション変数に登録
+    $text = $_SESSION['text'];
+    $name = $_SESSION['name'];
+    //$title = $_SESSION['title'];
+    //$stamp = $_SESSION['stamp'];
+    // ipアドレスを取得する
+    $ip = $_SERVER['REMOTE_ADDR'];
+    $query = $wpdb->prepare($sql, $text, $name, $ip);
+    // プリペアードステートメントを用意してから、下記のようにresultsで値を取得
+    $query_result = $wpdb->query($query);
+    // カラム名 unique_id の質問UUID を一度そのデータを読み込んで取得する
+    $sql = 'SELECT unique_id FROM sortable WHERE ID = %d';
+    $query = $wpdb->prepare($sql, $wpdb->insert_id);
+    $rows = $wpdb->get_results($query);
+    $unique_id = $rows[0]->unique_id;
+    // アップロードディレクトリ（パス名）を取得する
+    $upload_dir = wp_upload_dir();
+    // 『filenames』を記述して配列名を記述し、それに『[]』を代入すればそれは配列として扱われます
+    $filenames = [];
+    foreach ($_SESSION['attach']['tmp_name'] as $i => $tmp_name) {
+        if (empty($tmp_name)) {
+            $filenames[$i] = '';
+        } else {
+            $type = explode('/', $_SESSION['attach']['type'][$i]);
+            $ext = $type[1];
+            if (3 == $i) { // 比較した時に3＋1以上なら
+                $n = 'usericon';
+            } else {
+                $n = $i + 1;
+            }
+            $filenames[$i] = "{$unique_id}_{$n}.{$ext}";
+            $attach_path = $upload_dir['basedir'] . '/attach/' . $filenames[$i];
+            // 文字列をファイルに書き込む、文字列データを書き込むファイル名を指定
+            file_put_contents($attach_path, $_SESSION['attach']['data'][$i]);
+        }
+    }
+    $result = [];
+    // 条件式が成り立った場合処理を実行
+    if (false === $query_result) {
+        $result['error'] = '登録できませんでした';
+        // 条件式が成り立たなければ処理を実行
+    } else { // どのテーブルの何をどう更新するか
+        $sql = 'UPDATE sortable SET attach1=%s,attach2=%s,attach3=%s,usericon=%s WHERE ID=%d';
+        $query = $wpdb->prepare($sql, $filenames[0], $filenames[1], $filenames[2], $filenames[3], $wpdb->insert_id);
+        $wpdb->query($query);
+        $result['error'] = '';
+    }
+    header('Content-type: application/json; charset=UTF-8');
+    echo json_encode($result);
+    exit;
+}
+add_action('wp_ajax_bbs_answer_confirm', 'bbs_answer_confirm');
+add_action('wp_ajax_nopriv_bbs_answer_confirm', 'bbs_answer_confirm');
+
+
 function bbs_que_list_items()
 {
     global $wpdb;
