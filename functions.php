@@ -641,6 +641,13 @@ function bbs_answer_confirm()
     // ipアドレスを取得する
     $ip = $_SERVER['REMOTE_ADDR'];
     $query = $wpdb->prepare($sql, $parent_id, $text, $name, $ip);/* （２） */
+    // プリペアードステートメントを用意してから、下記のようにresultsで値を取得
+    $query_result = $wpdb->query($query);
+    // カラム名 unique_id の質問UUID を一度そのデータを読み込んで取得する
+    $sql = 'SELECT unique_id FROM sortable WHERE ID = %d';
+    $query = $wpdb->prepare($sql, $wpdb->insert_id);
+    $rows = $wpdb->get_results($query);
+    $unique_id = $rows[0]->unique_id;
 
     // アップロードディレクトリ（パス名）を取得する
     $upload_dir = wp_upload_dir();
