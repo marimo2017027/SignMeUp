@@ -447,6 +447,7 @@ add_action('wp_ajax_nopriv_bbs_quest_submit', 'bbs_quest_submit');
 function bbs_answer_submit()
 {
     session_start();
+    $unique_id = $_POST['unique_id'];
     $text = $_POST['text'];
     $name = $_POST['name'];
     //$title = $_POST['title'];
@@ -472,6 +473,7 @@ function bbs_answer_submit()
         $result['name'] = $name;
         //$result['title'] = $title;
         $result['text'] = $text;
+        $_SESSION['unique_id'] = $unique_id;
         $_SESSION['name'] = $name;
         //$_SESSION['title'] = $title;
         $_SESSION['text'] = $text;
@@ -484,6 +486,7 @@ function bbs_answer_submit()
         }
     } else {
         $result['error'] = $error;
+        $_SESSION['unique_id'] = null;
         $_SESSION['name'] = '';
         //$_SESSION['title'] = '';
         $_SESSION['text'] = '';
@@ -620,8 +623,16 @@ function bbs_answer_confirm()
     }
     // $wpdbでSQLを実行
     global $wpdb;
+    /* ここから（１） */
+    $unique_id = $_SESSION['unique_id'];
+    $sql = 'SELECT * FROM sortable WHERE unique_id = %s';
+    $query = $wpdb->prepare($sql, $unique_id);
+    $rows = $wpdb->get_results($query);
+    // rows[0]は配列の最初の要素にアクセス
+    $parent_id = $rows[0]->id;
+    /* ここまで（１） */
     // どのようなデータをどのテーブルに登録するか
-    $sql = 'INSERT INTO sortable(text,name,ip) VALUES(%s,%s,%s)';
+    $sql = 'INSERT INTO sortable(parent_id,text,name,ip) VALUES(%d,%s,%s,%s)';/* （２） */
     // セッション変数に登録
     $text = $_SESSION['text'];
     $name = $_SESSION['name'];
@@ -629,14 +640,8 @@ function bbs_answer_confirm()
     //$stamp = $_SESSION['stamp'];
     // ipアドレスを取得する
     $ip = $_SERVER['REMOTE_ADDR'];
-    $query = $wpdb->prepare($sql, $text, $name, $ip);
-    // プリペアードステートメントを用意してから、下記のようにresultsで値を取得
-    $query_result = $wpdb->query($query);
-    // カラム名 unique_id の質問UUID を一度そのデータを読み込んで取得する
-    $sql = 'SELECT unique_id FROM sortable WHERE ID = %d';
-    $query = $wpdb->prepare($sql, $wpdb->insert_id);
-    $rows = $wpdb->get_results($query);
-    $unique_id = $rows[0]->unique_id;
+    $query = $wpdb->prepare($sql, $parent_id, $text, $name, $ip);/* （２） */
+
     // アップロードディレクトリ（パス名）を取得する
     $upload_dir = wp_upload_dir();
     // 『filenames』を記述して配列名を記述し、それに『[]』を代入すればそれは配列として扱われます
@@ -681,7 +686,7 @@ function bbs_que_list_items()
 {
     global $wpdb;
     $count = $_POST['count'];
-    $sql = 'SELECT * FROM sortable LIMIT %d,10';
+    $sql = 'SELECT * FROM sortable WHERE parent_id IS NULL LIMIT %d,10';
     $query = $wpdb->prepare($sql, $count);
     $rows = $wpdb->get_results($query);
     $result = [];
