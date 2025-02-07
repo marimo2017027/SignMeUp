@@ -569,7 +569,7 @@ function bbs_quest_confirm()
     // プリペアードステートメントを用意してから、下記のようにresultsで値を取得
     $query_result = $wpdb->query($query);
     // カラム名 unique_id の質問UUID を一度そのデータを読み込んで取得する
-    $sql = 'SELECT unique_id FROM sortable WHERE ID = %d';
+    $sql = 'SELECT unique_id FROM sortable WHERE id = %d';
     $query = $wpdb->prepare($sql, $wpdb->insert_id);
     $rows = $wpdb->get_results($query);
     $unique_id = $rows[0]->unique_id;
@@ -600,7 +600,7 @@ function bbs_quest_confirm()
         $result['error'] = '登録できませんでした';
         // 条件式が成り立たなければ処理を実行
     } else { // どのテーブルの何をどう更新するか
-        $sql = 'UPDATE sortable SET attach1=%s,attach2=%s,attach3=%s,usericon=%s WHERE ID=%d';
+        $sql = 'UPDATE sortable SET attach1=%s,attach2=%s,attach3=%s,usericon=%s WHERE id=%d';
         $query = $wpdb->prepare($sql, $filenames[0], $filenames[1], $filenames[2], $filenames[3], $wpdb->insert_id);
         $wpdb->query($query);
         $result['error'] = '';
@@ -643,40 +643,42 @@ function bbs_answer_confirm()
     $query = $wpdb->prepare($sql, $parent_id, $text, $name, $ip);/* （２） */
     // プリペアードステートメントを用意してから、下記のようにresultsで値を取得
     $query_result = $wpdb->query($query);
-    // カラム名 unique_id の質問UUID を一度そのデータを読み込んで取得する
-    $sql = 'SELECT unique_id FROM sortable WHERE ID = %d';
-    $query = $wpdb->prepare($sql, $wpdb->insert_id);
-    $rows = $wpdb->get_results($query);
-    $unique_id = $rows[0]->unique_id;
-
-    // アップロードディレクトリ（パス名）を取得する
-    $upload_dir = wp_upload_dir();
-    // 『filenames』を記述して配列名を記述し、それに『[]』を代入すればそれは配列として扱われます
-    $filenames = [];
-    foreach ($_SESSION['attach']['tmp_name'] as $i => $tmp_name) {
-        if (empty($tmp_name)) {
-            $filenames[$i] = '';
-        } else {
-            $type = explode('/', $_SESSION['attach']['type'][$i]);
-            $ext = $type[1];
-            if (3 == $i) { // 比較した時に3＋1以上なら
-                $n = 'usericon';
-            } else {
-                $n = $i + 1;
-            }
-            $filenames[$i] = "{$unique_id}_{$n}.{$ext}";
-            $attach_path = $upload_dir['basedir'] . '/attach/' . $filenames[$i];
-            // 文字列をファイルに書き込む、文字列データを書き込むファイル名を指定
-            file_put_contents($attach_path, $_SESSION['attach']['data'][$i]);
-        }
-    }
     $result = [];
     // 条件式が成り立った場合処理を実行
-    if (false === $query_result) {
-        $result['error'] = '登録できませんでした';
+    if (
+        false === $query_result
+    ) {
+        $result['error'] = '登録できませんでした' . $wpdb->last_error;
         // 条件式が成り立たなければ処理を実行
     } else { // どのテーブルの何をどう更新するか
-        $sql = 'UPDATE sortable SET attach1=%s,attach2=%s,attach3=%s,usericon=%s WHERE ID=%d';
+        // カラム名 unique_id の質問UUID を一度そのデータを読み込んで取得する
+        $sql = 'SELECT unique_id FROM sortable WHERE id = %d';
+        $query = $wpdb->prepare($sql, $wpdb->insert_id);
+        $rows = $wpdb->get_results($query);
+        $unique_id = $rows[0]->unique_id;
+
+        // アップロードディレクトリ（パス名）を取得する
+        $upload_dir = wp_upload_dir();
+        // 『filenames』を記述して配列名を記述し、それに『[]』を代入すればそれは配列として扱われます
+        $filenames = [];
+        foreach ($_SESSION['attach']['tmp_name'] as $i => $tmp_name) {
+            if (empty($tmp_name)) {
+                $filenames[$i] = '';
+            } else {
+                $type = explode('/', $_SESSION['attach']['type'][$i]);
+                $ext = $type[1];
+                if (3 == $i) { // 比較した時に3＋1以上なら
+                    $n = 'usericon';
+                } else {
+                    $n = $i + 1;
+                }
+                $filenames[$i] = "{$unique_id}_{$n}.{$ext}";
+                $attach_path = $upload_dir['basedir'] . '/attach/' . $filenames[$i];
+                // 文字列をファイルに書き込む、文字列データを書き込むファイル名を指定
+                file_put_contents($attach_path, $_SESSION['attach']['data'][$i]);
+            }
+        }
+        $sql = 'UPDATE sortable SET attach1=%s,attach2=%s,attach3=%s,usericon=%s WHERE id=%d';
         $query = $wpdb->prepare($sql, $filenames[0], $filenames[1], $filenames[2], $filenames[3], $wpdb->insert_id);
         $wpdb->query($query);
         $result['error'] = '';

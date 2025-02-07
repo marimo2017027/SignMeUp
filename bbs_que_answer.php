@@ -76,8 +76,9 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
 ?>
 <div class="board_respond" id="js_board_respond">
     <div id="input_area">
-        <form name="answer_Input_form">
+        <form name="answer_Input_form" onSubmit="AddInfo()">
             <input type="hidden" name="unique_id" value="<?php echo $unique_id; ?>">
+            <input type="hidden" name="submitdate">
             <div class="user-area">
                 <label>
                     <div class="user-icon">
@@ -179,6 +180,85 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
 </div>
 <?php echo '</div>'; ?>
 <script>
+    function NowDate() { //送信日時を取り出す関数
+        with(document.form1) { //"hidden"要素に各情報を設定する
+            submitdate.value = "このメールが送信された日時は：" + NowDate();
+        }
+        // 週を計算
+        Date.prototype.getWeek = function() {
+            var onejan = new Date(this.getFullYear(), 0, 1);
+            var today = new Date(this.getFullYear(), this.getMonth(), this.getDate());
+            var dayOfYear = ((today - onejan + 86400000) / 86400000);
+            return Math.ceil(dayOfYear / 7)
+        };
+        objDate = new Date(); //現在日時を取得
+        // Y = objDate.getFullYear(); //年を取得
+        M = objDate.getMonth(); //月を取得
+        W = objDate.getWeek(); //週を取得
+        D = objDate.getDate(); //日を取得
+        H = objDate.getHours(); //時間を取得
+        F = objDate.getMinutes(); //分を取得
+        S = objDate.getSeconds(); //秒を取得
+        // we = new Array("日", "月", "火", "水", "木", "金", "土"); //配列を作成
+        // W = we[objDate.getDay()];
+        //曜日を0～6の数値で取得し、その数値を配列Indexに割り当てる。
+        // return "送信日時：" + Y + "年" + (M + 1) + "月" + D + "日" + H + "時" + F + "分" + S + "秒";
+        const sum = ((M + 1) + D + H + F + S);
+        return "sum";
+    }
+    window.addEventListener("DOMContentLoaded", () => { //DOMツリー読み込み完了後に発火
+        // 開始日と現在の時間差を計算
+        // new Date() が 20250207 のように設定されるのか分からないため引き算できるのか不明
+        const diff = objDate - sum;
+
+        // 年の数値を計算
+        // const year = Math.floor(diff / 1000 / 60 / 60 / 24 / 30 / 12);
+        // 月の数値を計算
+        const month = Math.floor(diff / 1000 / 60 / 60 / 24 / 30) % 12;
+        // 週の数値を計算
+        const week = Math.floor(diff / 1000 / 60 / 60 / 24 / 7);
+        // 日の数値を計算
+        const day = Math.floor(diff / 1000 / 60 / 60 / 24);
+        // 時間の数値を計算
+        const time = Math.floor(diff / 1000 / 60 / 60);
+
+        // 文字列を格納するための変数
+        let outputStr = "";
+
+        // 年のテキストを生成(0の場合は表示しない)
+        /* if (year !== 0) {
+            outputStr += `${year}年`;
+        } */
+
+        // 月のテキストを生成(0の場合は表示しない)
+        if (month !== 0) {
+            outputStr += `${month}ヶ月`;
+        }
+
+        // 週のテキストを生成(0の場合は表示しない)
+        if (week !== 0) {
+            outputStr += `${week}週`;
+        }
+
+        // 日のテキストを生成(0の場合は表示しない)
+        if (day !== 0) {
+            outputStr += `${day}日`;
+        }
+
+        // 時間のテキストを生成(0の場合は表示しない)
+        if (time !== 0) {
+            outputStr += `${time}時間`;
+        }
+
+        // 完成したテキストをpタグに挿入
+        // skillTextEl.innerHTML = outputStr;
+        const divAnswerPubdateArea = outputStr;
+        divAnswerPubdateArea = document.createElement("div"); // div (子)を生成
+        divAnswerPubdateArea.classList.add("answer-pubdate-area"); // classの追加
+        /* 回答要素配置 */
+        comment_area.appendChild(); // comment_area (親要素) の末尾に div を追加
+        // });
+    });
     const input_area = document.getElementById("input_area");
     const confirm_area = document.getElementById("confirm_area");
     const result_area = document.getElementById("result_area");
