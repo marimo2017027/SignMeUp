@@ -182,7 +182,7 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
 <script>
     function NowDate() { //送信日時を取り出す関数
         with(document.form1) { //"hidden"要素に各情報を設定する
-            submitdate.value = "このメールが送信された日時は：" + NowDate();
+            submitdate.value = NowDate();
         }
         // 週を計算
         Date.prototype.getWeek = function() {
