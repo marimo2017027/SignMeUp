@@ -132,40 +132,7 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
                     <button type="button" class="attachclear">clear</button>
                 </div>
             </div>
-            <style>
-                .hideItems {
-                    /* カメラ画像 */
-                    display: none;
-                }
 
-                .concealItems {
-                    display: none;
-                }
-
-                .wait {
-                    /* ローディング画像 */
-                    height: 40px;
-                    width: 40px;
-                    border-radius: 40px;
-                    border: 3px solid;
-                    border-color: #bbbbbb;
-                    border-left-color: #1ECD97;
-                    font-size: 0;
-                    animation: rotating 2s 0.25s linear infinite;
-                }
-
-                @keyframes rotating {
-
-                    /* ローディング画像 */
-                    from {
-                        transform: rotate(0deg);
-                    }
-
-                    to {
-                        transform: rotate(360deg);
-                    }
-                }
-            </style>
             <div class="filesize-restriction-area">
                 動画・画像をアップロード(Upload video・image)<span class="required">※ファイルサイズ15MB以内、JPG/GIF/PNG/MP4</span>
             </div>
