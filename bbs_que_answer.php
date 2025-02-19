@@ -81,333 +81,249 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
     function {
         const divCmmentRmarkBtton = document.querySelectorAll("comment-remark-button");
         const customer_support_event.addEventListener("click", () => {
-            // JavaScript でＨＴＭＬ生成する
-            /* 回答機能要素作成 */
-            const divBoardRespond = document.createElement("div");
-            // class属性の値を追加
-            divBoardRespond.setAttribute('class', 'board_respond');
-            // id属性の値を追加
-            divBoardRespond.setAttribute('id', 'js_board_respond');
+                // JavaScript でＨＴＭＬ生成する
+                /* 回答機能要素作成 */
+                const divBoardRespond = document.createElement("div");
+                // class属性の値を追加
+                divBoardRespond.setAttribute('class', 'board_respond');
+                // id属性の値を追加
+                divBoardRespond.setAttribute('id', 'js_board_respond');
 
-            /* 回答機能要素作成 */
-            const divInputArea = document.createElement("div");
-            // id属性の値を追加
-            divInputArea.setAttribute('id', 'input_area');
+                /* 回答機能要素作成 */
+                const divInputArea = document.createElement("div");
+                // id属性の値を追加
+                divInputArea.setAttribute('id', 'input_area');
 
-            /* 回答入力フォーム要素作成 */
-            const formAnswerInputForm = document.createElement("form");
-            // name属性の値を追加
-            formAnswerInputForm.setAttribute('name', 'answer_Input_form');
+                function createResForm(e) {
+                    /* 回答入力フォーム要素作成 */
+                    const formAnswerInputForm = document.createElement("form");
 
-            /* inputタグ要素作成 */
-            const inputUniqueId = document.createElement("input");
-            /* input要素のtype属性を操作 */
-            inputUniqueId.setAttribute("type", "hidden");
-            // name属性の値を追加
-            inputUniqueId.setAttribute('name', 'unique_id');
-            // value属性の値を追加
+                    // name属性の値を追加
+                    formAnswerInputForm.setAttribute('name', 'answer_Input_form');
 
+                    /* inputタグ要素作成 */
+                    const inputUniqueId = document.createElement("input");
+                    /* input要素のtype属性を操作 */
+                    inputUniqueId.setAttribute("type", "hidden");
+                    // name属性の値を追加
+                    inputUniqueId.setAttribute('name', 'unique_id');
+                    // value属性の値を追加
+                    const formData = new FormData(answer_Input_form);
 
-            /* inputタグ要素作成 */
-            const inputSubmitdate = document.createElement("input");
-            // name属性の値を追加
-            inputSubmitdate.setAttribute('name', 'submitdate');
+                    /* inputタグ要素作成 */
+                    const inputSubmitdate = document.createElement("input");
+                    // name属性の値を追加
+                    inputSubmitdate.setAttribute('name', 'submitdate');
 
-            /* divタグ要素作成 */
-            const divUserArea = document.createElement("div");
+                    /* divタグ要素作成 */
+                    const divUserArea = document.createElement("div");
 
-            /* lavelタグ要素作成 */
-            let label = document.createElement("label");
+                    /* lavelタグ要素作成 */
+                    let label = document.createElement("label");
 
-            /* divタグ要素作成 */
-            const divuserIcon = document.createElement("div");
+                    /* divタグ要素作成 */
+                    const divuserIcon = document.createElement("div");
 
-            /* img要素を動的に作成して画像を表示する */
-            const NOIMAGE_URL = '<?php echo $noimage_url; ?>';
+                    /* img要素を動的に作成して画像を表示する */
+                    const NOIMAGE_URL = '<?php echo $noimage_url; ?>';
 
-            let img_element = document.createElement('img');
-            img_element.src = NOIMAGE_URL; // 画像パス
-            // class属性の値を追加
-            img_element.setAttribute('class', 'changeImg');
-            // 要素のスタイルを取得・設定
-            img_element.style.height = '90px';
-            img_element.style.width = '90px';
+                    let img_element = document.createElement('img');
+                    img_element.src = NOIMAGE_URL; // 画像パス
+                    // class属性の値を追加
+                    img_element.setAttribute('class', 'changeImg');
+                    // 要素のスタイルを取得・設定
+                    img_element.style.height = '90px';
+                    img_element.style.width = '90px';
 
-            /* inputタグ要素作成 */
-            let inputAttach = document.createElement("input");
-            // class属性の値を追加
-            inputAttach.setAttribute('class', 'attach');
-            // name属性の値を追加
-            inputAttach.setAttribute('name', 'attach[]');
-            // datasetでdata属性（data-*）を設定する
-            inputAttach.dataset.maxsize = '5';
-            // HTMLInputElement: accept プロパティ
-            inputAttach.accept = ".png, .jpg, .jpeg"; // accept 値を設定
-            inputAttach.style.display = 'none';
+                    /* inputタグ要素作成 */
+                    let inputAttach = document.createElement("input");
+                    // class属性の値を追加
+                    inputAttach.setAttribute('class', 'attach');
+                    // name属性の値を追加
+                    inputAttach.setAttribute('name', 'attach[]');
+                    // datasetでdata属性（data-*）を設定する
+                    inputAttach.dataset.maxsize = '5';
+                    // HTMLInputElement: accept プロパティ
+                    inputAttach.accept = ".png, .jpg, .jpeg"; // accept 値を設定
+                    inputAttach.style.display = 'none';
 
-            /* divタグ要素作成 */
-            let divViewer = document.createElement("div");
-            divViewer.style.display = 'none';
+                    /* divタグ要素作成 */
+                    let divViewer = document.createElement("div");
+                    divViewer.style.display = 'none';
 
-            /* buttonタグ要素作成 */
-            let buttonAttachclear = document.createElement("button");
-            // class属性の値を追加
-            buttonAttachclear.setAttribute('class', 'attachclear');
-            // タグにテキスト挿入
-            buttonAttachclear.textContent = "clear";
+                    /* buttonタグ要素作成 */
+                    let buttonAttachclear = document.createElement("button");
+                    // class属性の値を追加
+                    buttonAttachclear.setAttribute('class', 'attachclear');
+                    // タグにテキスト挿入
+                    buttonAttachclear.textContent = "clear";
 
-            /* divタグ要素作成 */
-            const divAnswerNameArea = document.createElement("div");
+                    /* divタグ要素作成 */
+                    const divAnswerNameArea = document.createElement("div");
 
-            /* divタグ要素作成 */
-            let divParts = document.createElement("div");
+                    /* divタグ要素作成 */
+                    let divParts = document.createElement("div");
 
-            /* inputタグ要素作成 */
-            const inputName = document.createElement("input");
-            // class属性の値を追加
-            inputName.setAttribute('class', 'input');
-            /* input要素のtype属性を操作 */
-            inputName.setAttribute("type", "text");
-            // name属性の値を追加
-            inputName.setAttribute('name', 'name');
-            // id属性の値を追加
-            inputName.setAttribute('id', 'name');
-            // datasetでdata属性（data-*）を設定する
-            inputName.dataset.length = '<?php echo MAX_LENGTH::NAME; ?>';
-            inputName.dataset.minlength = '<?php echo MIN_LENGTH::NAME; ?>';
+                    /* inputタグ要素作成 */
+                    const inputName = document.createElement("input");
+                    // class属性の値を追加
+                    inputName.setAttribute('class', 'input');
+                    /* input要素のtype属性を操作 */
+                    inputName.setAttribute("type", "text");
+                    // name属性の値を追加
+                    inputName.setAttribute('name', 'name');
+                    // id属性の値を追加
+                    inputName.setAttribute('id', 'name');
+                    // datasetでdata属性（data-*）を設定する
+                    inputName.dataset.length = '<?php echo MAX_LENGTH::NAME; ?>';
+                    inputName.dataset.minlength = '<?php echo MIN_LENGTH::NAME; ?>';
 
-            const NAME_MAX_LENGTH = <?php echo MAX_LENGTH::NAME; ?>;
-            const NAME_MIN_LENGTH = <?php echo MIN_LENGTH::NAME; ?>;
+                    const NAME_MAX_LENGTH = <?php echo MAX_LENGTH::NAME; ?>;
+                    const NAME_MIN_LENGTH = <?php echo MIN_LENGTH::NAME; ?>;
 
-            inputName.dataset.length = NAME_MAX_LENGTH;
-            inputName.dataset.minlength = NAME_MIN_LENGTH;
+                    inputName.dataset.length = NAME_MAX_LENGTH;
+                    inputName.dataset.minlength = NAME_MIN_LENGTH;
 
-            inputName.placeholder = "未入力の場合は、匿名で表示されます";
+                    inputName.placeholder = "未入力の場合は、匿名で表示されます";
 
-            /* divタグ要素作成 */
-            let div = document.createElement("div");
+                    /* divタグ要素作成 */
+                    let div = document.createElement("div");
 
-            /* divタグ要素作成 */
-            const divAnswerTextArea = document.createElement("div");
+                    /* divタグ要素作成 */
+                    const divAnswerTextArea = document.createElement("div");
 
-            /* divタグ要素作成 */
-            divParts = document.createElement("div");
+                    /* divタグ要素作成 */
+                    divParts = document.createElement("div");
 
-            /* textareaタグ要素作成 */
-            const textareaText = document.createElement("textarea");
-            // class属性の値を追加
-            textareaText.setAttribute('class', 'input');
-            // name属性の値を追加
-            textareaText.setAttribute('name', 'text');
-            // id属性の値を追加
-            textareaText.setAttribute('id', 'text');
-            // datasetでdata属性（data-*）を設定する
-            textareaText.dataset.length = '<?php echo MAX_LENGTH::TEXT; ?>';
-            textareaText.dataset.minlength = '<?php echo MIN_LENGTH::TEXT; ?>';
+                    /* textareaタグ要素作成 */
+                    const textareaText = document.createElement("textarea");
+                    // class属性の値を追加
+                    textareaText.setAttribute('class', 'input');
+                    // name属性の値を追加
+                    textareaText.setAttribute('name', 'text');
+                    // id属性の値を追加
+                    textareaText.setAttribute('id', 'text');
+                    // datasetでdata属性（data-*）を設定する
+                    textareaText.dataset.length = '<?php echo MAX_LENGTH::TEXT; ?>';
+                    textareaText.dataset.minlength = '<?php echo MIN_LENGTH::TEXT; ?>';
 
-            const TEXT_MAX_LENGTH = <?php echo MAX_LENGTH::TEXT; ?>;
-            const TEXT_MIN_LENGTH = <?php echo MIN_LENGTH::TEXT; ?>;
+                    const TEXT_MAX_LENGTH = <?php echo MAX_LENGTH::TEXT; ?>;
+                    const TEXT_MIN_LENGTH = <?php echo MIN_LENGTH::TEXT; ?>;
 
-            inputText.dataset.length = TEXT_MAX_LENGTH;
-            inputText.dataset.minlength = TEXT_MIN_LENGTH;
+                    inputText.dataset.length = TEXT_MAX_LENGTH;
+                    inputText.dataset.minlength = TEXT_MIN_LENGTH;
 
-            textareaText.placeholder = "荒らし行為や誹謗中傷や著作権の侵害はご遠慮ください";
+                    textareaText.placeholder = "荒らし行為や誹謗中傷や著作権の侵害はご遠慮ください";
 
-            /* divタグ要素作成 */
-            div = document.createElement("div");
+                    /* divタグ要素作成 */
+                    div = document.createElement("div");
 
-            /* divタグ要素作成 */
-            const divUploadfileArea = document.createElement("div");
-            // class属性の値を追加
-            divUploadfileArea.setAttribute('class', 'uploadfile-area');
+                    /* img要素を動的に作成して画像を表示する */
+                    const CAMERA_URL = '<?php echo $camera_url; ?>';
 
-            /* divタグ要素作成 */
-            let divUploadfileSelectorButton = document.createElement("div");
-            // class属性の値を追加
-            divUploadfileArea.setAttribute('class', 'uploadfile-selector-button');
+                    /* divタグ要素作成 */
+                    const divUploadfileArea = document.createElement("div");
+                    // class属性の値を追加
+                    divUploadfileArea.setAttribute('class', 'uploadfile-area');
 
-            /* lavelタグ要素作成 */
-            label = document.createElement("label");
+                    for (i = 1; i <= 3; i++) {
+                        /* divタグ要素作成 */
+                        let divUploadfileSelectorButton = document.createElement("div");
+                        // class属性の値を追加
+                        divUploadfileArea.setAttribute('class', 'uploadfile-selector-button');
 
-            /* divタグ要素作成 */
-            let divUploadfileCameraIcon = document.createElement("div");
-            // class属性の値を追加
-            divUploadfileCameraIcon.setAttribute('class', 'uploadfile-camera-icon');
+                        /* lavelタグ要素作成 */
+                        label = document.createElement("label");
 
-            /* img要素を動的に作成して画像を表示する */
-            const CAMERA_URL = '<?php echo $camera_url; ?>';
+                        /* divタグ要素作成 */
+                        let divUploadfileCameraIcon = document.createElement("div");
+                        // class属性の値を追加
+                        divUploadfileCameraIcon.setAttribute('class', 'uploadfile-camera-icon');
 
-            let img_unit = document.createElement('img');
-            img_unit.src = UNIT_URL; // 画像パス
-            // class属性の値を追加
-            img_unit.setAttribute('class', 'changeImg');
-            // 要素のスタイルを取得・設定
-            img_unit.style.height = '150px';
-            img_unit.style.width = '150px';
+                        let img_unit = document.createElement('img');
+                        img_unit.src = CAMERA_URL; // 画像パス
+                        // class属性の値を追加
+                        img_unit.setAttribute('class', 'changeImg');
+                        // 要素のスタイルを取得・設定
+                        img_unit.style.height = '150px';
+                        img_unit.style.width = '150px';
 
-            /* inputタグ要素作成 */
-            inputAttach = document.createElement("input");
-            // class属性の値を追加
-            inputAttach.setAttribute('class', 'input');
-            // name属性の値を追加
-            inputAttach.setAttribute('name', 'attach[]');
-            // accent属性の値を追加
-            inputAttach.accept = ".png, .jpg, .jpeg, .pdf, .mp4"; // accept 値を設定
-            // 要素のスタイルを取得・設定
-            inputAttach.style.display = 'none';
+                        /* inputタグ要素作成 */
+                        inputAttach = document.createElement("input");
+                        // class属性の値を追加
+                        inputAttach.setAttribute('class', 'input');
+                        // name属性の値を追加
+                        inputAttach.setAttribute('name', 'attach[]');
+                        // accent属性の値を追加
+                        inputAttach.accept = ".png, .jpg, .jpeg, .pdf, .mp4"; // accept 値を設定
+                        // 要素のスタイルを取得・設定
+                        inputAttach.style.display = 'none';
 
-            /* divタグ要素作成 */
-            divViewer = document.createElement("div");
-            // class属性の値を追加
-            divViewer.setAttribute('class', 'viewer');
-            // 要素のスタイルを取得・設定
-            divViewer.style.display = 'none';
+                        /* divタグ要素作成 */
+                        divViewer = document.createElement("div");
+                        // class属性の値を追加
+                        divViewer.setAttribute('class', 'viewer');
+                        // 要素のスタイルを取得・設定
+                        divViewer.style.display = 'none';
 
-            /* buttonタグ要素作成 */
-            buttonAttachclear = document.createElement("button");
-            // class属性の値を追加
-            buttonAttachclear.setAttribute('class', 'attachclear');
-            // タグにテキスト挿入
-            buttonAttachclear.textContent = "clear";
+                        /* buttonタグ要素作成 */
+                        buttonAttachclear = document.createElement("button");
+                        // class属性の値を追加
+                        buttonAttachclear.setAttribute('class', 'attachclear');
+                        // タグにテキスト挿入
+                        buttonAttachclear.textContent = "clear";
 
-            /* divタグ要素作成 */
-            divUploadfileSelectorButton = document.createElement("div");
-            // class属性の値を追加
-            divUploadfileArea.setAttribute('class', 'uploadfile-selector-button');
+                        /* ファイルアップロード要素配置 */
+                        divUploadfileCameraIcon.appendChild(img_unit);
+                        label.appendChild(divUploadfileCameraIcon);
+                        label.appendChild(inputAttach)
+                        divUploadfileSelectorButton.appendChild(label);
+                        divUploadfileSelectorButton.appendChild(divViewer);
+                        divUploadfileSelectorButton.appendChild(buttonAttachclear);
+                        divUploadfileArea.appendChild(divUploadfileSelectorButton);
+                    }
+                    親要素.appendChild(divUploadfileArea);
 
-            /* lavelタグ要素作成 */
-            label = document.createElement("label");
+                    /* divタグ要素作成 */
+                    const divFilesizeRestrictionArea = document.createElement("div");
+                    // class属性の値を追加
+                    divFilesizeRestrictionArea.setAttribute('class', 'filesize-restriction-area');
 
-            /* divタグ要素作成 */
-            divUploadfileCameraIcon = document.createElement("div");
-            // class属性の値を追加
-            divUploadfileCameraIcon.setAttribute('class', 'uploadfile-camera-icon');
+                    /* spanタグ要素作成 */
+                    const spanAnnotation = document.createElement("span");
+                    Annotation.textContent = "動画・画像をアップロード(Upload video・image)"; //spanタグにテキスト挿入
+                    const spanRequired = document.createElement("span");
+                    spanRequired.textContent = "※ファイルサイズ15MB以内、JPG/GIF/PNG/MP4"; //spanタグにテキスト挿入
 
-            /* img要素を動的に作成して画像を表示する */
-            const CAMERA_URL = '<?php echo $camera_url; ?>';
+                    /* divタグ要素作成 */
+                    const divPostButton = document.createElement("div");
+                    // class属性の値を追加
+                    divPostButton.setAttribute('class', 'post-button');
 
-            img_unit = document.createElement('img');
-            img_unit.src = UNIT_URL; // 画像パス
-            // class属性の値を追加
-            img_unit.setAttribute('class', 'changeImg');
-            // 要素のスタイルを取得・設定
-            img_unit.style.height = '150px';
-            img_unit.style.width = '150px';
+                    /* buttonタグ要素作成 */
+                    const buttonSubmitButton = document.createElement("button");
+                    /* input要素のtype属性を操作 */
+                    buttonSubmitButton.setAttribute("type", "button");
+                    // id属性の値を追加
+                    buttonSubmitButton.setAttribute('id', 'submit_button');
+                    // name属性の値を追加
+                    inputAttach.setAttribute('name', 'mode');
+                    // value属性の値を追加
+                    inputAttach.setAttribute('value', 'confirm');
+                    // タグにテキスト挿入
+                    buttonSubmitButton.textContent = "確認画面へ進む";
 
-            /* inputタグ要素作成 */
-            inputAttach = document.createElement("input");
-            // class属性の値を追加
-            inputAttach.setAttribute('class', 'input');
-            // name属性の値を追加
-            inputAttach.setAttribute('name', 'attach[]');
-            // accent属性の値を追加
-            inputAttach.accept = ".png, .jpg, .jpeg, .pdf, .mp4"; // accept 値を設定
-            // 要素のスタイルを取得・設定
-            inputAttach.style.display = 'none';
+                    /* divタグ要素作成 */
+                    const divConfirmArea = document.createElement("div");
+                    // id属性の値を追加
+                    divConfirmArea.setAttribute('id', 'confirm_area');
 
-            /* divタグ要素作成 */
-            divViewer = document.createElement("div");
-            // class属性の値を追加
-            divViewer.setAttribute('class', 'viewer');
-            // 要素のスタイルを取得・設定
-            divViewer.style.display = 'none';
-
-            /* buttonタグ要素作成 */
-            buttonAttachclear = document.createElement("button");
-            // class属性の値を追加
-            buttonAttachclear.setAttribute('class', 'attachclear');
-            // タグにテキスト挿入
-            buttonAttachclear.textContent = "clear";
-
-            /* divタグ要素作成 */
-            divUploadfileSelectorButton = document.createElement("div");
-            // class属性の値を追加
-            divUploadfileArea.setAttribute('class', 'uploadfile-selector-button');
-
-            /* lavelタグ要素作成 */
-            label = document.createElement("label");
-
-            /* divタグ要素作成 */
-            divUploadfileCameraIcon = document.createElement("div");
-            // class属性の値を追加
-            divUploadfileCameraIcon.setAttribute('class', 'uploadfile-camera-icon');
-
-            /* img要素を動的に作成して画像を表示する */
-            const CAMERA_URL = '<?php echo $camera_url; ?>';
-
-            img_unit = document.createElement('img');
-            img_unit.src = UNIT_URL; // 画像パス
-            // class属性の値を追加
-            img_unit.setAttribute('class', 'changeImg');
-            // 要素のスタイルを取得・設定
-            img_unit.style.height = '150px';
-            img_unit.style.width = '150px';
-
-            /* inputタグ要素作成 */
-            inputAttach = document.createElement("input");
-            // class属性の値を追加
-            inputAttach.setAttribute('class', 'input');
-            // name属性の値を追加
-            inputAttach.setAttribute('name', 'attach[]');
-            // accent属性の値を追加
-            inputAttach.accept = ".png, .jpg, .jpeg, .pdf, .mp4"; // accept 値を設定
-            // 要素のスタイルを取得・設定
-            inputAttach.style.display = 'none';
-
-            /* divタグ要素作成 */
-            divViewer = document.createElement("div");
-            // class属性の値を追加
-            divViewer.setAttribute('class', 'viewer');
-            // 要素のスタイルを取得・設定
-            divViewer.style.display = 'none';
-
-            /* buttonタグ要素作成 */
-            buttonAttachclear = document.createElement("button");
-            // class属性の値を追加
-            buttonAttachclear.setAttribute('class', 'attachclear');
-            // タグにテキスト挿入
-            buttonAttachclear.textContent = "clear";
-
-            /* divタグ要素作成 */
-            const divFilesizeRestrictionArea = document.createElement("div");
-            // class属性の値を追加
-            divFilesizeRestrictionArea.setAttribute('class', 'filesize-restriction-area');
-
-            /* spanタグ要素作成 */
-            const spanAnnotation = document.createElement("span");
-            Annotation.textContent = "動画・画像をアップロード(Upload video・image)"; //spanタグにテキスト挿入
-            const spanRequired = document.createElement("span");
-            spanRequired.textContent = "※ファイルサイズ15MB以内、JPG/GIF/PNG/MP4"; //spanタグにテキスト挿入
-
-            /* divタグ要素作成 */
-            const divPostButton = document.createElement("div");
-            // class属性の値を追加
-            divPostButton.setAttribute('class', 'post-button');
-
-            /* buttonタグ要素作成 */
-            const buttonSubmitButton = document.createElement("button");
-            /* input要素のtype属性を操作 */
-            buttonSubmitButton.setAttribute("type", "button");
-            // id属性の値を追加
-            buttonSubmitButton.setAttribute('id', 'submit_button');
-            // name属性の値を追加
-            inputAttach.setAttribute('name', 'mode');
-            // value属性の値を追加
-            inputAttach.setAttribute('value', 'confirm');
-            // タグにテキスト挿入
-            buttonSubmitButton.textContent = "確認画面へ進む";
-
-            /* divタグ要素作成 */
-            const divConfirmArea = document.createElement("div");
-            // id属性の値を追加
-            divConfirmArea.setAttribute('id', 'confirm_area');
-
-            /* divタグ要素作成 */
-            const divResultArea = document.createElement("div");
-            // id属性の値を追加
-            divResultArea.setAttribute('id', 'result_area');
-        });
-    }
+                    /* divタグ要素作成 */
+                    const divResultArea = document.createElement("div");
+                    // id属性の値を追加
+                    divResultArea.setAttribute('id', 'result_area');
+                });
+        }
 </script>
 <?php echo '</div>'; ?>
 <script>
