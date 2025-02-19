@@ -90,20 +90,31 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
             divBoardRespond.setAttribute('id', 'js_board_respond');
 
             /* 回答機能要素作成 */
-            const divInputArea = document.createElement("div");
+            // const divInputArea = document.createElement("div");
             // id属性の値を追加
-            divInputArea.setAttribute('id', 'input_area');
+            // divInputArea.setAttribute('id', 'input_area');
 
             /* 回答機能要素配置位置 */
-            divInputArea.appendChild(formAnswerInputForm); // div (子要素) の末尾に child を追加
+            // divInputArea.appendChild(formAnswerInputForm); // div (子要素) の末尾に child を追加
             divBoardRespond.appendChild(divInputArea); // div (子要素) の末尾に div を追加
 
             function createResForm(e) {
+                /* 回答機能要素作成 */
+                const divInputArea = document.createElement("div");
+                // id属性の値を追加
+                divInputArea.setAttribute('id', 'input_area');
+
+                /* 回答機能要素配置位置 */
+                divInputArea.appendChild(formAnswerInputForm); // div (子要素) の末尾に child を追加
+
                 /* 回答入力フォーム要素作成 */
                 const formAnswerInputForm = document.createElement("form");
 
                 // name属性の値を追加
                 formAnswerInputForm.setAttribute('name', 'answer_Input_form');
+
+                // onSubmit属性を追加
+                formAnswerInputForm.setAttribute("onSubmit", "return false;");
 
                 /* inputタグ要素作成 */
                 const inputUniqueId = document.createElement("input");
@@ -327,8 +338,8 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
                 // id属性の値を追加
                 divResultArea.setAttribute('id', 'result_area');
 
-                /* 回答機能要素配置位置 */
-                divInputArea.appendChild(formAnswerInputForm); // div (子要素) の末尾に child を追加
+                /* 回答入力フォーム要素配置位置 */
+                formAnswerInputForm.appendChild(formAnswerInputForm); // div (子要素) の末尾に child を追加
                 divBoardRespond.appendChild(divInputArea); // div (子要素) の末尾に div を追加
             }
         });
