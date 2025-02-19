@@ -339,8 +339,13 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
                 divResultArea.setAttribute('id', 'result_area');
 
                 /* 回答入力フォーム要素配置位置 */
-                formAnswerInputForm.appendChild(formAnswerInputForm); // div (子要素) の末尾に child を追加
-                divBoardRespond.appendChild(divInputArea); // div (子要素) の末尾に div を追加
+                divInputArea.appendChild(formAnswerInputForm); // div (子要素) の末尾に form を追加
+
+                /* inputタグ要素配置位置 */
+                divInputArea.appendChild(inputUniqueId); // div (子要素) の末尾に input を追加
+
+                /* inputタグ要素配置位置 */
+                divInputArea.appendChild(inputSubmitdate); // div (子要素) の末尾に input を追加
             }
         });
     }
