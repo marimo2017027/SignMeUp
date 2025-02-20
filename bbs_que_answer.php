@@ -90,23 +90,15 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
             divBoardRespond.setAttribute('id', 'js_board_respond');
 
             /* 回答機能要素作成 */
-            // const divInputArea = document.createElement("div");
+            const divInputArea = document.createElement("div");
             // id属性の値を追加
-            // divInputArea.setAttribute('id', 'input_area');
+            divInputArea.setAttribute('id', 'input_area');
 
             /* 回答機能要素配置位置 */
-            // divInputArea.appendChild(formAnswerInputForm); // div (子要素) の末尾に child を追加
-            divBoardRespond.appendChild(divInputArea); // div (子要素) の末尾に div を追加
+            divInputArea.appendChild(formAnswerInputForm); // div (子要素) の末尾に form を追加
+            divBoardRespond.appendChild(divInputArea); // div (親要素) の末尾に div を追加
 
             function createResForm(e) {
-                /* 回答機能要素作成 */
-                const divInputArea = document.createElement("div");
-                // id属性の値を追加
-                divInputArea.setAttribute('id', 'input_area');
-
-                /* 回答機能要素配置位置 */
-                divInputArea.appendChild(formAnswerInputForm); // div (子要素) の末尾に child を追加
-
                 /* 回答入力フォーム要素作成 */
                 const formAnswerInputForm = document.createElement("form");
 
@@ -289,15 +281,17 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
                     buttonAttachclear.textContent = "clear";
 
                     /* ファイルアップロード要素配置 */
-                    divUploadfileCameraIcon.appendChild(img_unit);
-                    label.appendChild(divUploadfileCameraIcon);
-                    label.appendChild(inputAttach)
-                    divUploadfileSelectorButton.appendChild(label);
-                    divUploadfileSelectorButton.appendChild(divViewer);
-                    divUploadfileSelectorButton.appendChild(buttonAttachclear);
-                    divUploadfileArea.appendChild(divUploadfileSelectorButton);
+                    /* divタグ要素配置位置 */
+                    divUploadfileArea.appendChild(divUploadfileSelectorButton); // div (孫要素) の末尾に div を追加
+                    divUploadfileSelectorButton.appendChild(label); // div (ひ孫要素) の末尾に label を追加
+                    label.appendChild(divUploadfileCameraIcon); // label (玄孫要素) の末尾に div を追加
+                    divUploadfileCameraIcon.appendChild(img_unit); // div (来孫要素) の末尾に img を追加
+                    label.appendChild(inputAttach); // label (玄孫要素) の末尾に input を追加
+                    divUploadfileSelectorButton.appendChild(divViewer); // div (ひ孫要素) の末尾に div を追加
+                    divUploadfileSelectorButton.appendChild(buttonAttachclear); // div (ひ孫要素) の末尾に button を追加
                 }
-                親要素.appendChild(divUploadfileArea);
+                /* divタグ要素配置位置 */
+                formAnswerInputForm.appendChild(divUploadfileArea); // form (子要素) の末尾に div を追加
 
                 /* divタグ要素作成 */
                 const divFilesizeRestrictionArea = document.createElement("div");
@@ -339,14 +333,82 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
                 divResultArea.setAttribute('id', 'result_area');
 
                 /* 回答入力フォーム要素配置位置 */
-                divInputArea.appendChild(formAnswerInputForm); // div (子要素) の末尾に form を追加
+                // divInputArea.appendChild(formAnswerInputForm); // div (子要素) の末尾に form を追加
 
                 /* inputタグ要素配置位置 */
-                divInputArea.appendChild(inputUniqueId); // div (子要素) の末尾に input を追加
+                formAnswerInputForm.appendChild(inputUniqueId); // form (子要素) の末尾に input を追加
 
                 /* inputタグ要素配置位置 */
-                divInputArea.appendChild(inputSubmitdate); // div (子要素) の末尾に input を追加
+                formAnswerInputForm.appendChild(inputSubmitdate); // form (子要素) の末尾に input を追加
+
+                /* divタグ要素配置位置 */
+                formAnswerInputForm.appendChild(divUserArea); // form (子要素) の末尾に div を追加
+
+                /* lavelタグ要素配置位置 */
+                divUserArea.appendChild(lavel); // div (孫要素) の末尾に lavel を追加
+
+                /* divタグ要素配置位置 */
+                lavel.appendChild(divuserIcon); // lavel (ひ孫要素) の末尾に div を追加
+
+                /* imgタグ要素配置位置 */
+                divuserIcon.appendChild(img_element); // div (玄孫要素) の末尾に img を追加
+
+                /* inputタグ要素配置位置 */
+                lavel.appendChild(inputAttach); // lavel (ひ孫要素) の末尾に input を追加
+
+                /* divタグ要素配置位置 */
+                divUserArea.appendChild(divViewer); // div (孫要素) の末尾に div を追加
+
+                /* buttonタグ要素配置位置 */
+                divUserArea.appendChild(buttonAttachclear); // div (孫要素) の末尾に button を追加
+
+                /* divタグ要素配置位置 */
+                formAnswerInputForm.appendChild(divAnswerNameArea); // form (子要素) の末尾に div を追加
+
+                /* divタグ要素配置位置 */
+                divAnswerNameArea.appendChild(divParts); // div (孫要素) の末尾に div を追加
+
+                /* inputタグ要素配置位置 */
+                divParts.appendChild(inputName); // div (ひ孫要素) の末尾に input を追加
+
+                /* divタグ要素配置位置 */
+                divParts.appendChild(div); // div (ひ孫要素) の末尾に div を追加
+
+                /* divタグ要素配置位置 */
+                formAnswerInputForm.appendChild(divAnswerTextArea); // form (子要素) の末尾に div を追加
+
+                /* divタグ要素配置位置 */
+                divAnswerTextArea.appendChild(divParts); // div (孫要素) の末尾に div を追加
+
+                /* divタグ要素配置位置 */
+                divParts.appendChild(divAnswerTextArea); // div (ひ孫要素) の末尾に div を追加
+
+                /* divタグ要素配置位置 */
+                divParts.appendChild(div); // div (ひ孫要素) の末尾に div を追加
+
+                /* divタグ要素配置位置 */
+                // formAnswerInputForm.appendChild(divUploadfileArea); // form (子要素) の末尾に div を追加
+
+                /* divタグ要素配置位置 */
+                formAnswerInputForm.appendChild(divFilesizeRestrictionArea); // form (子要素) の末尾に div を追加
+
+                /* spanタグ要素配置位置 */
+                divFilesizeRestrictionArea.appendChild(spanAnnotation); // div (孫要素) の末尾に span を追加
+
+                /* spanタグ要素配置位置 */
+                divFilesizeRestrictionArea.appendChild(spanRequired); // div (孫要素) の末尾に span を追加
+
+                /* divタグ要素配置位置 */
+                formAnswerInputForm.appendChild(divPostButton); // form (子要素) の末尾に div を追加
+
+                /* divタグ要素配置位置 */
+                divPostButton.appendChild(buttonSubmitButton); // div (子要素) の末尾に button を追加
             }
+            /* divタグ要素配置位置 */
+            divBoardRespond.appendChild(divConfirmArea); // div (親要素) の末尾に div を追加
+
+            /* divタグ要素配置位置 */
+            divBoardRespond.appendChild(divResultArea); // div (親要素) の末尾に div を追加
         });
     }
 </script>
