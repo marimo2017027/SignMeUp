@@ -74,13 +74,11 @@ echo '</div>'; //<div class="quest_container"> の閉じタグ
 $camera_url = $upload_dir['baseurl'] . '/camera.png';
 $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
 ?>
-<div class="comment-remark-button" id=""></div>
+<button class="comment-remark-button" id="">返信</button>
 <script>
-    const make
-
-    function {
-        const divCmmentRmarkBtton = document.querySelectorAll("comment-remark-button");
-        const customer_support_event.addEventListener("click", () => {
+    const make = function() {
+        const buttonCommentRmarkBtton = document.querySelectorAll("comment-remark-button");
+        buttonCommentRmarkBtton.addEventListener("click", () => {
             // JavaScript でＨＴＭＬ生成する
             /* 回答機能要素作成 */
             const divBoardRespond = document.createElement("div");
@@ -182,9 +180,6 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
                 // id属性の値を追加
                 inputName.setAttribute('id', 'name');
                 // datasetでdata属性（data-*）を設定する
-                inputName.dataset.length = '<?php echo MAX_LENGTH::NAME; ?>';
-                inputName.dataset.minlength = '<?php echo MIN_LENGTH::NAME; ?>';
-
                 const NAME_MAX_LENGTH = <?php echo MAX_LENGTH::NAME; ?>;
                 const NAME_MIN_LENGTH = <?php echo MIN_LENGTH::NAME; ?>;
 
@@ -211,9 +206,6 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
                 // id属性の値を追加
                 textareaText.setAttribute('id', 'text');
                 // datasetでdata属性（data-*）を設定する
-                textareaText.dataset.length = '<?php echo MAX_LENGTH::TEXT; ?>';
-                textareaText.dataset.minlength = '<?php echo MIN_LENGTH::TEXT; ?>';
-
                 const TEXT_MAX_LENGTH = <?php echo MAX_LENGTH::TEXT; ?>;
                 const TEXT_MIN_LENGTH = <?php echo MIN_LENGTH::TEXT; ?>;
 
@@ -414,6 +406,7 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
 </script>
 <?php echo '</div>'; ?>
 <script>
+    /*
     function NowDate() { //送信日時を取り出す関数
         with(document.form1) { //"hidden"要素に各情報を設定する
             submitdate.value = NowDate();
@@ -462,7 +455,7 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
         // 年のテキストを生成(0の場合は表示しない)
         /* if (year !== 0) {
             outputStr += `${year}年`;
-        } */
+        } 
 
         // 月のテキストを生成(0の場合は表示しない)
         if (month !== 0) {
@@ -490,9 +483,9 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
         divAnswerPubdateArea = document.createElement("div"); // div (子)を生成
         divAnswerPubdateArea.classList.add("answer-pubdate-area"); // classの追加
         /* 回答要素配置 */
-        comment_area.appendChild(); // comment_area (親要素) の末尾に div を追加
-        // });
-    });
+    // comment_area.appendChild(); // comment_area (親要素) の末尾に div を追加 
+    // });
+    // });
     const input_area = document.getElementById("input_area");
     const confirm_area = document.getElementById("confirm_area");
     const result_area = document.getElementById("result_area");
