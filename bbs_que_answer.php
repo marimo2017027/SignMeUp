@@ -74,11 +74,16 @@ echo '</div>'; //<div class="quest_container"> の閉じタグ
 $camera_url = $upload_dir['baseurl'] . '/camera.png';
 $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
 ?>
-<button class="comment-remark-button" id="">返信</button>
+<!-- <button class="comment-remark-button" id="">返信</button> -->
+<div class="placeholder-area">
+    <textarea class="rich-label" name="" placeholder="コメントする" style="height: 0px;"></textarea>
+</div>
 <script>
     const make = function() {
-        const buttonCommentRmarkBtton = document.querySelectorAll("comment-remark-button");
-        buttonCommentRmarkBtton.addEventListener("click", () => {
+        // const buttonCommentRmarkBtton = document.querySelectorAll("comment-remark-button");
+        const divPlaceholderArea = document.querySelectorAll("placeholder-area");
+        // buttonCommentRmarkBtton.addEventListener("click", () => {
+        divPlaceholderArea.addEventListener("click", () => {
             // JavaScript でＨＴＭＬ生成する
             /* 回答機能要素作成 */
             const divBoardRespond = document.createElement("div");
