@@ -298,9 +298,14 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
 
                 /* spanタグ要素作成 */
                 const spanAnnotation = document.createElement("span");
-                Annotation.textContent = "動画・画像をアップロード(Upload video・image)"; //spanタグにテキスト挿入
+                spanAnnotation.textContent = "動画・画像をアップロード(Upload video・image)"; //spanタグにテキスト挿入
+                // class属性の値を追加
+                spanAnnotation.setAttribute('class', 'annotation');
+
                 const spanRequired = document.createElement("span");
                 spanRequired.textContent = "※ファイルサイズ15MB以内、JPG/GIF/PNG/MP4"; //spanタグにテキスト挿入
+                // class属性の値を追加
+                spanRequired.setAttribute('class', 'required');
 
                 /* divタグ要素作成 */
                 const divPostButton = document.createElement("div");

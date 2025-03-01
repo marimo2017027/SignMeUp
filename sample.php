@@ -64,7 +64,7 @@
             </div>
 
             <div class="filesize-restriction-area">
-                <span class="xxxxxxxx">動画・画像をアップロード(Upload video・image)</span>
+                <span class="annotation">動画・画像をアップロード(Upload video・image)</span>
                 <span class="required">※ファイルサイズ15MB以内、JPG/GIF/PNG/MP4</span>
             </div>
             <div class="post-button"><!-- ボタンを押せなくする -->
