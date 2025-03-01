@@ -76,6 +76,7 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
 ?>
 <!-- <button class="comment-remark-button" id="">返信</button> -->
 <div class="placeholder-area">
+    <div class="comments-composer">コメントする</div>
     <textarea class="rich-label" name="" placeholder="コメントする" style="height: 0px;"></textarea>
 </div>
 <script>
@@ -499,6 +500,7 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
     // 要素が3個の空配列を作成
     const blobType = ["", "", "", ""];
     const blobUrl = ["", "", "", ""];
+
     const init = function() {
         set_attach_event('.uploadfile-camera-icon,.user-icon', 0);
         document.getElementById("submit_button").addEventListener("click", submit_button_click);
@@ -515,6 +517,7 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
     } //const init = function () の終了
     //DOM構築、スタイルシート、画像、サブフレームの読み込みが完了した後に発生する
     window.addEventListener("DOMContentLoaded", init);
+
     const submit_button_click = function() {
         //ローディングアニメーション画像
         const submit_button = document.getElementById("submit_button");
