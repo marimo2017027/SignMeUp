@@ -18,12 +18,17 @@ if (empty($rows)) {
 foreach ($rows as $row) {
     $carousel_list[] = '
 <div class="carousel-container">
-    <div class="carousel-video-area" style="display: inline-block;">
+    <div class="carousel-video-area" style="">
         <a href="' . home_url('質問回答画面?' . $row->unique_id) . '">
             <div class="carousel-video-wrap">
                 <video class="carousel-video-streaming" src="' . $upload_dir['baseurl'] . '/attach/' . $row->attach1 . '#t=0.1" type="video/mp4" autoplay muted loop></video>
             </div>
-            <div class="carousel-video-title"><script>document.write(truncate("' . $row->title . '",19));</script></div>
+            <div class="carousel-video-title">
+            <script>
+            const carouselVideoTitle = document.querySelector(".carousel-video-title");
+            carouselVideoTitle.insertAdjacentHTML('afterbegin', 'truncate("' . $row->title . '",25)');
+            </script>
+            </div>
         </a>
     </div>
 </div>';
@@ -119,14 +124,14 @@ foreach ($rows as $row) {
     }
 
     function startAutoPlay() {
-        // 3秒ごとに自動でスライドを切り替える関数（startAutoPlay）
-        // 3000 は3000ミリ秒 = 3秒を表します
-        autoPlayInterval = setInterval(nextSlide, 3000);
+        // 30秒ごとに自動でスライドを切り替える関数（startAutoPlay）
+        // 30000 は30000ミリ秒 = 30秒を表します
+        autoPlayInterval = setInterval(nextSlide, 30000);
     }
 
     function resetAutoPlayInterval() {
         // 自動再生をリセットする関数（resetAutoPlayInterval）
-        // 3秒ごとの自動再生を一旦停止します
+        // 30秒ごとの自動再生を一旦停止します
         clearInterval(autoPlayInterval);
         // 自動再生を再度スタートさせる
         startAutoPlay();
@@ -196,7 +201,7 @@ foreach ($rows as $row) {
                     const item = json.items[idx];
                     const imageCardWrap = document.createElement("div");
                     imageCardWrap.classList.add("image-card-wrap");
-                    imageCardWrap.style.display = "inline-block";
+                    //imageCardWrap.style.display = "inline-block";
                     const link = document.createElement("a");
                     link.href = item.url;
                     const imageThumbnailCard = document.createElement("div");
@@ -205,17 +210,17 @@ foreach ($rows as $row) {
                     if (item.type == "img") {
                         img.src = item.img1;
                         img.style.height = "150px";
-                        img.style.width = "260px";
+                        img.style.width = "263px";
                     } else {
                         img.src = "../wp-content/themes/sample_theme/images/alternative.png";
                         img.style.height = "150px";
-                        img.style.width = "260px";
+                        img.style.width = "263px";
                     }
                     imageThumbnailCard.appendChild(img);
                     link.appendChild(imageThumbnailCard);
                     const imageTitleLink = document.createElement("div");
                     imageTitleLink.classList.add("image-title-link");
-                    imageTitleLink.textContent = truncate(item.title, 20);
+                    imageTitleLink.textContent = truncate(item.title, 25);
                     link.appendChild(imageTitleLink);
                     imageCardWrap.appendChild(link);
                     $(".inline-player").append(imageCardWrap);
