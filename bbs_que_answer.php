@@ -28,7 +28,7 @@ foreach ($rows as $row) {
                 $views[] = '<img style="height:350px;width:530px" src="' . $attach_url . '">';
                 break;
             case 'mp4':
-                $views[] = '<video style="height:350px;width:530px" src="' . $attach_url . '">';
+                $views[] = '<video height="350px" width="530px" src="' . $attach_url . '" controls>';
                 break;
             case 'pdf':
                 $views[] = '<iframe style="height:350px;width:530px" src="' . $attach_url . '"></iframe>';
@@ -51,7 +51,8 @@ foreach ($rows as $row) {
         $usericon_src = $upload_dir['baseurl'] . '/attach/' . $row->usericon;
     }
     // echo '<div><a href="'.$url.'">'.$row->unique_id.'</a></div>';
-    echo '<div class="quest_header_title">' . mb_strimwidth($row->title, 0, 40, '･･･') . '</div>'; // タイトル30文字
+    // echo '<div class="quest_header_title">' . mb_strimwidth($row->title, 0, 50, '･･･') . '</div>'; // タイトル30文字
+    echo '<div class="quest_header_title">' . $row->title . '</div>'; // タイトル30文字
     echo '<div class="quest_feeling_stamp"><input type="radio" name="stamp" value="' . $row->stamp . '" id="stamp"><label for="stamp" class="quest_stamp_label"></label></div>'; // スタンプ画像
 
     // 全体にのみ float: left;
@@ -61,10 +62,11 @@ foreach ($rows as $row) {
     }
     echo '</div>';  // quest_markdown の閉じタグ
 
-    echo '<div class="quest_overview">' . mb_strimwidth($row->text, 0, 40, '･･･') . '</div>'; // 質問文
+    // echo '<div class="quest_overview">' . mb_strimwidth($row->text, 0, 40, '･･･') . '</div>'; // 質問文
+    echo '<div class="quest_overview">' . $row->text . '</div>'; // 質問文
     // echo '</div>';
     echo '<div class="quest_usericon_img"><img src="' . $usericon_src . '">'; // アイコン画像
-    echo '<div class="quest_username">' . mb_strimwidth($row->name, 0, 10, '･･･') . '</div>'; // 名前
+    echo '<div class="quest_username">' . $row->name . '</div>'; // 名前
     echo '</div>';  // アイコン画像
 }
 echo '</div>'; //<div class="quest_container"> の閉じタグ
@@ -78,6 +80,12 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
     <div id="input_area">
         <form name="answer_Input_form">
             <input type="hidden" name="unique_id" value="<?php echo $unique_id; ?>">
+            <div class="answer-text-area">
+                <div class="parts">
+                    <textarea class="input" name="text" id="text" data-length="<?php echo MAX_LENGTH::TEXT; ?>" data-minlength="<?php echo MIN_LENGTH::TEXT; ?>" placeholder="荒らし行為や誹謗中傷や著作権の侵害はご遠慮ください"></textarea>
+                    <div></div>
+                </div>
+            </div>
             <div class="user-area">
                 <label>
                     <div class="user-icon">
@@ -91,12 +99,6 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
             <div class="answer-name-area">
                 <div class="parts">
                     <input class="input" type="text" name="name" id="name" data-length="<?php echo MAX_LENGTH::NAME; ?>" data-minlength="<?php echo MIN_LENGTH::NAME; ?>" placeholder="未入力の場合は、匿名で表示されます">
-                    <div></div>
-                </div>
-            </div>
-            <div class="answer-text-area">
-                <div class="parts">
-                    <textarea class="input" name="text" id="text" data-length="<?php echo MAX_LENGTH::TEXT; ?>" data-minlength="<?php echo MIN_LENGTH::TEXT; ?>" placeholder="荒らし行為や誹謗中傷や著作権の侵害はご遠慮ください"></textarea>
                     <div></div>
                 </div>
             </div>
