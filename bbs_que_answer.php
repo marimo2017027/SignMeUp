@@ -28,7 +28,7 @@ foreach ($rows as $row) {
                 $views[] = '<img style="height:350px;width:530px" src="' . $attach_url . '">';
                 break;
             case 'mp4':
-                $views[] = '<video style="height:350px;width:530px" src="' . $attach_url . '">';
+                $views[] = '<video style="height:350px;width:530px" src="' . $attach_url . '" controls>';
                 break;
             case 'pdf':
                 $views[] = '<iframe style="height:350px;width:530px" src="' . $attach_url . '"></iframe>';
@@ -51,7 +51,7 @@ foreach ($rows as $row) {
         $usericon_src = $upload_dir['baseurl'] . '/attach/' . $row->usericon;
     }
     // echo '<div><a href="'.$url.'">'.$row->unique_id.'</a></div>';
-    echo '<div class="quest_header_title">' . mb_strimwidth($row->title, 0, 40, '･･･') . '</div>'; // タイトル30文字
+    echo '<div class="quest_header_title">' . $row->title . '</div>'; // タイトル30文字
     echo '<div class="quest_feeling_stamp"><input type="radio" name="stamp" value="' . $row->stamp . '" id="stamp"><label for="stamp" class="quest_stamp_label"></label></div>'; // スタンプ画像
 
     // 全体にのみ float: left;
@@ -61,10 +61,10 @@ foreach ($rows as $row) {
     }
     echo '</div>';  // quest_markdown の閉じタグ
 
-    echo '<div class="quest_overview">' . mb_strimwidth($row->text, 0, 40, '･･･') . '</div>'; // 質問文
+    echo '<div class="quest_overview">' . $row->text . '</div>'; // 質問文
     // echo '</div>';
     echo '<div class="quest_usericon_img"><img src="' . $usericon_src . '">'; // アイコン画像
-    echo '<div class="quest_username">' . mb_strimwidth($row->name, 0, 10, '･･･') . '</div>'; // 名前
+    echo '<div class="quest_username">' . $row->name . '</div>'; // 名前
     echo '</div>';  // アイコン画像
 }
 echo '</div>'; //<div class="quest_container"> の閉じタグ
