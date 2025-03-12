@@ -25,8 +25,7 @@ foreach ($rows as $row) {
             </div>
             <div class="carousel-video-title">
             <script>
-            const carouselVideoTitle = document.querySelector(".carousel-video-title");
-            carouselVideoTitle.insertAdjacentHTML("beforebegin", truncate("' . $row->title . '",25));
+            document.currentScript.insertAdjacentHTML("beforebegin", truncate("' . $row->title . '",39));
             </script>
             </div>
         </a>

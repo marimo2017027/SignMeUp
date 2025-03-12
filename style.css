@@ -1056,13 +1056,15 @@ li {
 
 .carousel-video-title {
     position: absolute;
-    top: 75%;
+    top: 60%;
     left: 50%;
+	width: 490px;
     white-space: nowrap;
     transform: translateX(-50%);
     font-size: 25px;
     font-weight: 700;
     color: #fff;
+	white-space: pre-line;
 }
 
 #questBoard {
@@ -1613,6 +1615,7 @@ div#feed4-layout {
 	display: inline-block;
 	vertical-align: top;
 	width: 1010px;
+	padding-right: 30px;
 }
 
 /* 雑談掲示板 回答画面スタンプ画像配置位置 */
@@ -1629,7 +1632,7 @@ div#feed4-layout {
     background-repeat: no-repeat;
     width: 80px;
     height: 80px;
-	margin-bottom: 20px;
+	margin-bottom: 20px; 
 }
 
 /* 雑談掲示板 回答画面質問表示 ファイルが1か2件の場合 */
@@ -1658,13 +1661,14 @@ div#feed4-layout {
     font-size: 150%;
     font-weight: 700;
     width: 1098px !important;
-    margin-top: 25px;
+    /* margin-top: 25px; */
 }
 
 /* 雑談掲示板 回答画面アイコン画像配置位置 */
 .quest_container .quest_usericon_img {
     display: inline-block;
     width: 100%;
+	margin-top: 26px;
 }
 
 /* 雑談掲示板 回答画面アイコン画像配置位置 */
