@@ -28,7 +28,7 @@ foreach ($rows as $row) {
                 $views[] = '<img style="height:350px;width:530px" src="' . $attach_url . '">';
                 break;
             case 'mp4':
-                $views[] = '<video height="350px" width="530px" src="' . $attach_url . '" controls>';
+                $views[] = '<video style="height:350px;width:530px" src="' . $attach_url . '">';
                 break;
             case 'pdf':
                 $views[] = '<iframe style="height:350px;width:530px" src="' . $attach_url . '"></iframe>';
@@ -51,8 +51,7 @@ foreach ($rows as $row) {
         $usericon_src = $upload_dir['baseurl'] . '/attach/' . $row->usericon;
     }
     // echo '<div><a href="'.$url.'">'.$row->unique_id.'</a></div>';
-    // echo '<div class="quest_header_title">' . mb_strimwidth($row->title, 0, 50, '･･･') . '</div>'; // タイトル30文字
-    echo '<div class="quest_header_title">' . $row->title . '</div>'; // タイトル30文字
+    echo '<div class="quest_header_title">' . mb_strimwidth($row->title, 0, 40, '･･･') . '</div>'; // タイトル30文字
     echo '<div class="quest_feeling_stamp"><input type="radio" name="stamp" value="' . $row->stamp . '" id="stamp"><label for="stamp" class="quest_stamp_label"></label></div>'; // スタンプ画像
 
     // 全体にのみ float: left;
@@ -62,11 +61,10 @@ foreach ($rows as $row) {
     }
     echo '</div>';  // quest_markdown の閉じタグ
 
-    // echo '<div class="quest_overview">' . mb_strimwidth($row->text, 0, 40, '･･･') . '</div>'; // 質問文
-    echo '<div class="quest_overview">' . $row->text . '</div>'; // 質問文
+    echo '<div class="quest_overview">' . mb_strimwidth($row->text, 0, 40, '･･･') . '</div>'; // 質問文
     // echo '</div>';
     echo '<div class="quest_usericon_img"><img src="' . $usericon_src . '">'; // アイコン画像
-    echo '<div class="quest_username">' . $row->name . '</div>'; // 名前
+    echo '<div class="quest_username">' . mb_strimwidth($row->name, 0, 10, '･･･') . '</div>'; // 名前
     echo '</div>';  // アイコン画像
 }
 echo '</div>'; //<div class="quest_container"> の閉じタグ
@@ -76,109 +74,370 @@ echo '</div>'; //<div class="quest_container"> の閉じタグ
 $camera_url = $upload_dir['baseurl'] . '/camera.png';
 $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
 ?>
-<div class="board_respond" id="js_board_respond">
-    <div id="input_area">
-        <form name="answer_Input_form">
-            <input type="hidden" name="unique_id" value="<?php echo $unique_id; ?>">
-            <div class="answer-text-area">
-                <div class="parts">
-                    <textarea class="input" name="text" id="text" data-length="<?php echo MAX_LENGTH::TEXT; ?>" data-minlength="<?php echo MIN_LENGTH::TEXT; ?>" placeholder="荒らし行為や誹謗中傷や著作権の侵害はご遠慮ください"></textarea>
-                    <div></div>
-                </div>
-            </div>
-            <div class="user-area">
-                <label>
-                    <div class="user-icon">
-                        <img src="<?php echo $noimage_url; ?>" class="changeImg" style="height:90px;width:90px">
-                    </div>
-                    <input type="file" class="attach" name="attach[]" data-maxsize="5" accept=".png, .jpg, .jpeg" style="display: none;">
-                </label>
-                <div class="viewer" style="display: none;"></div>
-                <button type="button" class="attachclear">clear</button>
-            </div>
-            <div class="answer-name-area">
-                <div class="parts">
-                    <input class="input" type="text" name="name" id="name" data-length="<?php echo MAX_LENGTH::NAME; ?>" data-minlength="<?php echo MIN_LENGTH::NAME; ?>" placeholder="未入力の場合は、匿名で表示されます">
-                    <div></div>
-                </div>
-            </div>
-            <div class="uploadfile-area">
-                <div class="uploadfile-selector-button">
-                    <label>
-                        <div class="uploadfile-camera-icon">
-                            <img src="<?php echo $camera_url; ?>" class="changeImg" style="height:150px;width:150px">
-                        </div>
-                        <input type="file" class="attach" name="attach[]" accept=".png, .jpg, .jpeg, .pdf, .mp4" style="display: none;">
-                    </label>
-                    <div class="viewer" style="display: none;"></div>
-                    <button type="button" class="attachclear">clear</button>
-                </div>
-                <div class="uploadfile-selector-button">
-                    <label>
-                        <div class="uploadfile-camera-icon"><img src="<?php echo $camera_url; ?>" class="changeImg" style="height:150px;width:150px">
-                        </div>
-                        <input type="file" class="attach" name="attach[]" accept=".png, .jpg, .jpeg, .pdf, .mp4" style="display: none;">
-                    </label>
-                    <div class="viewer" style="display: none;"></div>
-                    <button type="button" class="attachclear">clear</button>
-                </div>
-                <div class="uploadfile-selector-button">
-                    <label>
-                        <div class="uploadfile-camera-icon">
-                            <img src="<?php echo $camera_url; ?>" class="changeImg" style="height:150px;width:150px">
-                        </div>
-                        <input type="file" class="attach" name="attach[]" accept=".png, .jpg, .jpeg, .pdf, .mp4" style="display: none;">
-                    </label>
-                    <div class="viewer" style="display: none;"></div>
-                    <button type="button" class="attachclear">clear</button>
-                </div>
-            </div>
-            <style>
-                .hideItems {
-                    /* カメラ画像 */
-                    display: none;
-                }
-
-                .concealItems {
-                    display: none;
-                }
-
-                .wait {
-                    /* ローディング画像 */
-                    height: 40px;
-                    width: 40px;
-                    border-radius: 40px;
-                    border: 3px solid;
-                    border-color: #bbbbbb;
-                    border-left-color: #1ECD97;
-                    font-size: 0;
-                    animation: rotating 2s 0.25s linear infinite;
-                }
-
-                @keyframes rotating {
-
-                    /* ローディング画像 */
-                    from {
-                        transform: rotate(0deg);
-                    }
-
-                    to {
-                        transform: rotate(360deg);
-                    }
-                }
-            </style>
-            <div class="filesize-restriction-area">
-                動画・画像をアップロード(Upload video・image)<span class="required">※ファイルサイズ15MB以内、JPG/GIF/PNG/MP4</span>
-            </div>
-            <div class="post-button"><!-- ボタンを押せなくする -->
-                <button type="button" id="submit_button" name="mode" value="confirm">確認画面へ進む</button>
-            </div>
-            <!-- type、name、id、valueの順番 -->
-        </form>
-    </div>
-    <div id="confirm_area"></div>
-    <div id="result_area"></div>
+<!-- <button class="comment-remark-button" id="">返信</button> -->
+<div class="placeholder-area">
+    <div class="comments-composer">コメント一覧</div>
+    <textarea class="rich-label" name="" placeholder="コメントする" style="height: 0px;"></textarea>
 </div>
+<script>
+    const make = function() {
+        // const buttonCommentRmarkBtton = document.querySelectorAll("comment-remark-button");
+        const divPlaceholderArea = document.querySelectorAll("placeholder-area");
+        // buttonCommentRmarkBtton.addEventListener("click", () => {
+        divPlaceholderArea.addEventListener("click", () => {
+            // JavaScript でＨＴＭＬ生成する
+            /* 回答機能要素作成 */
+            const divBoardRespond = document.createElement("div");
+            // class属性の値を追加
+            divBoardRespond.setAttribute('class', 'board_respond');
+            // id属性の値を追加
+            divBoardRespond.setAttribute('id', 'js_board_respond');
+
+            /* 回答機能要素作成 */
+            const divInputArea = document.createElement("div");
+            // id属性の値を追加
+            divInputArea.setAttribute('id', 'input_area');
+
+            /* 回答機能要素配置位置 */
+            divInputArea.appendChild(formAnswerInputForm); // div (子要素) の末尾に form を追加
+            divBoardRespond.appendChild(divInputArea); // div (親要素) の末尾に div を追加
+
+            function createResForm(e) {
+                /* 回答入力フォーム要素作成 */
+                const formAnswerInputForm = document.createElement("form");
+
+                // name属性の値を追加
+                formAnswerInputForm.setAttribute('name', 'answer_Input_form');
+
+                // onSubmit属性を追加
+                formAnswerInputForm.setAttribute("onSubmit", "return false;");
+
+                /* inputタグ要素作成 */
+                const inputUniqueId = document.createElement("input");
+                /* input要素のtype属性を操作 */
+                inputUniqueId.setAttribute("type", "hidden");
+                // name属性の値を追加
+                inputUniqueId.setAttribute('name', 'unique_id');
+                // value属性の値を追加
+                const formData = new FormData(answer_Input_form);
+
+                /* inputタグ要素作成 */
+                const inputSubmitdate = document.createElement("input");
+                // name属性の値を追加
+                inputSubmitdate.setAttribute('name', 'submitdate');
+
+                /* divタグ要素作成 */
+                const divUserArea = document.createElement("div");
+
+                /* lavelタグ要素作成 */
+                let label = document.createElement("label");
+
+                /* divタグ要素作成 */
+                const divuserIcon = document.createElement("div");
+
+                /* img要素を動的に作成して画像を表示する */
+                const NOIMAGE_URL = '<?php echo $noimage_url; ?>';
+
+                let img_element = document.createElement('img');
+                img_element.src = NOIMAGE_URL; // 画像パス
+                // class属性の値を追加
+                img_element.setAttribute('class', 'changeImg');
+                // 要素のスタイルを取得・設定
+                img_element.style.height = '90px';
+                img_element.style.width = '90px';
+
+                /* inputタグ要素作成 */
+                let inputAttach = document.createElement("input");
+                // class属性の値を追加
+                inputAttach.setAttribute('class', 'attach');
+                // name属性の値を追加
+                inputAttach.setAttribute('name', 'attach[]');
+                // datasetでdata属性（data-*）を設定する
+                inputAttach.dataset.maxsize = '5';
+                // HTMLInputElement: accept プロパティ
+                inputAttach.accept = ".png, .jpg, .jpeg"; // accept 値を設定
+                inputAttach.style.display = 'none';
+
+                /* divタグ要素作成 */
+                let divViewer = document.createElement("div");
+                divViewer.style.display = 'none';
+
+                /* buttonタグ要素作成 */
+                let buttonAttachclear = document.createElement("button");
+                // class属性の値を追加
+                buttonAttachclear.setAttribute('class', 'attachclear');
+                // タグにテキスト挿入
+                buttonAttachclear.textContent = "clear";
+
+                /* divタグ要素作成 */
+                const divAnswerNameArea = document.createElement("div");
+
+                /* divタグ要素作成 */
+                let divParts = document.createElement("div");
+
+                /* inputタグ要素作成 */
+                const inputName = document.createElement("input");
+                // class属性の値を追加
+                inputName.setAttribute('class', 'input');
+                /* input要素のtype属性を操作 */
+                inputName.setAttribute("type", "text");
+                // name属性の値を追加
+                inputName.setAttribute('name', 'name');
+                // id属性の値を追加
+                inputName.setAttribute('id', 'name');
+                // datasetでdata属性（data-*）を設定する
+                const NAME_MAX_LENGTH = <?php echo MAX_LENGTH::NAME; ?>;
+                const NAME_MIN_LENGTH = <?php echo MIN_LENGTH::NAME; ?>;
+
+                inputName.dataset.length = NAME_MAX_LENGTH;
+                inputName.dataset.minlength = NAME_MIN_LENGTH;
+
+                inputName.placeholder = "未入力の場合は、匿名で表示されます";
+
+                /* divタグ要素作成 */
+                let div = document.createElement("div");
+
+                /* divタグ要素作成 */
+                const divAnswerTextArea = document.createElement("div");
+
+                /* divタグ要素作成 */
+                divParts = document.createElement("div");
+
+                /* textareaタグ要素作成 */
+                const textareaText = document.createElement("textarea");
+                // class属性の値を追加
+                textareaText.setAttribute('class', 'input');
+                // name属性の値を追加
+                textareaText.setAttribute('name', 'text');
+                // id属性の値を追加
+                textareaText.setAttribute('id', 'text');
+                // datasetでdata属性（data-*）を設定する
+                const TEXT_MAX_LENGTH = <?php echo MAX_LENGTH::TEXT; ?>;
+                const TEXT_MIN_LENGTH = <?php echo MIN_LENGTH::TEXT; ?>;
+
+                inputText.dataset.length = TEXT_MAX_LENGTH;
+                inputText.dataset.minlength = TEXT_MIN_LENGTH;
+
+                textareaText.placeholder = "荒らし行為や誹謗中傷や著作権の侵害はご遠慮ください";
+
+                /* divタグ要素作成 */
+                div = document.createElement("div");
+
+                /* img要素を動的に作成して画像を表示する */
+                const CAMERA_URL = '<?php echo $camera_url; ?>';
+
+                /* divタグ要素作成 */
+                const divUploadfileArea = document.createElement("div");
+                // class属性の値を追加
+                divUploadfileArea.setAttribute('class', 'uploadfile-area');
+
+                for (i = 1; i <= 3; i++) {
+                    /* divタグ要素作成 */
+                    let divUploadfileSelectorButton = document.createElement("div");
+                    // class属性の値を追加
+                    divUploadfileArea.setAttribute('class', 'uploadfile-selector-button');
+
+                    /* lavelタグ要素作成 */
+                    label = document.createElement("label");
+
+                    /* divタグ要素作成 */
+                    let divUploadfileCameraIcon = document.createElement("div");
+                    // class属性の値を追加
+                    divUploadfileCameraIcon.setAttribute('class', 'uploadfile-camera-icon');
+
+                    let img_unit = document.createElement('img');
+                    img_unit.src = CAMERA_URL; // 画像パス
+                    // class属性の値を追加
+                    img_unit.setAttribute('class', 'changeImg');
+                    // 要素のスタイルを取得・設定
+                    img_unit.style.height = '150px';
+                    img_unit.style.width = '150px';
+
+                    /* inputタグ要素作成 */
+                    inputAttach = document.createElement("input");
+                    // class属性の値を追加
+                    inputAttach.setAttribute('class', 'input');
+                    // name属性の値を追加
+                    inputAttach.setAttribute('name', 'attach[]');
+                    // accent属性の値を追加
+                    inputAttach.accept = ".png, .jpg, .jpeg, .pdf, .mp4"; // accept 値を設定
+                    // 要素のスタイルを取得・設定
+                    inputAttach.style.display = 'none';
+
+                    /* divタグ要素作成 */
+                    divViewer = document.createElement("div");
+                    // class属性の値を追加
+                    divViewer.setAttribute('class', 'viewer');
+                    // 要素のスタイルを取得・設定
+                    divViewer.style.display = 'none';
+
+                    /* buttonタグ要素作成 */
+                    buttonAttachclear = document.createElement("button");
+                    // class属性の値を追加
+                    buttonAttachclear.setAttribute('class', 'attachclear');
+                    // タグにテキスト挿入
+                    buttonAttachclear.textContent = "clear";
+
+                    /* ファイルアップロード要素配置 */
+                    /* divタグ要素配置位置 */
+                    divUploadfileArea.appendChild(divUploadfileSelectorButton); // div (孫要素) の末尾に div を追加
+                    divUploadfileSelectorButton.appendChild(label); // div (ひ孫要素) の末尾に label を追加
+                    label.appendChild(divUploadfileCameraIcon); // label (玄孫要素) の末尾に div を追加
+                    divUploadfileCameraIcon.appendChild(img_unit); // div (来孫要素) の末尾に img を追加
+                    label.appendChild(inputAttach); // label (玄孫要素) の末尾に input を追加
+                    divUploadfileSelectorButton.appendChild(divViewer); // div (ひ孫要素) の末尾に div を追加
+                    divUploadfileSelectorButton.appendChild(buttonAttachclear); // div (ひ孫要素) の末尾に button を追加
+                }
+                /* divタグ要素配置位置 */
+                formAnswerInputForm.appendChild(divUploadfileArea); // form (子要素) の末尾に div を追加
+
+                /* divタグ要素作成 */
+                const divFilesizeRestrictionArea = document.createElement("div");
+                // class属性の値を追加
+                divFilesizeRestrictionArea.setAttribute('class', 'filesize-restriction-area');
+
+                /* spanタグ要素作成 */
+                const spanAnnotation = document.createElement("span");
+                spanAnnotation.textContent = "動画・画像をアップロード(Upload video・image)"; //spanタグにテキスト挿入
+                const spanRequired = document.createElement("span");
+                spanRequired.textContent = "※ファイルサイズ15MB以内、JPG/GIF/PNG/MP4"; //spanタグにテキスト挿入
+
+                /* divタグ要素作成 */
+                const divCancelButton = document.createElement("div");
+                // class属性の値を追加
+                divCancelButton.setAttribute('class', 'cancel-button');
+                divCancelButton.textContent = "キャンセル"; //divタグにテキスト挿入
+
+                divCancelButton.addEventListener("click", () => {
+                    divBoardRespond.remove(); //remove()で要素を削除する
+                    setResButtonsDisabled(false); // 2度押し禁止
+                });
+
+                function setResButtonsDisabled() {
+                    divCancelButton = document.querySelector(".div-cancel-button");
+                    // 2度押し禁止
+                    divBoardRespond.disabled = true;
+                }
+
+                /* buttonタグ要素作成 */
+                let buttonSubmitButton = document.createElement("button");
+                /* input要素のtype属性を操作 */
+                buttonSubmitButton.setAttribute("type", "button");
+
+                /* divタグ要素作成 */
+                const divPostButton = document.createElement("div");
+                // class属性の値を追加
+                divPostButton.setAttribute('class', 'post-button');
+
+                /* buttonタグ要素作成 */
+                buttonSubmitButton = document.createElement("button");
+                /* input要素のtype属性を操作 */
+                buttonSubmitButton.setAttribute("type", "button");
+                // id属性の値を追加
+                buttonSubmitButton.setAttribute('id', 'submit_button');
+                // name属性の値を追加
+                inputAttach.setAttribute('name', 'mode');
+                // value属性の値を追加
+                inputAttach.setAttribute('value', 'confirm');
+                // タグにテキスト挿入
+                buttonSubmitButton.textContent = "確認画面へ進む";
+
+                /* divタグ要素作成 */
+                const divConfirmArea = document.createElement("div");
+                // id属性の値を追加
+                divConfirmArea.setAttribute('id', 'confirm_area');
+
+                /* divタグ要素作成 */
+                const divResultArea = document.createElement("div");
+                // id属性の値を追加
+                divResultArea.setAttribute('id', 'result_area');
+
+                /* 回答入力フォーム要素配置位置 */
+                // divInputArea.appendChild(formAnswerInputForm); // div (子要素) の末尾に form を追加
+
+                /* inputタグ要素配置位置 */
+                formAnswerInputForm.appendChild(inputUniqueId); // form (子要素) の末尾に input を追加
+
+                /* inputタグ要素配置位置 */
+                formAnswerInputForm.appendChild(inputSubmitdate); // form (子要素) の末尾に input を追加
+
+                /* divタグ要素配置位置 */
+                formAnswerInputForm.appendChild(divUserArea); // form (子要素) の末尾に div を追加
+
+                /* lavelタグ要素配置位置 */
+                divUserArea.appendChild(lavel); // div (孫要素) の末尾に lavel を追加
+
+                /* divタグ要素配置位置 */
+                lavel.appendChild(divuserIcon); // lavel (ひ孫要素) の末尾に div を追加
+
+                /* imgタグ要素配置位置 */
+                divuserIcon.appendChild(img_element); // div (玄孫要素) の末尾に img を追加
+
+                /* inputタグ要素配置位置 */
+                lavel.appendChild(inputAttach); // lavel (ひ孫要素) の末尾に input を追加
+
+                /* divタグ要素配置位置 */
+                divUserArea.appendChild(divViewer); // div (孫要素) の末尾に div を追加
+
+                /* buttonタグ要素配置位置 */
+                divUserArea.appendChild(buttonAttachclear); // div (孫要素) の末尾に button を追加
+
+                /* divタグ要素配置位置 */
+                formAnswerInputForm.appendChild(divAnswerNameArea); // form (子要素) の末尾に div を追加
+
+                /* divタグ要素配置位置 */
+                divAnswerNameArea.appendChild(divParts); // div (孫要素) の末尾に div を追加
+
+                /* inputタグ要素配置位置 */
+                divParts.appendChild(inputName); // div (ひ孫要素) の末尾に input を追加
+
+                /* divタグ要素配置位置 */
+                divParts.appendChild(div); // div (ひ孫要素) の末尾に div を追加
+
+                /* divタグ要素配置位置 */
+                formAnswerInputForm.appendChild(divAnswerTextArea); // form (子要素) の末尾に div を追加
+
+                /* divタグ要素配置位置 */
+                divAnswerTextArea.appendChild(divParts); // div (孫要素) の末尾に div を追加
+
+                /* divタグ要素配置位置 */
+                divParts.appendChild(divAnswerTextArea); // div (ひ孫要素) の末尾に div を追加
+
+                /* divタグ要素配置位置 */
+                divParts.appendChild(div); // div (ひ孫要素) の末尾に div を追加
+
+                /* divタグ要素配置位置 */
+                // formAnswerInputForm.appendChild(divUploadfileArea); // form (子要素) の末尾に div を追加
+
+                /* divタグ要素配置位置 */
+                formAnswerInputForm.appendChild(divFilesizeRestrictionArea); // form (子要素) の末尾に div を追加
+
+                /* spanタグ要素配置位置 */
+                divFilesizeRestrictionArea.appendChild(spanAnnotation); // div (孫要素) の末尾に span を追加
+
+                /* spanタグ要素配置位置 */
+                divFilesizeRestrictionArea.appendChild(spanRequired); // div (孫要素) の末尾に span を追加
+
+                /* divタグ要素配置位置 */
+                divPostButton.appendChild(divCancelButton); // div (子要素) の末尾に button を追加
+
+                /* divタグ要素配置位置 */
+                divPostButton.appendChild(buttonSubmitButton); // div (子要素) の末尾に button を追加
+
+                /* divタグ要素配置位置 */
+                formAnswerInputForm.appendChild(divPostButton); // form (子要素) の末尾に div を追加
+
+                /* divタグ要素配置位置 */
+                divPostButton.appendChild(buttonSubmitButton); // div (子要素) の末尾に button を追加
+            }
+            /* divタグ要素配置位置 */
+            divBoardRespond.appendChild(divConfirmArea); // div (親要素) の末尾に div を追加
+
+            /* divタグ要素配置位置 */
+            divBoardRespond.appendChild(divResultArea); // div (親要素) の末尾に div を追加
+        });
+    }
+</script>
 <?php echo '</div>'; ?>
 <script>
     /*
@@ -288,7 +547,7 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
     window.addEventListener("DOMContentLoaded", init);
 
     const submit_button_click = function() {
-        //ローディングアニメーション画像
+        //ローディングアニメーション画像　　　
         const submit_button = document.getElementById("submit_button");
         submit_button.disabled = true;
         submit_button.classList.add('wait');
@@ -354,7 +613,7 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
                 const divNamePartialParts = create_name_parts("answer-name-area", name_value, usericonImg);
 
                 /* コメント要素作成 */
-                const divBodyPartialParts = create_text_parts("answer-text-area", text_value);
+                // const divBodyPartialParts = create_text_parts("answer-text-area", text_value);
 
                 /* ファイルアップロード要素作成 */
                 // const usericonImg = document.createElement("img");
