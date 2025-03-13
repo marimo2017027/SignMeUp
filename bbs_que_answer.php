@@ -77,7 +77,7 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
 <!-- <button class="comment-remark-button" id="">返信</button> -->
 <div class="placeholder-area">
     <div class="comments-composer">コメント一覧</div>
-    <textarea class="rich-label" name="" placeholder="コメントする" style="height: 0px;"></textarea>
+    <textarea class="rich-label" name="" placeholder="コメントする"></textarea>
 </div>
 <script>
     const make = function() {
@@ -531,7 +531,7 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
 
     const init = function() {
         set_attach_event('.uploadfile-camera-icon,.user-icon', 0);
-        document.getElementById("submit_button").addEventListener("click", submit_button_click);
+        // document.getElementById("submit_button").addEventListener("click", submit_button_click);
         // change1();
         /* inputイベント */
         document.addEventListener('input', e => {
@@ -541,7 +541,7 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
             validation();
         });
         /* 初回判定のボタン制御 */
-        validation();
+        // validation();
     } //const init = function () の終了
     //DOM構築、スタイルシート、画像、サブフレームの読み込みが完了した後に発生する
     window.addEventListener("DOMContentLoaded", init);

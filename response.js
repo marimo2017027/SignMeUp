@@ -1,9 +1,9 @@
 /* 確認画面へ進むボタンの使用可不可を制御するコード */
-function validation_submit(f) {
+/* function validation_submit(f) {
     const submit = document.getElementById("submit_button");
-    /* 判定は逆なので、逆に渡す */
+    // 判定は逆なので、逆に渡す
     submit.disabled = f ? false : true;
-};
+}; */
 
 function validation_text(parts) {
     /* このpartsグループの、inputを抽出 */
