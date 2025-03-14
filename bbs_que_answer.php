@@ -437,6 +437,7 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
             divBoardRespond.appendChild(divResultArea); // div (親要素) の末尾に div を追加
         });
     }
+    make();
 </script>
 <?php echo '</div>'; ?>
 <script>
