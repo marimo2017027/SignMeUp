@@ -82,7 +82,7 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
 <script>
     const make = function() {
         // const buttonCommentRmarkBtton = document.querySelectorAll("comment-remark-button");
-        const divPlaceholderArea = document.querySelectorAll("placeholder-area");
+        const divPlaceholderArea = document.querySelectorAll(".placeholder-area");
         // buttonCommentRmarkBtton.addEventListener("click", () => {
         divPlaceholderArea.addEventListener("click", () => {
             // JavaScript でＨＴＭＬ生成する
