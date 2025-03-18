@@ -432,12 +432,18 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
 
                 /* divタグ要素配置位置 */
                 divPostButton.appendChild(buttonSubmitButton); // div (子要素) の末尾に button を追加
+
+                /* divタグ要素配置位置 */
+                divBoardRespond.appendChild(divConfirmArea); // div (親要素) の末尾に div を追加
+
+                /* divタグ要素配置位置 */
+                divBoardRespond.appendChild(divResultArea); // div (親要素) の末尾に div を追加
             }
             /* divタグ要素配置位置 */
-            divBoardRespond.appendChild(divConfirmArea); // div (親要素) の末尾に div を追加
+            // divBoardRespond.appendChild(divConfirmArea); // div (親要素) の末尾に div を追加
 
             /* divタグ要素配置位置 */
-            divBoardRespond.appendChild(divResultArea); // div (親要素) の末尾に div を追加
+            //divBoardRespond.appendChild(divResultArea); // div (親要素) の末尾に div を追加
         });
     }
 </script>
