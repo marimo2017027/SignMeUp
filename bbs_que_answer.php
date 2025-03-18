@@ -82,7 +82,7 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
 <script>
     const make = function() {
         // const buttonCommentRmarkBtton = document.querySelectorAll("comment-remark-button");
-        const divPlaceholderArea = document.querySelectorAll(".placeholder-area");
+        const divPlaceholderArea = document.querySelector(".placeholder-area");
         // buttonCommentRmarkBtton.addEventListener("click", () => {
         divPlaceholderArea.addEventListener("click", () => {
             // JavaScript でＨＴＭＬ生成する
@@ -98,13 +98,16 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
             // id属性の値を追加
             divInputArea.setAttribute('id', 'input_area');
 
+            /* 回答入力フォーム要素作成 */
+            const formAnswerInputForm = document.createElement("form");
+
             /* 回答機能要素配置位置 */
             divInputArea.appendChild(formAnswerInputForm); // div (子要素) の末尾に form を追加
             divBoardRespond.appendChild(divInputArea); // div (親要素) の末尾に div を追加
 
             function createResForm(e) {
                 /* 回答入力フォーム要素作成 */
-                const formAnswerInputForm = document.createElement("form");
+                // const formAnswerInputForm = document.createElement("form");
 
                 // name属性の値を追加
                 formAnswerInputForm.setAttribute('name', 'answer_Input_form');
