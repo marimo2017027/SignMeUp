@@ -82,9 +82,10 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
 <script>
     const make = function() {
         // const buttonCommentRmarkBtton = document.querySelectorAll("comment-remark-button");
-        const divPlaceholderArea = document.querySelector(".placeholder-area");
-        // buttonCommentRmarkBtton.addEventListener("click", () => {
-        divPlaceholderArea.addEventListener("click", () => {
+        // const divPlaceholderArea = document.querySelector(".placeholder-area");
+        const textareaRichLabel = document.querySelector(".rich-label");
+        //divPlaceholderArea.addEventListener("click", () => {
+        textareaRichLabel.addEventListener("click", () => {
             // JavaScript でＨＴＭＬ生成する
             /* 回答機能要素作成 */
             const divBoardRespond = document.createElement("div");
