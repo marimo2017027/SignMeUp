@@ -440,11 +440,6 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
                 /* divタグ要素配置位置 */
                 divBoardRespond.appendChild(divResultArea); // div (親要素) の末尾に div を追加
             }
-            /* divタグ要素配置位置 */
-            // divBoardRespond.appendChild(divConfirmArea); // div (親要素) の末尾に div を追加
-
-            /* divタグ要素配置位置 */
-            //divBoardRespond.appendChild(divResultArea); // div (親要素) の末尾に div を追加
         });
     }
 </script>
