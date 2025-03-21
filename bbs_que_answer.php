@@ -81,8 +81,8 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
 </div>
 <script>
     const make = function() {
-        // const buttonCommentRmarkBtton = document.querySelectorAll("comment-remark-button");
-        // const divPlaceholderArea = document.querySelector(".placeholder-area");
+        //const buttonCommentRmarkBtton = document.querySelectorAll("comment-remark-button");
+        const divPlaceholderArea = document.querySelector(".placeholder-area");
         const textareaRichLabel = document.querySelector(".rich-label");
         //divPlaceholderArea.addEventListener("click", () => {
         textareaRichLabel.addEventListener("click", () => {
@@ -439,6 +439,9 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
 
                 /* divタグ要素配置位置 */
                 divBoardRespond.appendChild(divResultArea); // div (親要素) の末尾に div を追加
+
+                /* divタグ要素配置位置 */
+                divPlaceholderArea.appendChild(divBoardRespond); // div (親要素) の末尾に div を追加
             }
         });
     }
