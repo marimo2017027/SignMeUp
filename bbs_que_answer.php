@@ -102,6 +102,9 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
             /* 回答入力フォーム要素作成 */
             const formAnswerInputForm = document.createElement("form");
 
+            // name属性の値を追加
+            formAnswerInputForm.setAttribute('name', 'answer_Input_form');
+
             /* 回答機能要素配置位置 */
             divInputArea.appendChild(formAnswerInputForm); // div (子要素) の末尾に form を追加
             divBoardRespond.appendChild(divInputArea); // div (親要素) の末尾に div を追加
@@ -111,10 +114,10 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
                 // const formAnswerInputForm = document.createElement("form");
 
                 // name属性の値を追加
-                formAnswerInputForm.setAttribute('name', 'answer_Input_form');
+                //formAnswerInputForm.setAttribute('name', 'answer_Input_form');
 
                 // onSubmit属性を追加
-                formAnswerInputForm.setAttribute("onSubmit", "return false;");
+                //formAnswerInputForm.setAttribute("onSubmit", "return false;");
 
                 /* inputタグ要素作成 */
                 const inputUniqueId = document.createElement("input");
@@ -439,10 +442,9 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
 
                 /* divタグ要素配置位置 */
                 divBoardRespond.appendChild(divResultArea); // div (親要素) の末尾に div を追加
-
-                /* divタグ要素配置位置 */
-                divPlaceholderArea.appendChild(divBoardRespond); // div (親要素) の末尾に div を追加
             }
+            /* divタグ要素配置位置 */
+            divPlaceholderArea.appendChild(divBoardRespond); // div (親要素) の末尾に div を追加
         });
     }
 </script>
@@ -538,6 +540,7 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
     const blobUrl = ["", "", "", ""];
 
     const init = function() {
+
         make();
         set_attach_event('.uploadfile-camera-icon,.user-icon', 0);
         // document.getElementById("submit_button").addEventListener("click", submit_button_click);
