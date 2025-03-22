@@ -540,7 +540,6 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
     const blobUrl = ["", "", "", ""];
 
     const init = function() {
-
         make();
         set_attach_event('.uploadfile-camera-icon,.user-icon', 0);
         // document.getElementById("submit_button").addEventListener("click", submit_button_click);
