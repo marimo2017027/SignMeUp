@@ -126,7 +126,7 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
             // name属性の値を追加
             inputUniqueId.setAttribute('name', 'unique_id');
             // value属性の値を追加
-            const formData = new FormData(answer_Input_form);
+            const formData = new FormData(formAnswerInputForm);
 
             /* inputタグ要素作成 */
             const inputSubmitdate = document.createElement("input");
@@ -222,8 +222,10 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
             const TEXT_MAX_LENGTH = <?php echo MAX_LENGTH::TEXT; ?>;
             const TEXT_MIN_LENGTH = <?php echo MIN_LENGTH::TEXT; ?>;
 
-            inputText.dataset.length = TEXT_MAX_LENGTH;
-            inputText.dataset.minlength = TEXT_MIN_LENGTH;
+            //inputText.dataset.length = TEXT_MAX_LENGTH;
+            textareaText.dataset.length = TEXT_MAX_LENGTH;
+            //inputText.dataset.minlength = TEXT_MIN_LENGTH;
+            textareaText.dataset.minlength = TEXT_MIN_LENGTH;
 
             textareaText.placeholder = "荒らし行為や誹謗中傷や著作権の侵害はご遠慮ください";
 
