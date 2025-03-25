@@ -307,6 +307,9 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
             /* divタグ要素配置位置 */
             inputName.appendChild(div); // input (来孫要素) の末尾に div を追加
 
+            /* img要素を動的に作成して画像を表示する */
+            const CAMERA_URL = '<?php echo $camera_url; ?>';
+
             /* divタグ要素作成 */
             const divUploadfileArea = document.createElement("div");
             // class属性の値を追加
@@ -397,9 +400,6 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
 
             /* divタグ要素配置位置 */
             divInputArea.appendChild(divResultArea); // div (子要素) の末尾に div を追加
-
-            /* img要素を動的に作成して画像を表示する */
-            const CAMERA_URL = '<?php echo $camera_url; ?>';
 
             //function createResForm(e) {
             /* 回答入力フォーム要素作成 */
