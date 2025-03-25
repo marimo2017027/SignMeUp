@@ -163,10 +163,10 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
 
             /* buttonタグ要素作成 */
             let buttonAttachclear = document.createElement("button");
-            // class属性の値を追加
-            buttonAttachclear.setAttribute('class', 'attachclear');
             // input要素のtype属性を操作
             buttonAttachclear.setAttribute("type", "button");
+            // class属性の値を追加
+            buttonAttachclear.setAttribute('class', 'attachclear');
             // タグにテキスト挿入
             buttonAttachclear.textContent = "clear";
 
@@ -182,12 +182,12 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
 
             /* inputタグ要素作成 */
             const inputName = document.createElement("input");
-            // class属性の値を追加
-            inputName.setAttribute('class', 'input');
             // input要素のtype属性を操作
             inputName.setAttribute("type", "text");
             // name属性の値を追加
             inputName.setAttribute('name', 'name');
+            // class属性の値を追加
+            inputName.setAttribute('class', 'input');
             // id属性の値を追加
             inputName.setAttribute('id', 'name');
             // datasetでdata属性（data-*）を設定する
@@ -241,12 +241,12 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
 
             /* buttonタグ要素作成 */
             let buttonSubmitButton = document.createElement("button");
-            // id属性の値を追加
-            buttonSubmitButton.setAttribute('id', 'submit_button');
             /* input要素のtype属性を操作 */
             buttonSubmitButton.setAttribute("type", "button");
             // name属性の値を追加
             inputAttach.setAttribute('name', 'mode');
+            // id属性の値を追加
+            buttonSubmitButton.setAttribute('id', 'submit_button');
             // value属性の値を追加
             inputAttach.setAttribute('value', 'confirm');
             // タグにテキスト挿入
@@ -354,10 +354,10 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
 
                 /* buttonタグ要素作成 */
                 buttonAttachclear = document.createElement("button");
-                // class属性の値を追加
-                buttonAttachclear.setAttribute('class', 'attachclear');
                 /* button要素のtype属性を操作 */
                 buttonAttachclear.setAttribute("type", "button");
+                // class属性の値を追加
+                buttonAttachclear.setAttribute('class', 'attachclear');
                 // タグにテキスト挿入
                 buttonAttachclear.textContent = "clear";
 
