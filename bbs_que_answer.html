@@ -89,22 +89,24 @@
         </div> -->
         <div class="uploadfile-area">
           <div class="uploadfile-selector-button">
-            <label>
-              <div class="uploadfile-camera-icon">
-                <img
-                  src=""
-                  class="changeImg"
-                  style="height: 150px; width: 150px"
+            <div>
+              <label>
+                <div class="uploadfile-camera-icon">
+                  <img
+                    src=""
+                    class="changeImg"
+                    style="height: 150px; width: 150px"
+                  />
+                </div>
+                <input
+                  type="file"
+                  class="attach"
+                  name="attach[]"
+                  accept=".png, .jpg, .jpeg, .pdf, .mp4"
+                  style="display: none"
                 />
-              </div>
-              <input
-                type="file"
-                class="attach"
-                name="attach[]"
-                accept=".png, .jpg, .jpeg, .pdf, .mp4"
-                style="display: none"
-              />
-            </label>
+              </label>
+            </div>
             <div class="viewer" style="display: none"></div>
             <button type="button" class="attachclear">clear</button>
           </div>
@@ -183,9 +185,10 @@
           }
         </style>
         <div class="filesize-restriction-area">
-          動画・画像をアップロード(Upload video・image)<span class="required"
-            >※ファイルサイズ15MB以内、JPG/GIF/PNG/MP4</span
+          <span class="annotation"
+            >動画・画像をアップロード(Upload video・image)</span
           >
+          <span class="required">※ファイルサイズ15MB以内、JPG/GIF/PNG/MP4</span>
         </div>
         <div class="cancel-button">キャンセル</div>
         <div class="post-button">
