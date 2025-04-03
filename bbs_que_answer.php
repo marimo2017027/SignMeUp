@@ -336,6 +336,8 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
 
                 /* inputタグ要素作成 */
                 let inputAttach = document.createElement("input");
+                /* input要素のtype属性を操作 */
+                inputAttach.setAttribute('type', 'file');
                 // class属性の値を追加
                 inputAttach.setAttribute('class', 'attach');
                 // name属性の値を追加
