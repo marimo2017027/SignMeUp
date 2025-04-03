@@ -25,13 +25,13 @@ foreach ($rows as $row) {
         switch ($ext) {
             case 'jpeg':
             case 'png':
-                $views[] = '<img style="height:350px;width:530px" src="' . $attach_url . '">';
+                $views[] = '<img style="height:301px;width:535px" src="' . $attach_url . '">';
                 break;
             case 'mp4':
-                $views[] = '<video style="height:350px;width:530px" src="' . $attach_url . '" controls>';
+                $views[] = '<video style="height:301px;width:535px" src="' . $attach_url . '" controls>';
                 break;
             case 'pdf':
-                $views[] = '<iframe style="height:350px;width:530px" src="' . $attach_url . '"></iframe>';
+                $views[] = '<iframe style="height:301px;width:535px" src="' . $attach_url . '"></iframe>';
                 break;
             default:
                 break;
@@ -77,7 +77,7 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
 <!-- <button class="comment-remark-button" id="">返信</button> -->
 <div class="placeholder-area">
     <div class="comments-composer">コメント一覧</div>
-    <textarea class="rich-label" name="" placeholder="コメントする"></textarea>
+    <textarea class="rich-label" name="" placeholder="荒らし行為や誹謗中傷や著作権の侵害はご遠慮ください"></textarea>
 </div>
 <script>
     const make = function() {
@@ -142,18 +142,6 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
             // 要素のスタイルを取得・設定
             img_element.style.height = '90px';
             img_element.style.width = '90px';
-
-            /* inputタグ要素作成 */
-            let inputAttach = document.createElement("input");
-            // class属性の値を追加
-            inputAttach.setAttribute('class', 'attach');
-            // name属性の値を追加
-            inputAttach.setAttribute('name', 'attach[]');
-            // datasetでdata属性（data-*）を設定する
-            inputAttach.dataset.maxsize = '5';
-            // HTMLInputElement: accept プロパティ
-            inputAttach.accept = ".png, .jpg, .jpeg"; // accept 値を設定
-            inputAttach.style.display = 'none';
 
             /* divタグ要素作成 */
             let divViewer = document.createElement("div");
@@ -244,11 +232,11 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
             /* input要素のtype属性を操作 */
             buttonSubmitButton.setAttribute("type", "button");
             // name属性の値を追加
-            inputAttach.setAttribute('name', 'mode');
+            buttonSubmitButton.setAttribute('name', 'mode');
             // id属性の値を追加
             buttonSubmitButton.setAttribute('id', 'submit_button');
             // value属性の値を追加
-            inputAttach.setAttribute('value', 'confirm');
+            buttonSubmitButton.setAttribute('value', 'confirm');
             // タグにテキスト挿入
             buttonSubmitButton.textContent = "確認画面へ進む";
 
@@ -284,10 +272,10 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
             divuserIcon.appendChild(img_element); // div (来孫要素) の末尾に img を追加
 
             /* inputタグ要素配置位置 */
-            img_element.appendChild(inputAttach); // img (昆孫要素) の末尾に input を追加
+            // img_element.appendChild(inputAttach); // img (昆孫要素) の末尾に input を追加
 
             /* inputタグ要素配置位置 */
-            label.appendChild(inputAttach); // label (玄孫要素) の末尾に input を追加
+            // label.appendChild(inputAttach); // label (玄孫要素) の末尾に input を追加
 
             /* divタグ要素配置位置 */
             divUserArea.appendChild(divViewer); // div (ひ孫要素) の末尾に div を追加
@@ -305,7 +293,16 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
             divParts.appendChild(inputName); // div (玄孫要素) の末尾に input を追加
 
             /* divタグ要素配置位置 */
-            inputName.appendChild(div); // input (来孫要素) の末尾に div を追加
+            // inputName.appendChild(div); // input (来孫要素) の末尾に div を追加
+
+            /* divタグ要素配置位置 */
+            formAnswerInputForm.appendChild(divFilesizeRestrictionArea); // form (孫要素) の末尾に div を追加
+
+            /* divタグ要素配置位置 */
+            divFilesizeRestrictionArea.appendChild(spanAnnotation); // div (ひ孫要素) の末尾に span を追加
+
+            /* divタグ要素配置位置 */
+            divFilesizeRestrictionArea.appendChild(spanRequired); // div (ひ孫要素) の末尾に span を追加
 
             /* img要素を動的に作成して画像を表示する */
             const CAMERA_URL = '<?php echo $camera_url; ?>';
@@ -338,11 +335,13 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
                 img_unit.style.width = '150px';
 
                 /* inputタグ要素作成 */
-                inputAttach = document.createElement("input");
+                let inputAttach = document.createElement("input");
                 // class属性の値を追加
                 inputAttach.setAttribute('class', 'attach');
                 // name属性の値を追加
                 inputAttach.setAttribute('name', 'attach[]');
+                // datasetでdata属性（data-*）を設定する
+                inputAttach.dataset.maxsize = '5';
                 // accent属性の値を追加
                 inputAttach.accept = ".png, .jpg, .jpeg, .pdf, .mp4"; // accept 値を設定
                 // 要素のスタイルを取得・設定
@@ -378,15 +377,6 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
             formAnswerInputForm.appendChild(divUploadfileArea); // form (孫要素) の末尾に div を追加
 
             /* divタグ要素配置位置 */
-            formAnswerInputForm.appendChild(divFilesizeRestrictionArea); // form (孫要素) の末尾に div を追加
-
-            /* divタグ要素配置位置 */
-            divFilesizeRestrictionArea.appendChild(spanAnnotation); // div (ひ孫要素) の末尾に span を追加
-
-            /* divタグ要素配置位置 */
-            divFilesizeRestrictionArea.appendChild(spanRequired); // div (ひ孫要素) の末尾に span を追加
-
-            /* divタグ要素配置位置 */
             formAnswerInputForm.appendChild(divCancelButton); // form (孫要素) の末尾に div を追加
 
             /* divタグ要素配置位置 */
@@ -400,6 +390,9 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
 
             /* divタグ要素配置位置 */
             divInputArea.appendChild(divResultArea); // div (子要素) の末尾に div を追加
+
+            /* アップロードファイルについてのイベントを設定する処理 */
+            set_attach_event('.uploadfile-camera-icon,.user-icon', 0);
 
             //function createResForm(e) {
             /* 回答入力フォーム要素作成 */
@@ -838,7 +831,7 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
 
     const init = function() {
         make();
-        set_attach_event('.uploadfile-camera-icon,.user-icon', 0);
+        // set_attach_event('.uploadfile-camera-icon,.user-icon', 0);
         // document.getElementById("submit_button").addEventListener("click", submit_button_click);
         // change1();
         /* inputイベント */
