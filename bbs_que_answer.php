@@ -205,19 +205,21 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
             spanRequired.setAttribute('class', 'required');
             spanRequired.textContent = "※ファイルサイズ15MB以内、JPG/GIF/PNG/MP4"; //spanタグにテキスト挿入
 
-            /* divタグ要素作成 */
-            const divCancelButton = document.createElement("div");
+            /* buttonタグ要素作成 */
+            const buttonCancelButton = document.createElement("button");
+            // button要素のtype属性を操作
+            buttonCancelButton.setAttribute("type", "button");
             // class属性の値を追加
-            divCancelButton.setAttribute('class', 'cancel-button');
-            divCancelButton.textContent = "キャンセル"; //divタグにテキスト挿入
+            buttonCancelButton.setAttribute('class', 'cancel-button');
+            buttonCancelButton.textContent = "キャンセル"; //divタグにテキスト挿入
 
-            divCancelButton.addEventListener("click", () => {
+            buttonCancelButton.addEventListener("click", () => {
                 divBoardRespond.remove(); //remove()で要素を削除する
                 setResButtonsDisabled(false); // 2度押し禁止
             });
 
             function setResButtonsDisabled() {
-                divCancelButton = document.querySelector(".div-cancel-button");
+                buttonCancelButton = document.querySelector(".cancel-button");
                 // 2度押し禁止
                 divBoardRespond.disabled = true;
             }
@@ -379,12 +381,15 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
             formAnswerInputForm.appendChild(divUploadfileArea); // form (孫要素) の末尾に div を追加
 
             /* divタグ要素配置位置 */
-            formAnswerInputForm.appendChild(divCancelButton); // form (孫要素) の末尾に div を追加
+            // formAnswerInputForm.appendChild(divCancelButton); // form (孫要素) の末尾に div を追加
 
             /* divタグ要素配置位置 */
             formAnswerInputForm.appendChild(divPostButton); // form (孫要素) の末尾に div を追加
 
-            /* divタグ要素配置位置 */
+            /* buttonタグ要素配置位置 */
+            divPostButton.appendChild(buttonCancelButton); // div (ひ孫要素) の末尾に button を追加
+
+            /* buttonタグ要素配置位置 */
             divPostButton.appendChild(buttonSubmitButton); // div (ひ孫要素) の末尾に button を追加
 
             /* divタグ要素配置位置 */
