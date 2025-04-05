@@ -215,11 +215,11 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
 
             buttonCancelButton.addEventListener("click", () => {
                 divBoardRespond.remove(); //remove()で要素を削除する
-                setResButtonsDisabled(false); // 2度押し禁止
+                // setResButtonsDisabled(false); // 2度押し禁止
             });
 
             function setResButtonsDisabled() {
-                buttonCancelButton = document.querySelector(".cancel-button");
+                // buttonCancelButton = document.querySelector(".cancel-button");
                 // 2度押し禁止
                 divBoardRespond.disabled = true;
             }
@@ -277,7 +277,7 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
             // img_element.appendChild(inputAttach); // img (昆孫要素) の末尾に input を追加
 
             /* inputタグ要素配置位置 */
-            // label.appendChild(inputAttach); // label (玄孫要素) の末尾に input を追加
+            label.appendChild(inputAttach); // label (玄孫要素) の末尾に input を追加
 
             /* divタグ要素配置位置 */
             divUserArea.appendChild(divViewer); // div (ひ孫要素) の末尾に div を追加
@@ -446,7 +446,9 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
             img_element.style.width = '90px'; */
 
             /* inputタグ要素作成 */
-            /* let inputAttach = document.createElement("input");
+            let inputAttach = document.createElement("input");
+            /* input要素のtype属性を操作 */
+            inputAttach.setAttribute('type', 'file');
             // class属性の値を追加
             inputAttach.setAttribute('class', 'attach');
             // name属性の値を追加
@@ -455,7 +457,7 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
             inputAttach.dataset.maxsize = '5';
             // HTMLInputElement: accept プロパティ
             inputAttach.accept = ".png, .jpg, .jpeg"; // accept 値を設定
-            inputAttach.style.display = 'none'; */
+            inputAttach.style.display = 'none';
 
             /* divタグ要素作成 */
             /* let divViewer = document.createElement("div");
