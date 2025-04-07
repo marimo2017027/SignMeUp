@@ -143,6 +143,18 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
             img_element.style.height = '90px';
             img_element.style.width = '90px';
 
+            /* inputタグ要素作成 */
+            let inputAttach = document.createElement("input");
+            // class属性の値を追加
+            inputAttach.setAttribute('class', 'attach');
+            // name属性の値を追加
+            inputAttach.setAttribute('name', 'attach[]');
+            // datasetでdata属性（data-*）を設定する
+            inputAttach.dataset.maxsize = '5';
+            // HTMLInputElement: accept プロパティ
+            inputAttach.accept = ".png, .jpg, .jpeg"; // accept 値を設定
+            inputAttach.style.display = 'none';
+
             /* divタグ要素作成 */
             let divViewer = document.createElement("div");
             // class属性の値を追加
@@ -204,9 +216,6 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
             // class属性の値を追加
             spanRequired.setAttribute('class', 'required');
             spanRequired.textContent = "※ファイルサイズ15MB以内、JPG/GIF/PNG/MP4"; //spanタグにテキスト挿入
-
-            /* inputタグ要素作成 */
-            let inputAttach = document.createElement("input");
 
             /* buttonタグ要素作成 */
             const buttonCancelButton = document.createElement("button");
