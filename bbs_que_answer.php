@@ -205,6 +205,9 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
             spanRequired.setAttribute('class', 'required');
             spanRequired.textContent = "※ファイルサイズ15MB以内、JPG/GIF/PNG/MP4"; //spanタグにテキスト挿入
 
+            /* inputタグ要素作成 */
+            let inputAttach = document.createElement("input");
+
             /* buttonタグ要素作成 */
             const buttonCancelButton = document.createElement("button");
             // button要素のtype属性を操作
@@ -277,7 +280,7 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
             // img_element.appendChild(inputAttach); // img (昆孫要素) の末尾に input を追加
 
             /* inputタグ要素配置位置 */
-            label.appendChild(inputAttach); // label (玄孫要素) の末尾に input を追加
+            // label.appendChild(inputAttach); // label (玄孫要素) の末尾に input を追加
 
             /* divタグ要素配置位置 */
             divUserArea.appendChild(divViewer); // div (ひ孫要素) の末尾に div を追加
@@ -337,7 +340,8 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
                 img_unit.style.width = '150px';
 
                 /* inputタグ要素作成 */
-                let inputAttach = document.createElement("input");
+                // let inputAttach = document.createElement("input");
+                inputAttach = document.createElement("input");
                 /* input要素のtype属性を操作 */
                 inputAttach.setAttribute('type', 'file');
                 // class属性の値を追加
@@ -446,7 +450,8 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
             img_element.style.width = '90px'; */
 
             /* inputタグ要素作成 */
-            let inputAttach = document.createElement("input");
+            // let inputAttach = document.createElement("input");
+            inputAttach = document.createElement("input");
             /* input要素のtype属性を操作 */
             inputAttach.setAttribute('type', 'file');
             // class属性の値を追加
