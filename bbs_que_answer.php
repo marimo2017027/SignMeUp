@@ -145,6 +145,8 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
 
             /* inputタグ要素作成 */
             let inputAttach = document.createElement("input");
+            // input要素のtype属性を操作
+            inputAttach.setAttribute("type", "file");
             // class属性の値を追加
             inputAttach.setAttribute('class', 'attach');
             // name属性の値を追加
@@ -289,7 +291,7 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
             // img_element.appendChild(inputAttach); // img (昆孫要素) の末尾に input を追加
 
             /* inputタグ要素配置位置 */
-            // label.appendChild(inputAttach); // label (玄孫要素) の末尾に input を追加
+            label.appendChild(inputAttach); // label (玄孫要素) の末尾に input を追加
 
             /* divタグ要素配置位置 */
             divUserArea.appendChild(divViewer); // div (ひ孫要素) の末尾に div を追加
@@ -460,18 +462,18 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
 
             /* inputタグ要素作成 */
             // let inputAttach = document.createElement("input");
-            inputAttach = document.createElement("input");
+            // inputAttach = document.createElement("input");
             /* input要素のtype属性を操作 */
-            inputAttach.setAttribute('type', 'file');
+            // inputAttach.setAttribute('type', 'file');
             // class属性の値を追加
-            inputAttach.setAttribute('class', 'attach');
+            // inputAttach.setAttribute('class', 'attach');
             // name属性の値を追加
-            inputAttach.setAttribute('name', 'attach[]');
+            // inputAttach.setAttribute('name', 'attach[]');
             // datasetでdata属性（data-*）を設定する
-            inputAttach.dataset.maxsize = '5';
+            // inputAttach.dataset.maxsize = '5';
             // HTMLInputElement: accept プロパティ
-            inputAttach.accept = ".png, .jpg, .jpeg"; // accept 値を設定
-            inputAttach.style.display = 'none';
+            // inputAttach.accept = ".png, .jpg, .jpeg"; // accept 値を設定
+            // inputAttach.style.display = 'none';
 
             /* divタグ要素作成 */
             /* let divViewer = document.createElement("div");
