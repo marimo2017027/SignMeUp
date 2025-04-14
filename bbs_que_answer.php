@@ -84,8 +84,11 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
         //const buttonCommentRmarkBtton = document.querySelectorAll("comment-remark-button");
         const divPlaceholderArea = document.querySelector(".placeholder-area");
         const textareaRichLabel = document.querySelector(".rich-label");
-        //divPlaceholderArea.addEventListener("click", () => {
-        textareaRichLabel.addEventListener("click", () => {
+        //textareaRichLabel.addEventListener("click", () => {
+        // クリックした時に実行する関数に変更
+        const textareaRichLabelClick = function() {
+            // クリックイベントを削除
+            textareaRichLabel.removeEventListener("click", textareaRichLabelClick);
             // JavaScript でＨＴＭＬ生成する
             /* 回答機能全般要素作成 */
             const divBoardRespond = document.createElement("div");
@@ -392,7 +395,7 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
 
             /* アップロードファイルについてのイベントを設定する処理 */
             set_attach_event('.uploadfile-camera-icon,.user-icon', 0);
-        });
+        };
     }
 </script>
 <?php echo '</div>'; ?>
