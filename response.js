@@ -1,9 +1,9 @@
 /* 確認画面へ進むボタンの使用可不可を制御するコード */
-/* function validation_submit(f) {
+function validation_submit(f) {
     const submit = document.getElementById("submit_button");
     // 判定は逆なので、逆に渡す
     submit.disabled = f ? false : true;
-}; */
+}; 
 
 function validation_text(parts) {
     /* このpartsグループの、inputを抽出 */
@@ -92,8 +92,8 @@ const create_image_parts = function (image_class, usericonIndex, usericonImg) {
     for (let i = 0; i < blobType.length; i++) {
         if (i == usericonIndex) {
             // usericonImg = document.createElement("img");
-            usericonImg.style.maxHeight = "85px";
-            usericonImg.style.maxWidth = "85px";
+            usericonImg.style.maxHeight = "90px";
+            usericonImg.style.maxWidth = "90px";
             if (blobType[i] == "") {
                 usericonImg.src = "../wp-content/uploads/noimage.png";
             } else {
@@ -169,8 +169,8 @@ const set_attach_event = function (fileAreaSelector, usericonIndex) {
         //HTML要素の中身を変更するときに使われるプロパティ
         if (i == usericonIndex) {
             maxsize = 5;
-            height = "85px";
-            width = "85px";
+            height = "90px";
+            width = "90px";
         } else {
             maxsize = 15;
             height = "350px";
