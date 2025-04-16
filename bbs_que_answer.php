@@ -77,7 +77,8 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
 <!-- <button class="comment-remark-button" id="">返信</button> -->
 <div class="placeholder-area">
     <div class="comments-composer">コメント一覧</div>
-    <textarea class="rich-label" name="" placeholder="荒らし行為や誹謗中傷や著作権の侵害はご遠慮ください"></textarea>
+    <textarea id="text" class="rich-label" name="text" placeholder="荒らし行為や誹謗中傷や著作権の侵害はご遠慮ください"></textarea>
+    <div></div>
 </div>
 <script>
     const make = function() {
@@ -293,6 +294,9 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
 
             /* inputタグ要素配置位置 */
             divParts.appendChild(inputName); // div (玄孫要素) の末尾に input を追加
+
+            /* divタグ要素配置位置 */
+            divParts.appendChild(document.createElement("div"));
 
             /* divタグ要素配置位置 */
             formAnswerInputForm.appendChild(divFilesizeRestrictionArea); // form (孫要素) の末尾に div を追加
