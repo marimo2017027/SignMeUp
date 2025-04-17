@@ -85,6 +85,13 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
         //const buttonCommentRmarkBtton = document.querySelectorAll("comment-remark-button");
         const divPlaceholderArea = document.querySelector(".placeholder-area");
         const textareaRichLabel = document.querySelector(".rich-label");
+
+        // datasetでdata属性（data-*）を設定する
+        const TEXT_MAX_LENGTH = <?php echo MAX_LENGTH::TEXT; ?>;
+        const TEXT_MIN_LENGTH = <?php echo MIN_LENGTH::TEXT; ?>;
+
+        textareaRichLabel.dataset.length = TEXT_MAX_LENGTH;
+        textareaRichLabel.dataset.minlength = TEXT_MIN_LENGTH;
         //textareaRichLabel.addEventListener("click", () => {
         // クリックした時に実行する関数に変更
         const textareaRichLabelClick = function() {
