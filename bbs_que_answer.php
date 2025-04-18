@@ -246,6 +246,7 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
             divPostButton.setAttribute('class', 'post-button');
 
             /* buttonタグ要素作成 */
+            // let buttonSubmitButton = document.createElement("button");
             buttonSubmitButton = document.createElement("button");
             /* input要素のtype属性を操作 */
             buttonSubmitButton.setAttribute("type", "button");
