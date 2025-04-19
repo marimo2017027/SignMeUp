@@ -235,19 +235,14 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
                 divBoardRespond.disabled = true;
             }
 
-            // 「確認画面へ進む」ボタンにもイベントを追加
-            let buttonSubmitButton.addEventListener("click", () => {
-                submit_button_click();
-            });
-
             /* divタグ要素作成 */
             const divPostButton = document.createElement("div");
             // class属性の値を追加
             divPostButton.setAttribute('class', 'post-button');
 
             /* buttonタグ要素作成 */
-            // let buttonSubmitButton = document.createElement("button");
-            buttonSubmitButton = document.createElement("button");
+            let buttonSubmitButton = document.createElement("button");
+
             /* input要素のtype属性を操作 */
             buttonSubmitButton.setAttribute("type", "button");
             // name属性の値を追加
@@ -258,6 +253,11 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
             buttonSubmitButton.setAttribute('value', 'confirm');
             // タグにテキスト挿入
             buttonSubmitButton.textContent = "確認画面へ進む";
+
+            // 「確認画面へ進む」ボタンにもイベントを追加
+            buttonSubmitButton.addEventListener("click", () => {
+                submit_button_click();
+            });
 
             /* divタグ要素作成 */
             const divConfirmArea = document.createElement("div");
