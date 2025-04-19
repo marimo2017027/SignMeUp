@@ -75,10 +75,16 @@ $camera_url = $upload_dir['baseurl'] . '/camera.png';
 $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
 ?>
 <!-- <button class="comment-remark-button" id="">返信</button> -->
-<div class="placeholder-area">
-    <div class="comments-composer">コメント一覧</div>
-    <textarea id="text" class="rich-label" name="text" placeholder="荒らし行為や誹謗中傷や著作権の侵害はご遠慮ください"></textarea>
-    <div></div>
+<div id="js_board_respond" class="board_respond">
+    <div id="input_area">
+        <form name="answer_Input_form">
+            <div class="placeholder-area">
+                <div class="comments-composer">コメント一覧</div>
+                <textarea id="text" class="rich-label" name="text" placeholder="荒らし行為や誹謗中傷や著作権の侵害はご遠慮ください"></textarea>
+                <div></div>
+            </div>
+        </form>
+    </div>
 </div>
 <script>
     const make = function() {
@@ -99,22 +105,22 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
             textareaRichLabel.removeEventListener("click", textareaRichLabelClick);
             // JavaScript でＨＴＭＬ生成する
             /* 回答機能全般要素作成 */
-            const divBoardRespond = document.createElement("div");
+            // const divBoardRespond = document.createElement("div");
             // class属性の値を追加
-            divBoardRespond.setAttribute('class', 'board_respond');
+            // divBoardRespond.setAttribute('class', 'board_respond');
             // id属性の値を追加
-            divBoardRespond.setAttribute('id', 'js_board_respond');
+            // divBoardRespond.setAttribute('id', 'js_board_respond');
 
             /* 回答機能要素作成 */
-            const divInputArea = document.createElement("div");
+            // const divInputArea = document.createElement("div");
             // id属性の値を追加
-            divInputArea.setAttribute('id', 'input_area');
+            // divInputArea.setAttribute('id', 'input_area');
 
             /* 回答入力フォーム要素作成 */
-            const formAnswerInputForm = document.createElement("form");
+            // const formAnswerInputForm = document.createElement("form");
 
             // name属性の値を追加
-            formAnswerInputForm.setAttribute('name', 'answer_Input_form');
+            // formAnswerInputForm.setAttribute('name', 'answer_Input_form');
 
             /* divタグ要素作成 */
             const divUserArea = document.createElement("div");
@@ -225,6 +231,7 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
             buttonCancelButton.textContent = "キャンセル"; //divタグにテキスト挿入
 
             buttonCancelButton.addEventListener("click", () => {
+                let divBoardRespond = document.getElementById('#divBoardRespond');
                 divBoardRespond.remove(); //remove()で要素を削除する
                 // setResButtonsDisabled(false); // 2度押し禁止
             });
@@ -270,15 +277,16 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
             divResultArea.setAttribute('id', 'result_area');
 
             /* 回答機能全般要素配置位置 */
-            divPlaceholderArea.appendChild(divBoardRespond); // div (真親要素) の末尾に div を追加
+            // divPlaceholderArea.appendChild(divBoardRespond); // div (真親要素) の末尾に div を追加
 
             /* 回答機能要素配置位置 */
-            divBoardRespond.appendChild(divInputArea); // div (親要素) の末尾に div を追加
+            // divBoardRespond.appendChild(divInputArea); // div (親要素) の末尾に div を追加
 
             /* 回答入力フォーム要素配置位置 */
-            divInputArea.appendChild(formAnswerInputForm); // div (子要素) の末尾に form を追加
+            // divInputArea.appendChild(formAnswerInputForm); // div (子要素) の末尾に form を追加
 
             /* 回答機能要素配置位置 */
+            const formAnswerInputForm = document.getElementsByName('answer_Input_form');
             formAnswerInputForm.appendChild(divUserArea); // form (孫要素) の末尾に div を追加
 
             /* labelタグ要素配置位置 */
