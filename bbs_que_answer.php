@@ -286,7 +286,8 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
             // divInputArea.appendChild(formAnswerInputForm); // div (子要素) の末尾に form を追加
 
             /* 回答機能要素配置位置 */
-            const formAnswerInputForm = document.getElementsByName('answer_Input_form');
+            // 取得した時点でインデックス 0 のものを formAnswerInputForm に入れてしまう
+            const formAnswerInputForm = document.getElementsByName('answer_Input_form')[0];
             formAnswerInputForm.appendChild(divUserArea); // form (孫要素) の末尾に div を追加
 
             /* labelタグ要素配置位置 */
@@ -413,6 +414,7 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
             divPostButton.appendChild(buttonSubmitButton); // div (ひ孫要素) の末尾に button を追加
 
             /* divタグ要素配置位置 */
+            const divInputArea = document.getElementById('#input_area');
             divInputArea.appendChild(divConfirmArea); // div (子要素) の末尾に div を追加
 
             /* divタグ要素配置位置 */
