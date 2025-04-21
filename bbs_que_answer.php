@@ -231,7 +231,7 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
             buttonCancelButton.textContent = "キャンセル"; //divタグにテキスト挿入
 
             buttonCancelButton.addEventListener("click", () => {
-                let divBoardRespond = document.getElementById('#divBoardRespond');
+                let divBoardRespond = document.querySelector('#divBoardRespond');
                 divBoardRespond.remove(); //remove()で要素を削除する
                 // setResButtonsDisabled(false); // 2度押し禁止
             });
@@ -414,7 +414,7 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
             divPostButton.appendChild(buttonSubmitButton); // div (ひ孫要素) の末尾に button を追加
 
             /* divタグ要素配置位置 */
-            const divInputArea = document.getElementById('#input_area');
+            const divInputArea = document.querySelector('#input_area');
             divInputArea.appendChild(divConfirmArea); // div (子要素) の末尾に div を追加
 
             /* divタグ要素配置位置 */
