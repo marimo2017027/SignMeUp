@@ -48,6 +48,16 @@ function display_text_length(e) {
         `文字${n > 0 ? '超過してい' : '入力でき'}ます。`);
 }
 
+/* 質問掲示板回答要素作成
+const create_response_parts = function (response_class, response_value) {
+    const divResponsePartialParts = document.createElement("div"); // div (子)を生成
+    divResponsePartialParts.classList.add(response_class); // classの追加
+    const child = document.createElement("p"); // p (孫)を生成
+    child.appendChild(document.createTextNode(response_value)); //孫要素として Text ノードを生成
+    divResponsePartialParts.appendChild(child); // div (子要素) の末尾に child を追加
+    return divResponsePartialParts; // create_response_parts() で生成した divResponsePartialParts を return 
+} */
+
 /* 名前要素作成 */
 const create_name_parts = function (name_class, name_value, usericonImg) {
     const divNamePartialParts = document.createElement("div"); // div (子)を生成
@@ -68,7 +78,7 @@ const create_text_parts = function (text_class, text_value) {
     child.appendChild(document.createTextNode(text_value)); //孫要素として Text ノードを生成
     divBodyPartialParts.appendChild(child); // div (子要素) の末尾に child を追加
     divBodyPartialParts.style.fontSize = "150%"; //コメントの文字のサイズ
-    return divBodyPartialParts; // create_name_parts() で生成した divBodyPartialParts を return
+    return divBodyPartialParts; // create_text_parts() で生成した divBodyPartialParts を return
 }
 
 /* タイトル要素作成 */
