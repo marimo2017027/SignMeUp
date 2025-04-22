@@ -510,7 +510,7 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
     // });
     // });
     const input_area = document.getElementById("input_area");
-    const confirm_area = document.getElementById("confirm_area");
+    // const confirm_area = document.getElementById("confirm_area");
     const result_area = document.getElementById("result_area");
     var name_value = "";
     var text_value = "";
@@ -577,6 +577,7 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
                 }*/
                 // change2(); これは恐らくステップフロー画像なので要らない
                 // 空文字を入れることで要素内を空にできる
+                const confirm_area = document.getElementById("confirm_area");
                 confirm_area.textContent = '';
                 var div;
                 var child;
@@ -590,8 +591,13 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
                 //const divQuestionHeaderPartial = document.createElement("div");
                 //divQuestionHeaderPartial.classList.add("questionHeader-partial");
                 //div.appendChild(child); // div の末尾に child を追加
-                /* アイコン画像要素作成 */
+
+                /* 回答要素作成 */
                 const comment_area = document.createElement("div");
+                const divBodyPartialParts = create_text_parts("answer-text-area", text_value);
+
+                /* アイコン画像要素作成 */
+                // const comment_area = document.createElement("div");
                 const divUserArea = document.createElement("div"); // div (子)を生成
                 const divUserIcon = document.createElement("div"); // div (子)を生成
                 divUserArea.classList.add("user-area"); // classの追加
