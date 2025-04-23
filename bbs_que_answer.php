@@ -414,11 +414,18 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
             divPostButton.appendChild(buttonSubmitButton); // div (ひ孫要素) の末尾に button を追加
 
             /* divタグ要素配置位置 */
-            const divInputArea = document.querySelector('#input_area');
-            divInputArea.appendChild(divConfirmArea); // div (子要素) の末尾に div を追加
+            const divBoardRespond = document.querySelector('#js_board_respond');
 
             /* divタグ要素配置位置 */
-            divInputArea.appendChild(divResultArea); // div (子要素) の末尾に div を追加
+            divBoardRespond.appendChild(divConfirmArea); // div (子要素) の末尾に div を追加
+
+            /* divタグ要素配置位置 */
+            divBoardRespond.appendChild(divResultArea); // div (子要素) の末尾に div を追加
+
+            // divInputArea.appendChild(divConfirmArea); // div (子要素) の末尾に div を追加
+
+            /* divタグ要素配置位置 */
+            // divInputArea.appendChild(divResultArea); // div (子要素) の末尾に div を追加
 
             /* アップロードファイルについてのイベントを設定する処理 */
             set_attach_event('.uploadfile-camera-icon,.user-icon', 0);
