@@ -409,9 +409,9 @@ function bbs_quest_submit()
     Chk_InputMode($title, '・質問タイトルをご記入ください。', $error);
     Chk_InputMode($text, '・質問文をご記入ください。', $error);
     Chk_InputMode($stamp, '・スタンプを選択してください。', $error);
-    CheckUrl($name, '・お名前にＵＲＬは記入できません。'); // 追加
-    CheckUrl($title, '・質問タイトルにＵＲＬは記入できません。'); // 追加
-    CheckUrl($text, '・質問文にＵＲＬは記入できません。'); // 追加
+    CheckUrl($name, '・お名前にＵＲＬは記入できません。', $error); // 追加
+    CheckUrl($title, '・質問タイトルにＵＲＬは記入できません。', $error); // 追加
+    CheckUrl($text, '・質問文にＵＲＬは記入できません。', $error); // 追加
     $result = [];
     if (empty($error)) {
         $result['error'] = '';
@@ -464,9 +464,9 @@ function bbs_answer_submit()
     //Chk_InputMode($title, '・質問タイトルをご記入ください。', $error);
     Chk_InputMode($text, '・質問文をご記入ください。', $error);
     //Chk_InputMode($stamp, '・スタンプを選択してください。', $error);
-    CheckUrl($name, '・お名前にＵＲＬは記入できません。'); // 追加
+    CheckUrl($name, '・お名前にＵＲＬは記入できません。', $error); // 追加
     //CheckUrl($title, '・質問タイトルにＵＲＬは記入できません。'); // 追加
-    CheckUrl($text, '・質問文にＵＲＬは記入できません。'); // 追加
+    CheckUrl($text, '・質問文にＵＲＬは記入できません。', $error); // 追加
     $result = [];
     if (empty($error)) {
         $result['error'] = '';
@@ -538,11 +538,10 @@ function Chk_InputMode($str, $mes, &$error)
 }
 
 /* 以下追加 */
-function CheckUrl($checkurl, $mes)
+function CheckUrl($checkurl, $mes, &$error)
 {
-    global $errors;
     if (preg_match("/[\.,:;]/u", $checkurl)) {
-        $errors[] = $mes;
+        $error[] = $mes;
     }
 }
 
