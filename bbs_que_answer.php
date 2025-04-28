@@ -546,7 +546,9 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
     const submit_button_click = function() {
         //ローディングアニメーション画像　　　
         const submit_button = document.getElementById("submit_button");
+        //クリックしたときに無効にする
         submit_button.disabled = true;
+        //クラスを追加
         submit_button.classList.add('wait');
         name_value = "";
         text_value = "";
@@ -631,12 +633,8 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
                 spanFilesizeRestrictionArea.classList.add("required");
                 spanFilesizeRestrictionArea.textContent = "※ファイルサイズ15MB以内、JPG/GIF/PNG/MP4";
 
-                /* アイコン画像要素配置 */
-                // child = document.createElement("p"); と child.appendChild(document.createTextNode(○○○_value)); で 1セット
-                // divUserIcon.appendChild(child); // div (子要素) の末尾に child を追加
-                divUserIcon.appendChild(child); // div (子要素) の末尾に child を追加
-                divUserArea.appendChild(divUserIcon); // div (子要素) の末尾に div を追加
-                comment_area.appendChild(divUserArea); // comment_area (親要素) の末尾に div を追加
+                /* ファイルアップロード要素配置 */
+                image_area.appendChild(divImagePartial);
 
                 /* 名前要素配置 */
                 comment_area.appendChild(divNamePartialParts); // comment_area (親要素) の末尾に div を追加
@@ -644,8 +642,12 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
                 /* 回答要素配置 */
                 comment_area.appendChild(divBodyPartialParts); // comment_area (親要素) の末尾に div を追加
 
-                /* ファイルアップロード要素配置 */
-                image_area.appendChild(divImagePartial);
+                /* アイコン画像要素配置 */
+                // child = document.createElement("p"); と child.appendChild(document.createTextNode(○○○_value)); で 1セット
+                // divUserIcon.appendChild(child); // div (子要素) の末尾に child を追加
+                divUserIcon.appendChild(child); // div (子要素) の末尾に child を追加
+                divUserArea.appendChild(divUserIcon); // div (子要素) の末尾に div を追加
+                comment_area.appendChild(divUserArea); // comment_area (親要素) の末尾に div を追加
 
                 /* アップロードファイルサイズ制限事項要素配置 */
                 divFilesizeRestrictionArea.appendChild(spanFilesizeRestrictionArea);
