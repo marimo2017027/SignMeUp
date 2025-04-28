@@ -633,6 +633,7 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
                 spanFilesizeRestrictionArea.classList.add("required");
                 spanFilesizeRestrictionArea.textContent = "※ファイルサイズ15MB以内、JPG/GIF/PNG/MP4";
 
+                /* ファイルアップロード要素配置 */
                 confirm_area.appendChild(image_area);
 
                 /* ファイルアップロード要素配置 */
