@@ -633,6 +633,8 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
                 spanFilesizeRestrictionArea.classList.add("required");
                 spanFilesizeRestrictionArea.textContent = "※ファイルサイズ15MB以内、JPG/GIF/PNG/MP4";
 
+                confirm_area.appendChild(image_area);
+
                 /* ファイルアップロード要素配置 */
                 image_area.appendChild(divImagePartial);
 
@@ -655,7 +657,7 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
                 /* 確認画面送信ボタン要素作成 */
                 const divPostButton = create_button_parts(2);
                 confirm_area.appendChild(comment_area);
-                confirm_area.appendChild(image_area);
+                // confirm_area.appendChild(image_area);
                 confirm_area.appendChild(divPostButton); // confirm_area (親要素) の末尾に div を追加
                 const image_count = image_area.getElementsByClassName("changeImg").length;
                 if (image_count == 1) {
