@@ -633,15 +633,6 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
                 spanFilesizeRestrictionArea.classList.add("required");
                 spanFilesizeRestrictionArea.textContent = "※ファイルサイズ15MB以内、JPG/GIF/PNG/MP4";
 
-                /* ファイルアップロード要素配置 */
-                confirm_area.appendChild(image_area);
-
-                /* ファイルアップロード要素配置 */
-                image_area.appendChild(divImagePartial);
-
-                /* 名前要素配置 */
-                comment_area.appendChild(divNamePartialParts); // comment_area (親要素) の末尾に div を追加
-
                 /* 回答要素配置 */
                 comment_area.appendChild(divBodyPartialParts); // comment_area (親要素) の末尾に div を追加
 
@@ -652,8 +643,20 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
                 divUserArea.appendChild(divUserIcon); // div (子要素) の末尾に div を追加
                 comment_area.appendChild(divUserArea); // comment_area (親要素) の末尾に div を追加
 
+                /* 名前要素配置 */
+                comment_area.appendChild(divNamePartialParts); // comment_area (親要素) の末尾に div を追加
+
+                /* アップロードファイルサイズ制限事項要素配置 */
+                comment_area.appendChild(divFilesizeRestrictionArea);
+
                 /* アップロードファイルサイズ制限事項要素配置 */
                 divFilesizeRestrictionArea.appendChild(spanFilesizeRestrictionArea);
+
+                /* ファイルアップロード要素配置 */
+                comment_area.appendChild(image_area);
+
+                /* ファイルアップロード要素配置 */
+                image_area.appendChild(divImagePartial);
 
                 /* 確認画面送信ボタン要素作成 */
                 const divPostButton = create_button_parts(2);
