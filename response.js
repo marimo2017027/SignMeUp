@@ -183,8 +183,8 @@ const set_attach_event = function (fileAreaSelector, usericonIndex) {
             width = "90px";
         } else {
             maxsize = 15;
-            height = "350px";
-            width = "530px";
+            height = "301px";
+            width = "535px";
         }
         if (attach[i].files[0].size > maxsize * 1024 * 1024) {
             alert('ファイルサイズが ' + maxsize + 'MBバイトを超えています');
