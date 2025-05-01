@@ -601,8 +601,17 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
                 //divQuestionHeaderPartial.classList.add("questionHeader-partial");
                 //div.appendChild(child); // div の末尾に child を追加
 
-                /* 回答要素作成 */
+                /* タイトルラベル要素作成 */
+                // const comment_area = document.createElement("div");
+                const divTitleArea = document.createElement("div"); // div (子)を生成
+                divTitleArea.classList.add("title-area"); // classの追加
+                divTitleArea.textContent = "回答文"; //divタグにテキスト挿入
+
+                /* フルブロック要素作成 */
                 const comment_area = document.createElement("div");
+                comment_area.classList.add("fullblock-area"); // classの追加
+
+                /* 回答要素作成 */
                 const divBodyPartialParts = create_text_parts("answer-text-area", text_value);
 
                 /* アイコン画像要素作成 */
@@ -632,6 +641,9 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
                 const spanFilesizeRestrictionArea = document.createElement("span");
                 spanFilesizeRestrictionArea.classList.add("required");
                 spanFilesizeRestrictionArea.textContent = "※ファイルサイズ15MB以内、JPG/GIF/PNG/MP4";
+
+                /* タイトルラベル要素作成 */
+                confirm_area.appendChild(divTitleArea); // comment_area (親要素) の末尾に div を追加
 
                 /* 回答要素配置 */
                 comment_area.appendChild(divBodyPartialParts); // comment_area (親要素) の末尾に div を追加
