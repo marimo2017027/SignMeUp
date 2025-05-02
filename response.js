@@ -123,7 +123,9 @@ const create_image_parts = function (image_class, usericonIndex, usericonImg) {
                 // image_count++;
                 changeImg.classList.add("changeImg");
                 changeImg.style.height = "350px";
-                changeImg.style.width = "530px";
+                changeImg.style.width = "520px";
+                // Video要素の縦横比を変更する方法
+                changeImg.style.objectFit = "fill";
                 changeImg.src = blobUrl[i];
                 const divImageCameraIcon = document.createElement("div"); // div (孫)を生成
                 divImageCameraIcon.classList.add("image-camera-icon"); // classの追加
