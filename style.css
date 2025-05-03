@@ -1,11 +1,3 @@
-/*
-Theme Name: monomode
-Theme URL: https://nijiematome.net
-Description: secondary picture summary blog of cute anime game characters
-Author: 作者の名前 Takuya Inoue
-Version: 0.1
-*/
-
 /* ヘッダー画像の配置位置 */
 ul.header-box {
     margin: 0 auto;
@@ -1411,18 +1403,33 @@ input[type=radio] {
     color: #e52d77;
 }
 
-/* 雑談掲示板 入力画面ホバーボタンデザイン */
+/* 雑談掲示板 入力画面ボタンデザイン */
 button#submit_button {
     color: #fff;
-    background-color: #ea5692;
+    background-color: rgba(0, 0, 0, 0.4);
     font-size: 150%;
     font-weight: 700;
-    margin: 18px 0 5px 5px;
+    margin: 38px 38px 5px 1px;
     width: 280px;
     text-align: center;
     line-height: 49px;
 }
 
+/* 雑談掲示板 入力画面回転しているボタン */
+/* 雑談掲示板 入力画面ホバーボタンデザイン */
+button#submit_button:hover {
+    color: #fff;
+    background-color: #ea5692;
+    font-size: 150%;
+    font-weight: 700;
+    margin: 38px 38px 5px 1px;
+	height: 49px;
+    width: 280px;
+    text-align: center;
+    line-height: 49px;
+}
+
+/* 雑談掲示板 入力画面回転しているボタン */
 /* 雑談掲示板 入力画面ボタンデザイン */
 #submit_button:disabled {
     color: #fff;
@@ -1430,7 +1437,8 @@ button#submit_button {
     border: none;
     font-size: 150%;
     font-weight: 700;
-    margin: 18px 0 5px 5px;
+    margin: 38px 38px 5px 1px;
+	height: 49px;
     width: 280px;
     text-align: center;
     line-height: 49px;
@@ -1614,7 +1622,7 @@ div#feed4-layout {
     font-size: 25px;
 	display: inline-block;
 	vertical-align: top;
-	width: 1010px;
+	width: 1020px;
 	padding-right: 30px;
 }
 
@@ -1662,6 +1670,7 @@ div#feed4-layout {
     font-weight: 700;
     width: 1098px !important;
     /* margin-top: 25px; */
+	text-align: justify;
 }
 
 /* 雑談掲示板 回答画面アイコン画像配置位置 */
@@ -1696,7 +1705,7 @@ div#feed4-layout {
 
 /* 雑談掲示板 回答画面回答機能配置位置 */
 div#js_board_respond div#input_area form  {
-    margin-top: 50px;
+    margin-top: 20px;
 }
 
 /* 雑談掲示板 回答画面アイコン画像 */
@@ -1750,8 +1759,229 @@ to {
 }
 }
 
+/* 雑談掲示板 回答画面コメント一覧配置位置 */
+.main_container .placeholder-area {
+	margin-top: 45px;
+}
+
+/* 雑談掲示板 回答画面コメント一覧装飾 */
+.main_container .comments-composer {
+	margin-left: 5px;
+    font-size: 25px;
+    font-weight: 700;
+}
+
+/* 雑談掲示板 回答画面コメント定義 */
+textarea.rich-label {
+    background-color: #FCF2F4;
+    border: 2px solid #F7859C;
+    margin: 20px 0 20px 5px;
+    padding: 10px 0 10px 10px;
+    width: 98%;
+    height: 340px;
+    font-size: 150%;
+    font-weight: 700;
+    letter-spacing: .1em;
+}
+
+/* 雑談掲示板 回答画面コメント定義ホバー */
+textarea.rich-label:hover {
+    border: 2px solid #000;
+}
+
+/* 雑談掲示板 回答画面アイコン画像 */
+.board_respond div#input_area .user-area .user-icon {
+    padding: 5px 20px 10px 10px;
+    width: 110px;
+}
+
 /* 雑談掲示板 回答画面アイコン画像アップロード後 */
 .board_respond div#input_area .user-area .user-icon .hideItems {
 	padding: 5px 20px 10px 10px;
     width: 110px;
+}
+
+/* 雑談掲示板 回答画面名前定義 */
+.board_respond div#input_area .answer-name-area input {
+    background-color: #FCF2F4;
+    border: 2px solid #F7859C;
+    margin: 5px 0 20px 5px;
+    padding: 10px;
+    width: 985px;
+    font-size: 150%;
+    font-weight: 700;
+    letter-spacing: .1em;
+}
+
+/* 雑談掲示板 回答画面ファイルアップロードアイコン */
+.board_respond div#input_area .uploadfile-area .uploadfile-selector-button {
+    text-align: center;
+    margin-top: 10px;
+    margin-right: 20px;
+    /* margin-left: 5px; */
+    margin-bottom: 20px;
+    display: inline-block !important;
+    /* position: relative; */
+}
+
+/* 雑談掲示板 回答画面ファイルアップロード配置位置 */
+.board_respond div#input_area .uploadfile-area .uploadfile-selector-button .viewer {
+    padding-left: 3px;
+}
+
+/* 雑談掲示板 回答画面ファイルアップロード装飾 */
+.board_respond div#input_area .filesize-restriction-area {
+    margin-top: 50px;
+    font-size: 150%;
+    font-weight: 700;
+    letter-spacing: .1em;
+}
+
+/* 雑談掲示板 回答画面　キャンセルボタンデザイン */
+.board_respond div#input_area .cancel-button {
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.4);
+    border: none;
+    font-size: 150%;
+    font-weight: 700;
+    margin: 38px 38px 5px 1px;
+    width: 280px;
+    text-align: center;
+    line-height: 49px;
+}
+
+/* 雑談掲示板 回答画面　キャンセルボタンデザインホバー */
+.board_respond div#input_area .cancel-button:hover {
+    color: #fff;
+    background-color: #ea5692;
+    border: none;
+    font-size: 150%;
+    font-weight: 700;
+    margin: 38px 38px 5px 1px;
+    width: 280px;
+    text-align: center;
+    line-height: 49px;
+}
+
+/* 雑談掲示板 回答画面　確認画面へ進むボタンデザイン */
+.board_respond div#input_area .post-button {
+    display: inline-block;
+	border-bottom: 1px solid #F7859C;
+    width: 1070px;
+}
+
+/* 雑談掲示板 回答画面アイコン画像アップロード後 */
+.board_respond div#input_area .user-area .viewer {
+    padding: 5px 20px 10px 10px;
+    width: 110px;
+}
+
+/* 雑談掲示板 回答画面クリアボタン配置位置 */
+.board_respond div#input_area .uploadfile-area button.attachclear {
+    font-size: 140%;
+    font-weight: 700;
+    margin: 0 20px 0 0;
+}
+
+/* 雑談掲示板 回答画面確認画面タイトル配置位置 */
+.board_respond div#confirm_area .title-area {
+    font-size: 150%;
+    font-weight: 700;
+    margin: 30px 0 10px 0;
+}
+
+/* 雑談掲示板 回答画面確認画面フルブロック配置位置 */
+.board_respond div#confirm_area .fullblock-area {
+    border: 1.5px solid #F7859C;
+    font-size: 100%;
+    font-weight: 700;
+    letter-spacing: .1em;
+    vertical-align: top;
+    text-align: left;
+    padding: 10px;
+    width: 1098px !important;
+	text-align: justify;
+}
+
+/* 雑談掲示板 回答画面確認画面アイコン画像配置位置 */
+.board_respond div#confirm_area .answer-name-area {
+    margin-top: 20px;
+}
+
+/* 雑談掲示板 回答画面確認画面名前配置位置 */
+.board_respond div#confirm_area .answer-name-area img {
+	display: inline-block;
+	vertical-align: top;
+    font-size: 150%;
+    font-weight: 700;
+    letter-spacing: .1em;
+    margin-left: 20px;
+    width: 88%;
+}
+
+/* 雑談掲示板 回答画面確認画面名前装飾 */
+.board_respond div#confirm_area .answer-name-area p {
+	font-size: 150%;
+    font-weight: 700;
+    letter-spacing: .1em;
+    margin-left: 20px;
+    width: 88%;
+}
+
+/* 雑談掲示板 回答画面確認画面ファイルアップロード装飾 */
+.board_respond div#confirm_area .filesize-restriction-area {
+    font-size: 150%;
+    font-weight: 700;
+    margin-top: 33px;
+}
+
+/* 雑談掲示板 回答画面確認画面ファイルアップロードアイコン配置位置
+.board_respond div#confirm_area .uploadfile-area .image-camera-icon {
+    margin-top: 10px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    display: inline-block;
+} */
+
+/* 雑談掲示板 回答画面確認画面ファイルアップロードアイコン配置位置 */
+.board_respond div#confirm_area .uploadfile-area {
+	width: fit-content;
+    margin: 0 auto;
+    display: grid;
+    grid: auto-flow / 1fr 1fr;
+    gap: 20px;
+    /* border: solid red 3px; */
+    padding-top: 10px;
+    padding-right: 15px;
+}
+
+/* 雑談掲示板 回答画面確認画面ファイルアップロードボタンアンダーライン */
+.board_respond div#confirm_area .post-button {
+    border-bottom: 1px solid #F7859C;
+    width: 1070px;
+}
+
+/* 雑談掲示板 回答画面確認画面　キャンセルボタンデザイン */
+.board_respond div#confirm_area .post-button .answer-previous {
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.4);
+    border: none;
+    font-size: 150%;
+    font-weight: 700;
+    margin: 38px 38px 5px 1px;
+    width: 280px;
+    text-align: center;
+    line-height: 49px;
+}
+
+/* 雑談掲示板 回答画面確認画面ボタンデザイン */
+.board_respond div#confirm_area .post-button .answer-following {
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.4);
+    font-size: 150%;
+    font-weight: 700;
+    margin: 38px 38px 5px 1px;
+    width: 280px;
+    text-align: center;
+    line-height: 49px;
 }
