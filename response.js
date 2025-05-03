@@ -145,6 +145,7 @@ const create_button_parts = function (formType) {
 
     child = document.createElement("button"); // button (孫)を生成
     child.type = "button";
+    child.classList.add("answer-previous") // classの追加
     child.innerText = "入力画面へ戻る";
     child.addEventListener("click", () => {
         if (formType == 1) {
@@ -160,6 +161,7 @@ const create_button_parts = function (formType) {
     divPostButton.appendChild(child); // div (子要素) の末尾に child を追加
     child = document.createElement("button"); // button (孫)を生成
     child.type = "button";
+    child.classList.add("answer-following") // classの追加
     //name属性の追加・変更
     child.setAttribute("name", "output");
     child.innerText = "結果画面へ進む";
