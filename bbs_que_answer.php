@@ -122,6 +122,12 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
             // name属性の値を追加
             // formAnswerInputForm.setAttribute('name', 'answer_Input_form');
 
+            /* inputタグ要素作成 */
+            // const input = document.createElement("input");
+            // input要素のtype属性を操作 (input type="hidden" 非表示で値を送信)
+            // input.setAttribute("type", "hidden");
+            // input.value="'.$unique_id['unique_id'].'"
+
             /* divタグ要素作成 */
             const divUserArea = document.createElement("div");
             // class属性の値を追加
@@ -284,6 +290,11 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
 
             /* 回答入力フォーム要素配置位置 */
             // divInputArea.appendChild(formAnswerInputForm); // div (子要素) の末尾に form を追加
+
+            /* 質問（親）の id 取得配置位置 */
+            // 取得した時点でインデックス 0 のものを formAnswerInputForm に入れてしまう
+            // const formAnswerInputForm = document.getElementsByName('answer_Input_form')[0];
+            // formAnswerInputForm.appendChild(input); // form (孫要素) の末尾に input を追加
 
             /* 回答機能要素配置位置 */
             // 取得した時点でインデックス 0 のものを formAnswerInputForm に入れてしまう
