@@ -447,7 +447,7 @@ add_action('wp_ajax_nopriv_bbs_quest_submit', 'bbs_quest_submit');
 function bbs_answer_submit()
 {
     session_start();
-    $unique_id = $_POST['unique_id'];
+    $unique_id = substr($_SERVER['HTTP_REFERER'], -36);
     $text = $_POST['text'];
     $name = $_POST['name'];
     //$title = $_POST['title'];
