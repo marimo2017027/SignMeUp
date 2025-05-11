@@ -529,7 +529,7 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
     // });
     const input_area = document.getElementById("input_area");
     // const confirm_area = document.getElementById("confirm_area");
-    const result_area = document.getElementById("result_area");
+    // const result_area = document.getElementById("result_area");
     var name_value = "";
     var text_value = "";
     // 要素が3個の空配列を作成
@@ -721,6 +721,11 @@ $noimage_url = $upload_dir['baseurl'] . '/noimage.png';
                 // change3();
                 const buttons = document.querySelectorAll('.post-button');
                 buttons.forEach(x => x.style.display = "none");
+                // 確認画面と結果画面の親クラスで分ける 
+                const result_area = document.getElementById("result_area");
+                /* 質問文要素作成 */
+                const divQuestHeaderTitle = document.createElement("div");
+
             })
             .catch(error => {
                 console.log(error);
