@@ -766,18 +766,34 @@ function custom_user_register($request)
     }
     // 現在の時刻から10分後の日時を、Y-m-d H:i:s という形式で文字列にして、$expires に代入する
     // トークンと有効期限をDBに保存
-    $expires = date('Y-m-d H:i:s', strtotime('+10 minutes'));
+    $expires = date('Y-m-d H:i:s', strtotime('+5 minutes'));
 
     // $token という変数をメールアドレスに送信する
     $token = token_urlsafe(32);
 
+    function validate_input($params)
+{
+    $clean = [];
+
     // API 経由で送信された JSON データ（POST 本文）を配列として取得
     $params = $request->get_json_params();
 
+// 1. 入力データをサニタイズ（タグ除去・空白除去・HTMLエンティティ化）
+foreach ($params as $k => $v) {
+    $clean[$k] = Chk_StrMode($v); // 危険文字などを除去する
+}
+
+// 2. 必須項目が空なら、エラーメッセージは返さずステータスコードだけ返す
+if (empty($clean['namae']) || empty($clean['email'])) {
+    return new WP_REST_Response(null, 400); // HTTP 400 Bad Request
+}
+
+
+
     // ユーザー名を WordPress の基準に沿ってサニタイズ（不要な文字を取り除く）
-    $email = sanitize_email($params['email']);
-    $name = sanitize_user($params['name']);
-    $password = $params['password'];
+    // $email = sanitize_email($params['email']);
+    // $name = sanitize_user($params['name']);
+    // $password = $params['password'];
     // 任意の「認証コード」（たとえばメール認証などの代替）
     // $code = $params['code'];
 
