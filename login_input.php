@@ -1,3 +1,10 @@
+<?php
+/*
+Template Name: login_input
+固定ページ: ログイン画面
+*/
+?>
+
 <div class="bili-mini-login-right-wp">
     <div data-v-35ff7abe="" class="login-tab-wp">
         <div data-v-35ff7abe="" class="login-tab-item">

@@ -1,7 +1,7 @@
 <?php
 /*
 Template Name: login_index
-固定ページ: ログイン画面
+固定ページ: ログイン画面　文字列チェック
 */
 ?>
 
