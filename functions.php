@@ -447,7 +447,11 @@ add_action('wp_ajax_nopriv_bbs_quest_submit', 'bbs_quest_submit');
 function bbs_answer_submit()
 {
     session_start();
+<<<<<<< HEAD
     $unique_id = $_POST['unique_id'];
+=======
+    $unique_id = substr($_SERVER['HTTP_REFERER'], -36);
+>>>>>>> a24ce85d73c759df5ebe1be5422ac0fa224b893f
     $text = $_POST['text'];
     $name = $_POST['name'];
     //$title = $_POST['title'];
@@ -740,80 +744,48 @@ function my_scripts_method()
     );
 }
 add_action('wp_enqueue_scripts', 'my_scripts_method');
-
-
 /* WordPress の REST API が初期化されるタイミング（rest_api_init）で関数を実行するよう登録 */
 add_action('rest_api_init', function () {
-    // WordPress に REST API のエンドポイントを追加（/wp-json/custom-auth/v1/register）
-    // POST /wp-json/custom-auth/v1/register が実行されたときに、custom_user_register() 関数が呼ばれる
     register_rest_route('custom-auth/v1', '/register', [
         'methods' => 'POST',
-        // エンドポイントにアクセスがあったときに呼び出される関数名
         'callback' => 'custom_user_register',
-        // エンドポイントにアクセスできるかどうかの「認可チェック関数」
-        // 本番環境では __return_true を使うと 不正利用される可能性があるため注意。必要に応じて認証付きに変更することが望ましいです。
         'permission_callback' => '__return_true',
     ]);
 });
 
-/* POST /wp-json/custom-auth/v1/register に JSON データでアクセスされたときに実行される「ユーザー登録処理」*/
 function custom_user_register($request)
 {
-    // 32バイトの安全なランダムバイナリデータを生成。バイナリデータを Base64 に変換。Base64 の「+」「/」を、URLで安全な「-」「_」に変換（Base64URL形式）。末尾の =（パディング）を削除。
     function token_urlsafe($length = 32)
     {
         return rtrim(strtr(base64_encode(random_bytes($length)), '+/', '-_'), '=');
     }
-    // 現在の時刻から10分後の日時を、Y-m-d H:i:s という形式で文字列にして、$expires に代入する
-    // トークンと有効期限をDBに保存
-    $expires = date('Y-m-d H:i:s', strtotime('+5 minutes'));
 
-    // $token という変数をメールアドレスに送信する
+    $expires = date('Y-m-d H:i:s', strtotime('+5 minutes'));
     $token = token_urlsafe(32);
 
     function validate_input($params)
-{
-    $clean = [];
+    {
+        $clean = [];
 
-    // API 経由で送信された JSON データ（POST 本文）を配列として取得
-    $params = $request->get_json_params();
+        $params = $request->get_json_params();
 
-// 1. 入力データをサニタイズ（タグ除去・空白除去・HTMLエンティティ化）
-foreach ($params as $k => $v) {
-    $clean[$k] = Chk_StrMode($v); // 危険文字などを除去する
-}
+        foreach ($params as $k => $v) {
+            $clean[$k] = Chk_StrMode($v);
+        }
 
-// 2. 必須項目が空なら、エラーメッセージは返さずステータスコードだけ返す
-if (empty($clean['namae']) || empty($clean['email'])) {
-    return new WP_REST_Response(null, 400); // HTTP 400 Bad Request
-}
+        if (empty($clean['namae']) || empty($clean['email'])) {
+            return new WP_REST_Response(null, 400);
+        }
+    }
 
-
-
-    // ユーザー名を WordPress の基準に沿ってサニタイズ（不要な文字を取り除く）
-    // $email = sanitize_email($params['email']);
-    // $name = sanitize_user($params['name']);
-    // $password = $params['password'];
-    // 任意の「認証コード」（たとえばメール認証などの代替）
-    // $code = $params['code'];
-
-    // 認証コードをチェック（例：セッションやDB、ここでは仮で123456）
-    /* if ($code !== '123456') {
-        return new WP_REST_Response(['message' => '認証コードが正しくありません'], 400);
-    } */
-
-    // メールアドレスの形式が正しいかどうか（構文チェック）を確認
     if (!is_email($email)) {
         return new WP_REST_Response(['message' => 'メールアドレスが無効です'], 400);
     }
 
-    // すでに同名ユーザーがいないか確認
     if (username_exists($name)) {
         return new WP_REST_Response(['message' => 'この名前は既に使われています'], 400);
     }
 
-    // ユーザー作成
-    // 指定されたユーザー名・パスワードで WordPress ユーザーを新規作成。
     $user_id = wp_create_user($name, $password);
 
     if (is_wp_error($user_id)) {
@@ -822,3 +794,4 @@ if (empty($clean['namae']) || empty($clean['email'])) {
 
     return new WP_REST_Response(['message' => 'ユーザー登録に成功しました', 'user_id' => $user_id], 200);
 }
+

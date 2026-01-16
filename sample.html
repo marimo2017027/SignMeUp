@@ -1,0 +1,103 @@
+<div class="board_respond" id="js_board_respond">
+  <div id="input_area">
+    <form name="answer_Input_form">
+      <div class="user-area">
+        <label
+          ><div class="user-icon">
+            <img
+              src="http://www.irasuto.cfbx.jp/wp-content/uploads/noimage.png"
+              class="changeImg"
+              style="height: 90px; width: 90px"
+            /></div
+        ></label>
+        <div class="viewer" style="display: none"></div>
+        <button type="button" class="attachclear">clear</button>
+      </div>
+      <div class="answer-name-area">
+        <div class="parts">
+          <input
+            type="text"
+            name="name"
+            class="input"
+            id="name"
+            data-length="50"
+            data-minlength="0"
+            placeholder="未入力の場合は、匿名で表示されます"
+          />
+        </div>
+      </div>
+      <div class="filesize-restriction-area">
+        <span class="annotation"
+          >動画・画像をアップロード(Upload video・image)</span
+        ><span class="required">※ファイルサイズ15MB以内、JPG/GIF/PNG/MP4</span>
+      </div>
+      <div class="uploadfile-area">
+        <div class="uploadfile-selector-button">
+          <label
+            ><div class="uploadfile-camera-icon">
+              <img
+                src="http://www.irasuto.cfbx.jp/wp-content/uploads/camera.png"
+                class="changeImg"
+                style="height: 150px; width: 150px"
+              />
+            </div>
+            <input
+              class="attach"
+              name="attach[]"
+              data-maxsize="5"
+              accept=".png, .jpg, .jpeg, .pdf, .mp4"
+              style="display: none"
+          /></label>
+          <div class="viewer" style="display: none"></div>
+          <button type="button" class="attachclear">clear</button>
+        </div>
+        <div class="uploadfile-selector-button">
+          <label
+            ><div class="uploadfile-camera-icon">
+              <img
+                src="http://www.irasuto.cfbx.jp/wp-content/uploads/camera.png"
+                class="changeImg"
+                style="height: 150px; width: 150px"
+              />
+            </div>
+            <input
+              class="attach"
+              name="attach[]"
+              data-maxsize="5"
+              accept=".png, .jpg, .jpeg, .pdf, .mp4"
+              style="display: none"
+          /></label>
+          <div class="viewer" style="display: none"></div>
+          <button type="button" class="attachclear">clear</button>
+        </div>
+        <div class="uploadfile-selector-button">
+          <label
+            ><div class="uploadfile-camera-icon">
+              <img
+                src="http://www.irasuto.cfbx.jp/wp-content/uploads/camera.png"
+                class="changeImg"
+                style="height: 150px; width: 150px"
+              />
+            </div>
+            <input
+              class="attach"
+              name="attach[]"
+              data-maxsize="5"
+              accept=".png, .jpg, .jpeg, .pdf, .mp4"
+              style="display: none"
+          /></label>
+          <div class="viewer" style="display: none"></div>
+          <button type="button" class="attachclear">clear</button>
+        </div>
+      </div>
+      <div class="cancel-button">キャンセル</div>
+      <div class="post-button">
+        <button type="button" name="mode" id="submit_button" value="confirm">
+          確認画面へ進む
+        </button>
+      </div>
+    </form>
+    <div id="confirm_area"></div>
+    <div id="result_area"></div>
+  </div>
+</div>
