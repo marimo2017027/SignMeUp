@@ -6,349 +6,424 @@ Template Name: login_input
 ?>
 
 <div class="bili-mini-login-right-wp">
-    <div data-v-35ff7abe="" class="login-tab-wp">
-        <div data-v-35ff7abe="" class="login-tab-item">
-            <span style="vertical-align: inherit;">
-                <span style="vertical-align: inherit;">パスワードログイン</span>
-            </span>
-        </div>
-        <div data-v-35ff7abe="" class="login-tab-line"></div>
-        <div data-v-35ff7abe="" class="login-tab-item active-tab">
-            <span style="vertical-align: inherit;">
-                <span style="vertical-align: inherit;">SMSログイン</span>
-            </span>
-        </div>
 
+    <!-- タブ -->
+    <div class="login-tab-wp">
+        <div class="login-tab-item active-tab">新規登録</div>
+        <div class="login-tab-line"></div>
+        <div class="login-tab-item">ログイン</div>
+    </div>
 
-        <style>
-            /* フォーカスが当たった時の青枠を表示しない */
-            *:focus {
-                outline: none;
-            }
+    <style>
+        /* -------------------------------
+       基本設定
+    -------------------------------- */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
 
-            /* 項目名用のラベル（今回はラベルなしデザイン）
-        div.input-area label {
-            display: inline-block;
-            width: 8rem;
-            text-align: right;
-        } */
+        *:focus {
+            outline: none;
+        }
 
-            /* エラーメッセージのスタイル */
-            div.error-msg p {
-                color: #e52d77;
-                margin: 0 0 0 8rem;
-            }
+        .bili-mini-login-right-wp {
+            width: 100%;
+            max-width: 760px;
+            margin: 40px auto;
+            padding: 0 20px 40px;
+            font-family: "Hiragino Sans", "Yu Gothic", "Meiryo", sans-serif;
+            color: #444;
+        }
 
-            /* 入力欄 */
-            input[type="email"] {
-                line-height: 2em;
-            }
+        /* -------------------------------
+       タブ
+    -------------------------------- */
+        .login-tab-wp {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 26px;
+            margin: 0 auto 28px;
+        }
 
-            /* 入力エラーがあった時のスタイル（エラーがあった時は枠の色は分かりずらいので変更せずエラー文のみ表示させる）
-        .input-error {
+        .login-tab-item {
+            font-size: 18px;
+            font-weight: 600;
+            color: #d96a98;
+            cursor: pointer;
+            transition: color 0.2s ease, opacity 0.2s ease;
+        }
+
+        .login-tab-item.active-tab {
+            color: #e52d77;
+            font-weight: 700;
+        }
+
+        .login-tab-item:hover {
+            opacity: 0.85;
+        }
+
+        .login-tab-line {
+            width: 1px;
+            height: 24px;
+            background: #ead2dc;
+            flex: 0 0 auto;
+        }
+
+        /* -------------------------------
+       フォーム全体
+    -------------------------------- */
+        .register_form {
+            width: 100%;
+            max-width: 680px;
+            margin: 0 auto;
+            background: #fff;
+            border: 1px solid #e8e8e8;
+            border-radius: 18px;
+            overflow: hidden;
+        }
+
+        .form_item {
+            display: flex;
+            align-items: center;
+            min-height: 76px;
+            padding: 0 24px;
+            background: #fff;
+        }
+
+        .form_separator-line,
+        .form_delimiter-line {
+            width: 100%;
+            height: 1px;
+            background: #e8e8e8;
+        }
+
+        .form_label {
+            flex: 0 0 140px;
+            max-width: 140px;
+            font-size: 18px;
+            font-weight: 500;
+            color: #333;
+            white-space: nowrap;
+        }
+
+        .form_control {
+            flex: 1 1 auto;
+            min-width: 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .form_control_with_button {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .form_item input[type="text"],
+        .form_item input[type="email"],
+        .form_item input[type="password"],
+        .form_item input {
+            width: 100%;
+            min-width: 0;
+            height: 44px;
+            border: none;
+            background: transparent;
+            padding: 0;
+            font-size: 18px;
+            color: #444;
+            line-height: 44px;
+        }
+
+        .form_item input::placeholder {
+            color: #c7c7c7;
+        }
+
+        /* -------------------------------
+       認証コード取得ボタン
+    -------------------------------- */
+        .login-email-send {
+            flex: 0 0 180px;
+            height: 44px;
+            border: none;
+            border-left: 1px solid #e8e8e8;
+            background: #fff;
+            color: #e52d77;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: opacity 0.2s ease;
+            padding: 0 0 0 16px;
+            text-align: center;
+        }
+
+        .login-email-send:hover {
+            opacity: 0.85;
+        }
+
+        /* -------------------------------
+       エラーメッセージ
+    -------------------------------- */
+        .error-msg {
+            display: none;
+            padding: 10px 24px 14px 164px;
+            background: #fff;
+        }
+
+        .error-msg p {
+            margin: 0;
+            color: #e52d77;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        /* -------------------------------
+       下部ボタン
+    -------------------------------- */
+        .btn_wp {
+            display: flex;
+            justify-content: center;
+            max-width: 680px;
+            margin: 22px auto 0;
+        }
+
+        .btn_primary {
+            width: 100%;
+            max-width: 420px;
+            height: 48px;
+            border-radius: 10px;
             border: 1px solid #e52d77;
-            border-radius: 3px;
-            background-color: #FCC;
-        }  */
+            background: #e52d77;
+            color: #fff;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
 
-            /* クリック時に枠の色を変更 */
-            ○○○:hover {
-                border: 2px solid #000;
+        .btn_primary:hover {
+            background: #cc2067;
+            border-color: #cc2067;
+        }
+
+        .btn_primary:active {
+            transform: scale(0.98);
+        }
+
+        /* -------------------------------
+       ダイアログ
+    -------------------------------- */
+        .dialog__mask {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.45);
+            z-index: 9999;
+        }
+
+        .dialog__outline {
+            width: min(92%, 420px);
+            margin: 100px auto 0;
+            background: #fff;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.18);
+        }
+
+        .dialog__body {
+            padding: 24px;
+        }
+
+        .body__title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 16px;
+            text-align: center;
+        }
+
+        .body__captcha-img_wp {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .captcha-img__img {
+            flex: 1;
+            min-height: 90px;
+            background: #f7f7f7;
+            border-radius: 10px;
+        }
+
+        .captcha-img__btn {
+            flex: 0 0 90px;
+            min-height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #fff1f6;
+            color: #e52d77;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .body__captcha-input {
+            width: 100%;
+            height: 46px;
+            border: 1px solid #e8e8e8;
+            border-radius: 10px;
+            padding: 0 14px;
+            font-size: 16px;
+        }
+
+        .dialog__footer {
+            display: flex;
+            border-top: 1px solid #eeeeee;
+        }
+
+        .dialog__footer>div {
+            flex: 1;
+            min-height: 52px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .footer__submit_disabled {
+            background: #e52d77;
+            color: #fff;
+        }
+
+        /* -------------------------------
+       スマホ
+    -------------------------------- */
+        @media (max-width: 768px) {
+            .bili-mini-login-right-wp {
+                padding: 0 14px 32px;
+                margin-top: 24px;
             }
-        </style>
 
+            .login-tab-wp {
+                gap: 18px;
+                margin-bottom: 20px;
+            }
 
-        <div class="login-email">
-            <form method="post" class="register_form">
-                <div class="form_item">
-                    <!-- 入力された情報をサーバのAPIにPOSTで送信 -->
-                    <!-- <div id="input_form"> -->
-                    <!-- <div class="login-inputWrapper"></div> -->
-                    <!-- hiddenで生成したトークンを埋め込む -->
-                    <!-- oninputプロパティは一定時間操作が無かったら処理を実行させる関数 -->
-                    <!-- <input type="hidden" id="input-email" name="csrf_token" maxlength="255" value="'.$csrf_token.'" placeholder="メールアドレスを入力してください"> -->
-                    <input type="text" id="input-email" name="csrf_token" maxlength="255" placeholder="メールアドレスを入力してください">
+            .login-tab-item {
+                font-size: 16px;
+            }
 
-                    <div class="login-email_vertical-line"></div>
+            .form_item {
+                min-height: 68px;
+                padding: 0 16px;
+            }
 
-                    <!-- エラーメッセージを表示する -->
-                    <div id="error-msg-email" class="error-msg" style="display: none;"></div>
+            .form_label {
+                flex: 0 0 108px;
+                max-width: 108px;
+                font-size: 16px;
+            }
 
-                    <!-- 認証コードを取得するボタン -->
-                    <div class="login-email-send">
-                        <span style="vertical-align: inherit;">認証コードを取得する</span>
-                    </div>
-                </div>
+            .form_item input[type="text"],
+            .form_item input[type="email"],
+            .form_item input[type="password"],
+            .form_item input {
+                font-size: 16px;
+            }
 
-                <div class="form_delimiter-line"></div>
+            .login-email-send {
+                flex: 0 0 128px;
+                font-size: 14px;
+                padding-left: 10px;
+            }
 
-                <!-- 検証コード入力欄を追加する場所 -->
-                <div class="form_item optional">
-                    <div>
-                        <span style="vertical-align: inherit;">
-                            <span style="vertical-align: inherit;">検証コード</span>
-                        </span>
-                    </div>
-                    <input placeholder="認証コードを入力してください">
-                    <button type="button" id="form_submitVerification">送信</button>
-                </div>
-                <!-- </div> -->
-                <!-- </form> -->
-            </form>
-        </div>
+            .error-msg {
+                padding: 10px 16px 14px 124px;
+            }
 
+            .btn_primary {
+                max-width: 360px;
+                height: 46px;
+                font-size: 15px;
+            }
+        }
+    </style>
 
+    <form method="post" class="register_form">
 
-
-        <div class="form_separator-line"></div>
+        <!-- メールアドレス -->
         <div class="form_item">
-            <div>
-                <font style="vertical-align: inherit;">
-                    <font style="vertical-align: inherit;">ハンドルネーム</font>
-                </font>
-            </div><input placeholder="ハンドルネームを入力してください" maxlength="6" oninput="value=value.replace(/[^\d]/g, '')">
+            <div class="form_label">アカウント</div>
+
+            <div class="form_control form_control_with_button">
+                <input
+                    type="text"
+                    id="input-email"
+                    name="email"
+                    maxlength="255"
+                    placeholder="メールアドレスを入力してください">
+
+                <button type="button" id="login-email-send" class="login-email-send">
+                    認証コードを取得する
+                </button>
+            </div>
         </div>
 
-        <div class="form_separator-line"></div>
-        <div class="form_item">
-            <div>
-                <font style="vertical-align: inherit;">
-                    <font style="vertical-align: inherit;">検証コード</font>
-                </font>
-            </div><input placeholder="確認コードを入力してください" maxlength="32" oninput="value=value.replace(/[^\d]/g, '')">
+        <!-- エラーメッセージ -->
+        <div id="error-msg-email" class="error-msg" style="display: none;"></div>
+
+        <div class="form_delimiter-line"></div>
+
+        <!-- 検証コード -->
+        <div class="form_item optional">
+            <div class="form_label">検証コード</div>
+
+            <div class="form_control">
+                <input
+                    type="text"
+                    id="verification-code"
+                    name="verification_code"
+                    maxlength="32"
+                    placeholder="認証コードを入力してください">
+            </div>
         </div>
-        <input type="hidden" name="csrf_token" value="<?php echo $csrf_token; ?>" />
-        <!-- ↑追加 -->
-        <!-- </div> -->
-        </form>
+
+        <input type="hidden" name="csrf_token" value="<?php echo esc_attr($csrf_token); ?>">
+
+    </form>
+
+    <!-- 下部ボタン -->
+    <div class="btn_wp">
+        <button type="submit" class="btn_primary">登録/ログイン</button>
     </div>
 
-    <script>
-        // ------------------------------------------------------------
-        // メールアドレスの入力チェック（ここから）
-        // ------------------------------------------------------------
-
-        // メール入力欄を取得する
-        var inputEmail = document.getElementById('input-email'); // ← input の id="input-email"
-
-        // エラー表示領域を取得する（div）
-        var errMsgDivEmail = document.getElementById('error-msg-email'); // ← div の id="error-msg-email"
-
-        // エラー表示用の p を「1個だけ」使い回すための変数
-        var emailErrorP = null; // ← 初回は未生成なので null
-
-        /**
-         * エラーメッセージを「1回だけ」表示する関数（pは使い回す）
-         * @param {string} message 表示したい文言
-         */
-        function setEmailError(message) {
-            // エラー表示領域を表示する
-            errMsgDivEmail.style.display = "block"; // ← div を表示
-
-            // まだ p が無ければ生成して1回だけ append する
-            if (emailErrorP === null) { // ← 初回だけ通る
-                emailErrorP = document.createElement('p'); // ← p を作成
-                errMsgDivEmail.appendChild(emailErrorP); // ← div に追加（この1回だけ）
-            }
-
-            // 使い回しの p の中身を書き換える（増殖しない）
-            emailErrorP.textContent = message; // ← ここで文言を更新
-        }
-
-        /**
-         * エラーメッセージを消す関数（pは消さず、非表示＋文言クリア）
-         */
-        function clearEmailError() {
-            // エラー領域を非表示にする
-            errMsgDivEmail.style.display = "none"; // ← div を隠す
-
-            // p が存在する場合は文言だけ消す（p自体は使い回す）
-            if (emailErrorP !== null) { // ← p が生成済みなら
-                emailErrorP.textContent = ''; // ← テキストを空にする
-            }
-        }
-
-        /**
-         * メールアドレスの入力チェック
-         * ① 形式NG → 「無効なメールアドレスです。」
-         * ② 未入力 → 「メールアドレスが入力されていません。」
-         */
-        function validate_email() {
-
-            // 入力値を取得する（前後の空白も除去したいのでtrimする）
-            var val = (inputEmail.value || '').trim(); // ← ここでtrimした値を使う
-
-            // 入力欄の値もtrim後の値に置き換える（見た目上も空白を消す）
-            inputEmail.value = val; // ← blur時のtrimと同じ効果をここでも保証
-
-            // ② 未入力チェック（最優先：空なら形式チェックしない）
-            if (val === "") { // ← 空なら未入力エラー
-                setEmailError('メールアドレスが入力されていません。'); // ← ②を表示
-                return false; // ← NG
-            }
-
-            // メールアドレス形式チェック（RFC 5322 ベースの正規表現）
-            var regex = new RegExp(
-                "^(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+))\\]$"
-            ); // ← 末尾の「;;」は不要なので1つにしています
-
-            // ① 形式チェック（許容していない文字/形式ならここでNG）
-            if (!regex.test(val)) { // ← 形式がNGなら
-                setEmailError('無効なメールアドレスです。'); // ← ①を表示
-                return false; // ← NG
-            }
-
-            // ここまで来たらOKなのでエラーを消す
-            clearEmailError(); // ← エラー非表示にする
-
-            // OKを返す
-            return true; // ← OK
-        }
-
-        /**
-         * フォーカスが外れた場合のイベントハンドラ（blur）
-         * ※ blurのたびにエラーが増殖しないよう、validate_emailは「上書き表示」方式
-         */
-        inputEmail.addEventListener('blur', function() {
-            // 入力値をtrimして余計な空白を除去する
-            inputEmail.value = (inputEmail.value || '').trim(); // ← 空白だけ入力も防ぐ
-
-            // 入力チェックを実行する
-            validate_email(); // ← blurのたびに検証（ただし表示は増殖しない）
-        });
-
-        /**
-         * フォーカスが当たった場合のイベントハンドラ（focus）
-         * ※ 入力し直すときにエラーを一旦消したい場合
-         */
-        inputEmail.addEventListener('focus', function() {
-            // エラー表示を消す（pは残し、文言だけ消して非表示にする）
-            clearEmailError(); // ← children[0].remove() のように落ちない
-        });
-
-        // ------------------------------------------------------------
-        // メールアドレスの入力チェック（ここまで）
-        // ------------------------------------------------------------
-
-        const login_email_send = function() {
-            const loginEmailSend = document.getElementById("login-email-send");
-            // 2度押し禁止
-            loginEmailSend.disabled = true;
-        }
-
-        // 取得したボタンにクリックイベントを追加します。非同期関数は、ボタンがクリックされたときに実行される処理を記述します。
-        document.querySelectorAll(".login-email-send").addEventListener('click', async () => {
-            // 入力フォーム生成
-            /* divタグ要素作成 */
-            const divFormItemOptional = document.createElement('div');
-            // class属性の値を追加
-            divFormItemOptional.setAttribute('class', 'form_item optional');
-            /* divタグ要素作成 */
-            let div = document.createElement('div');
-            // 要素のスタイルを取得・設定
-            // span.style.verticalAlign = 'inherit';
-            /* spanタグ要素作成（<font> タグは HTML5では廃止です。） */
-            span = document.createElement('span');
-            // 要素のスタイルを取得・設定
-            // span.style.verticalAlign = 'inherit';
-            // タグにテキスト挿入
-            span.textContent = "検証コード";
-            /* inputタグ要素作成 */
-            let input = document.createElement("input");
-            input.placeholder = '認証コードを入力してください';
-
-            /* ワンタイムトークン入力画面要素配置位置 */
-            const formRegisterForm = document.querySelectorAll(".register_form");
-            formRegisterForm.appendChild(divFormItemOptional); // form (親要素) の末尾に div を追加
-
-            /* divタグ要素配置位置 */
-            divFormItemOptional.appendChild(div); // div (子要素) の末尾に div を追加
-
-            /* spanタグ要素配置位置 */
-            div.appendChild(span); // div (孫要素) の末尾に span を追加
-
-            /* inputタグ要素配置位置 */
-            divFormItemOptional.appendChild(input); // div (子要素) の末尾に input を追加
-
-
-            // すでにフォームがあれば削除
-            divFormItemOptional = "";
-
-            // サーバーにデータを送信する際に使用するオブジェクトを生成
-            // メールアドレス以外にハンドルネームとパスワードを入力させる場合
-            // const formData = new FormData(formRegisterForm);
-            // メールアドレスのみ入力させる場合
-            const formData = new FormData(inputEmail);
-            //オブジェクト内の既存のキーに新しい値を追加
-            formData.append("action", "bbs_login_input");
-            const opt = {
-                method: "post",
-                body: formData
-            }
-            // 非同期通信
-            // 送信先の URL（WordPress のカスタム REST API エンドポイント）
-            fetch('/wp-json/custom-auth/v1/register', {
-                    method: 'POST',
-                    // 「送るデータは JSON 形式ですよ」とサーバーに伝える
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({
-                        name: 'tanaka',
-                        password: 'secure_pass',
-                        code: '123456'
-                    })
-                })
-                .then(json => {
-                    if (json.error != "") {
-                        alert(json.error);
-                        return;
-                    }
-                    name_value = json.name;
-                    text_value = json.text;
-                })
-        })
-    </script>
-
-
-
-    <div data-v-327e145a="" class="btn_wp" style="justify-content: center;"><!---->
-        <div data-v-327e145a="" class="btn_primary ">
-            <font style="vertical-align: inherit;">
-                <font style="vertical-align: inherit;">ログイン/登録</font>
-            </font>
-        </div>
-    </div>
+    <!-- ダイアログ -->
     <div class="dialog__mask" style="display: none;">
         <div class="dialog__outline">
             <div class="dialog__body">
-                <div class="body__title">
-                    <font style="vertical-align: inherit;">
-                        <font style="vertical-align: inherit;">二次検証</font>
-                    </font>
-                </div>
+                <div class="body__title">二次検証</div>
+
                 <div class="body__captcha-img_wp">
-                    <div class="captcha-img__img"><!----></div>
-                    <div class="captcha-img__btn">
-                        <font style="vertical-align: inherit;">
-                            <font style="vertical-align: inherit;">1つ変更</font>
-                        </font>
-                    </div>
-                </div><input placeholder="画像の内容を入力してください" maxlength="5" class="body__captcha-input">
+                    <div class="captcha-img__img"></div>
+                    <div class="captcha-img__btn">1つ変更</div>
+                </div>
+
+                <input
+                    type="text"
+                    placeholder="画像の内容を入力してください"
+                    maxlength="5"
+                    class="body__captcha-input">
             </div>
+
             <div class="dialog__footer">
-                <div>
-                    <font style="vertical-align: inherit;">
-                        <font style="vertical-align: inherit;">キャンセル</font>
-                    </font>
-                </div>
-                <div class="footer__submit_disabled">
-                    <font style="vertical-align: inherit;">
-                        <font style="vertical-align: inherit;">もちろん</font>
-                    </font>
-                </div>
+                <div>キャンセル</div>
+                <div class="footer__submit_disabled">もちろん</div>
             </div>
         </div>
     </div>
-</div>
+
 </div>
