@@ -284,7 +284,7 @@ Template Name: login_input
             border-top: 1px solid #eeeeee;
         }
 
-        .dialog__footer>div {
+        .dialog_footer>div {
             flex: 1;
             min-height: 52px;
             display: flex;
