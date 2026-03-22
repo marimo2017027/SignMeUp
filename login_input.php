@@ -124,87 +124,111 @@ Template Name: login_input
     </div>
 
     <script>
-        // メールアドレスの入力チェック
-        var inputEmail = document.getElementById('input-email');
+        // ------------------------------------------------------------
+        // メールアドレスの入力チェック（ここから）
+        // ------------------------------------------------------------
+
+        // メール入力欄を取得する
+        var inputEmail = document.getElementById('input-email'); // ← input の id="input-email"
+
+        // エラー表示領域を取得する（div）
+        var errMsgDivEmail = document.getElementById('error-msg-email'); // ← div の id="error-msg-email"
+
+        // エラー表示用の p を「1個だけ」使い回すための変数
+        var emailErrorP = null; // ← 初回は未生成なので null
 
         /**
-         * フォーカスが外れた場合のイベントハンドラ
+         * エラーメッセージを「1回だけ」表示する関数（pは使い回す）
+         * @param {string} message 表示したい文言
          */
-        inputEmail.addEventListener('blur', function() {
-            // 入力されたメールアドレスを取得してトリム（データの不要な部分を削除し、必要な部分だけを残して値を設定し直す）して値を設定し直す
-            // 通常は値の設定前に文字列の先頭と末尾の空白を削除するためにトリムする必要があります。
-            inputEmail.value = inputEmail.value.trim();
+        function setEmailError(message) {
+            // エラー表示領域を表示する
+            errMsgDivEmail.style.display = "block"; // ← div を表示
 
-            // 入力チェック
-            // カスタムバリデーション名
-            validate_email();
-        });
-
-        /**
-         * メールアドレスの入力チェック
-         */
-        function validate_email() {
-
-            var val = inputEmail.value;
-
-            // 必須チェック
-            if (val == "") {
-                // エラーメッセージの作成
-                var err_msg = document.createElement('p');
-                err_msg.textContent = 'メールアドレスが入力されていません。';
-
-                // エラーメッセージの表示領域
-                // var err_msg_div = document.querySelectorAll('#error-msg-email');
-                var err_msg_div = document.getElementById('error-msg-email');
-
-                // エラーメッセージの表示領域を表示する
-                err_msg_div.style.display = "block";
-
-                // エラーメッセージの表示領域にエラーメッセージを追加
-                err_msg_div.appendChild(err_msg);
-
-                // 入力欄にinput-errorクラスを追加（入力フォームの色を変更）
-                // input_email.setAttribute('class', 'input-error');
-
-                return;
+            // まだ p が無ければ生成して1回だけ append する
+            if (emailErrorP === null) { // ← 初回だけ通る
+                emailErrorP = document.createElement('p'); // ← p を作成
+                errMsgDivEmail.appendChild(emailErrorP); // ← div に追加（この1回だけ）
             }
-            // メールアドレス形式チェック（RFC 5322 に準拠したメールアドレス正規表現 をベース）
-            var regex = new RegExp("^(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+))\\]$");;
-            if (!regex.test(val)) {
-                // エラーメッセージの作成
-                var err_msg = document.createElement('p');
-                err_msg.textContent = '無効なメールアドレスです。';
 
-                // エラーメッセージの表示領域
-                var err_msg_div = document.getElementById('error-msg-email');
+            // 使い回しの p の中身を書き換える（増殖しない）
+            emailErrorP.textContent = message; // ← ここで文言を更新
+        }
 
-                // エラーメッセージの表示領域を表示する
-                err_msg_div.style.display = "block";
+        /**
+         * エラーメッセージを消す関数（pは消さず、非表示＋文言クリア）
+         */
+        function clearEmailError() {
+            // エラー領域を非表示にする
+            errMsgDivEmail.style.display = "none"; // ← div を隠す
 
-                // エラーメッセージの表示領域にエラーメッセージを追加
-                err_msg_div.appendChild(err_msg);
-
-                // 入力欄にinput-errorクラスを追加（入力フォームの色を変更）
-                // input_email.setAttribute('class', 'input-error');
-
-                return;
+            // p が存在する場合は文言だけ消す（p自体は使い回す）
+            if (emailErrorP !== null) { // ← p が生成済みなら
+                emailErrorP.textContent = ''; // ← テキストを空にする
             }
         }
 
         /**
-         * フォーカスが当たった場合のイベントハンドラ
+         * メールアドレスの入力チェック
+         * ① 形式NG → 「無効なメールアドレスです。」
+         * ② 未入力 → 「メールアドレスが入力されていません。」
          */
-        input_email.addEventListener('focus', function() {
+        function validate_email() {
 
-            // input-errorクラスを削除
-            input_email.classList.remove('input-error');
+            // 入力値を取得する（前後の空白も除去したいのでtrimする）
+            var val = (inputEmail.value || '').trim(); // ← ここでtrimした値を使う
 
-            // エラーメッセージの表示領域を非表示にする
-            document.getElementById('error-msg-email').style.display = "none";
+            // 入力欄の値もtrim後の値に置き換える（見た目上も空白を消す）
+            inputEmail.value = val; // ← blur時のtrimと同じ効果をここでも保証
 
-            // エラーメッセージを削除
-            document.getElementById('error-msg-email').children[0].remove();
+            // ② 未入力チェック（最優先：空なら形式チェックしない）
+            if (val === "") { // ← 空なら未入力エラー
+                setEmailError('メールアドレスが入力されていません。'); // ← ②を表示
+                return false; // ← NG
+            }
+
+            // メールアドレス形式チェック（RFC 5322 ベースの正規表現）
+            var regex = new RegExp(
+                "^(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|\"(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21\\x23-\\x5b\\x5d-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])*\")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\\x01-\\x08\\x0b\\x0c\\x0e-\\x1f\\x21-\\x5a\\x53-\\x7f]|\\\\[\\x01-\\x09\\x0b\\x0c\\x0e-\\x7f])+))\\]$"
+            ); // ← 末尾の「;;」は不要なので1つにしています
+
+            // ① 形式チェック（許容していない文字/形式ならここでNG）
+            if (!regex.test(val)) { // ← 形式がNGなら
+                setEmailError('無効なメールアドレスです。'); // ← ①を表示
+                return false; // ← NG
+            }
+
+            // ここまで来たらOKなのでエラーを消す
+            clearEmailError(); // ← エラー非表示にする
+
+            // OKを返す
+            return true; // ← OK
+        }
+
+        /**
+         * フォーカスが外れた場合のイベントハンドラ（blur）
+         * ※ blurのたびにエラーが増殖しないよう、validate_emailは「上書き表示」方式
+         */
+        inputEmail.addEventListener('blur', function() {
+            // 入力値をtrimして余計な空白を除去する
+            inputEmail.value = (inputEmail.value || '').trim(); // ← 空白だけ入力も防ぐ
+
+            // 入力チェックを実行する
+            validate_email(); // ← blurのたびに検証（ただし表示は増殖しない）
         });
+
+        /**
+         * フォーカスが当たった場合のイベントハンドラ（focus）
+         * ※ 入力し直すときにエラーを一旦消したい場合
+         */
+        inputEmail.addEventListener('focus', function() {
+            // エラー表示を消す（pは残し、文言だけ消して非表示にする）
+            clearEmailError(); // ← children[0].remove() のように落ちない
+        });
+
+        // ------------------------------------------------------------
+        // メールアドレスの入力チェック（ここまで）
+        // ------------------------------------------------------------
 
         const login_email_send = function() {
             const loginEmailSend = document.getElementById("login-email-send");
