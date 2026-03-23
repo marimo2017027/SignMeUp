@@ -447,11 +447,7 @@ add_action('wp_ajax_nopriv_bbs_quest_submit', 'bbs_quest_submit');
 function bbs_answer_submit()
 {
     session_start();
-<<<<<<< HEAD
     $unique_id = $_POST['unique_id'];
-=======
-    $unique_id = substr($_SERVER['HTTP_REFERER'], -36);
->>>>>>> a24ce85d73c759df5ebe1be5422ac0fa224b893f
     $text = $_POST['text'];
     $name = $_POST['name'];
     //$title = $_POST['title'];
@@ -795,3 +791,50 @@ function custom_user_register($request)
     return new WP_REST_Response(['message' => 'ユーザー登録に成功しました', 'user_id' => $user_id], 200);
 }
 
+/* ===========================================================
+ * ここからログインシステムです
+ * =========================================================== */
+add_action('wp_ajax_nopriv_login_send_code', 'login_send_code_ajax');
+add_action('wp_ajax_login_send_code', 'login_send_code_ajax');
+
+function login_send_code_ajax()
+{
+    // nonceチェック
+    $nonce = isset($_POST['nonce']) ? sanitize_text_field(wp_unslash($_POST['nonce'])) : '';
+    if (!wp_verify_nonce($nonce, 'login_send_code')) {
+        wp_send_json_error(['message' => '不正なリクエストです。'], 403);
+    }
+
+    // メール取得
+    $email = isset($_POST['email']) ? sanitize_email(wp_unslash($_POST['email'])) : '';
+    if ($email === '') {
+        wp_send_json_error(['message' => 'メールアドレスが入力されていません。'], 400);
+    }
+
+    if (!is_email($email)) {
+        wp_send_json_error(['message' => '無効なメールアドレスです。'], 400);
+    }
+
+    // 6桁コード生成
+    if (session_status() !== PHP_SESSION_ACTIVE) {
+        session_start();
+    }
+
+    $code = (string) random_int(100000, 999999);
+    $_SESSION['login_email'] = $email;
+    $_SESSION['login_code'] = $code;
+    $_SESSION['login_code_expires'] = time() + 300; // 5分
+
+    // メール送信
+    $subject = '認証コードのお知らせ';
+    $message = "認証コードは {$code} です。\n5分以内に入力してください。";
+    $headers = ['Content-Type: text/plain; charset=UTF-8'];
+
+    $sent = wp_mail($email, $subject, $message, $headers);
+
+    if (!$sent) {
+        wp_send_json_error(['message' => '認証コードの送信に失敗しました。'], 500);
+    }
+
+    wp_send_json_success(['message' => '認証コードを送信しました。メールをご確認ください。']);
+}
