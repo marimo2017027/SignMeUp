@@ -453,8 +453,6 @@ header('X-FRAME-OPTIONS: SAMEORIGIN'); // クリックジャッキング対策
             </label>
         </div>
 
-        <input type="hidden" name="csrf_token" value="<?php echo esc_attr($csrf_token); ?>">
-
         <!-- 下部ボタン -->
         <div class="btn_wp">
             <button type="submit" class="btn_primary">登録/ログイン</button>
@@ -643,9 +641,9 @@ header('X-FRAME-OPTIONS: SAMEORIGIN'); // クリックジャッキング対策
         }
 
         // 認証コード取得ボタン
-        btnSend.addEventListener('click', async function() {
+        btnSend.addEventListener('click', async function(e) {
+            e.preventDefault();
 
-            // メールアドレスが不正なら送らない
             if (!validateEmail()) {
                 return;
             }
@@ -664,7 +662,12 @@ header('X-FRAME-OPTIONS: SAMEORIGIN'); // クリックジャッキング対策
                     credentials: 'same-origin'
                 });
 
-                const data = await response.json();
+                let data;
+                try {
+                    data = await response.json();
+                } catch (err) {
+                    throw new Error('サーバー応答の解析に失敗しました。');
+                }
 
                 if (!response.ok || !data.success) {
                     throw new Error(data?.data?.message || '認証コードの送信に失敗しました。');
@@ -684,7 +687,7 @@ header('X-FRAME-OPTIONS: SAMEORIGIN'); // クリックジャッキング対策
         // 例: form.submit() か fetch()
         // alert('入力チェックOKです。ここで登録/ログイン処理を呼び出します。');
         // 仮でこれだけでもOK
-        btnSubmit.addEventListener('click', function(e) {
+        btnSubmit.addEventListener('click', async function(e) {
             e.preventDefault();
 
             if (!validateEmail()) {
@@ -695,17 +698,44 @@ header('X-FRAME-OPTIONS: SAMEORIGIN'); // クリックジャッキング対策
                 return;
             }
 
-            if (agree && !agree.checked) {
-                const termsItem = document.querySelector('.terms_item');
-                if (termsItem) {
-                    termsItem.classList.add('is-error');
-                }
-                return;
-            }
-
             toggleLoading(btnSubmit, true, '送信中...');
 
-            document.querySelector('.register_form').submit();
+            try {
+                const fd = new FormData();
+                fd.append('action', 'login_submit');
+                fd.append('nonce', window.login_vars?.submit_nonce || '');
+                fd.append('email', inputEmail.value.trim());
+                fd.append('verification_code', inputCode.value.trim());
+                fd.append('agree', agree && agree.checked ? '1' : '0');
+
+                const response = await fetch(window.login_vars.ajax_url, {
+                    method: 'POST',
+                    body: fd,
+                    credentials: 'same-origin'
+                });
+
+                let data;
+                try {
+                    data = await response.json();
+                } catch (err) {
+                    throw new Error('サーバー応答の解析に失敗しました。');
+                }
+
+                if (!response.ok || !data.success) {
+                    throw new Error(data?.data?.message || '登録/ログインに失敗しました。');
+                }
+
+                if (data.data?.redirect) {
+                    window.location.href = data.data.redirect;
+                    return;
+                }
+
+                alert(data.data?.message || '登録/ログインが完了しました。');
+
+            } catch (error) {
+                alert(error.message || '登録/ログインに失敗しました。');
+                toggleLoading(btnSubmit, false);
+            }
         });
     });
 </script>

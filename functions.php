@@ -338,7 +338,17 @@ function send_smtp_email($phpmailer)
     $phpmailer->Password   = "takuya7530";
     $phpmailer->From       = "test@last.cfbx.jp";
     $phpmailer->FromName   = "test";
+
+    // 一時デバッグ
+    $phpmailer->SMTPDebug = 2;
+    $phpmailer->Debugoutput = function ($str, $level) {
+        error_log('SMTP DEBUG: ' . $str);
+    };
 }
+add_action('wp_mail_failed', function ($wp_error) {
+    error_log('wp_mail_failed: ' . $wp_error->get_error_message());
+    error_log(print_r($wp_error->get_error_data(), true));
+});
 
 function setToken()
 {
@@ -794,19 +804,30 @@ function custom_user_register($request)
 /* ===========================================================
  * ここからログインシステムです
  * =========================================================== */
-add_action('wp_ajax_nopriv_login_send_code', 'login_send_code_ajax');
-add_action('wp_ajax_login_send_code', 'login_send_code_ajax');
+add_action('wp_ajax_nopriv_login_submit', 'login_submit_ajax');
+add_action('wp_ajax_login_submit', 'login_submit_ajax');
 
-function login_send_code_ajax()
+function login_submit_ajax()
 {
+    error_log('login_submit_ajax: start');
+
     // nonceチェック
     $nonce = isset($_POST['nonce']) ? sanitize_text_field(wp_unslash($_POST['nonce'])) : '';
-    if (!wp_verify_nonce($nonce, 'login_send_code')) {
+    if (!wp_verify_nonce($nonce, 'login_submit')) {
+        error_log('login_submit_ajax: nonce failed');
         wp_send_json_error(['message' => '不正なリクエストです。'], 403);
     }
 
-    // メール取得
+    // セッション開始
+    if (session_status() !== PHP_SESSION_ACTIVE) {
+        session_start();
+    }
+
+    // 受け取り
     $email = isset($_POST['email']) ? sanitize_email(wp_unslash($_POST['email'])) : '';
+    $code  = isset($_POST['verification_code']) ? sanitize_text_field(wp_unslash($_POST['verification_code'])) : '';
+    $agree = isset($_POST['agree']) ? sanitize_text_field(wp_unslash($_POST['agree'])) : '0';
+
     if ($email === '') {
         wp_send_json_error(['message' => 'メールアドレスが入力されていません。'], 400);
     }
@@ -815,7 +836,112 @@ function login_send_code_ajax()
         wp_send_json_error(['message' => '無効なメールアドレスです。'], 400);
     }
 
-    // 6桁コード生成
+    if ($code === '') {
+        wp_send_json_error(['message' => '認証コードを入力してください。'], 400);
+    }
+
+    // send_code 側で保存したセッションと照合
+    $session_email   = isset($_SESSION['login_email']) ? (string) $_SESSION['login_email'] : '';
+    $session_code    = isset($_SESSION['login_code']) ? (string) $_SESSION['login_code'] : '';
+    $session_expires = isset($_SESSION['login_code_expires']) ? (int) $_SESSION['login_code_expires'] : 0;
+
+    if ($session_email === '' || $session_code === '' || $session_expires === 0) {
+        wp_send_json_error(['message' => '認証コードが発行されていません。'], 400);
+    }
+
+    if (!hash_equals($session_email, $email)) {
+        wp_send_json_error(['message' => '認証コードを送信したメールアドレスと一致しません。'], 400);
+    }
+
+    if (time() > $session_expires) {
+        unset($_SESSION['login_email'], $_SESSION['login_code'], $_SESSION['login_code_expires']);
+        wp_send_json_error(['message' => '認証コードの有効期限が切れています。'], 400);
+    }
+
+    if (!hash_equals($session_code, $code)) {
+        wp_send_json_error(['message' => '認証コードが正しくありません。'], 400);
+    }
+
+    // 既存ユーザー確認
+    $user = get_user_by('email', $email);
+
+    // 未登録なら新規作成（利用規約同意必須）
+    if (!$user) {
+        if ($agree !== '1') {
+            wp_send_json_error(['message' => '新規登録には利用規約への同意が必要です。'], 400);
+        }
+
+        // ユーザー名を生成（重複回避）
+        $base_login = sanitize_user(current(explode('@', $email)), true);
+        if ($base_login === '') {
+            $base_login = 'user';
+        }
+
+        $user_login = $base_login;
+        $i = 1;
+        while (username_exists($user_login)) {
+            $user_login = $base_login . $i;
+            $i++;
+        }
+
+        // パスワードレス運用でもWPユーザーにはパスワードを持たせる
+        $random_password = wp_generate_password(24, true, true);
+
+        $user_id = wp_create_user($user_login, $random_password, $email);
+
+        if (is_wp_error($user_id)) {
+            error_log('login_submit_ajax: user create failed ' . $user_id->get_error_message());
+            wp_send_json_error(['message' => '新規登録に失敗しました。'], 500);
+        }
+
+        // 同意ログをユーザーメタに保存（最低限）
+        update_user_meta($user_id, 'terms_agreed_at', current_time('mysql'));
+        update_user_meta($user_id, 'terms_agreed_ip', isset($_SERVER['REMOTE_ADDR']) ? sanitize_text_field(wp_unslash($_SERVER['REMOTE_ADDR'])) : '');
+        update_user_meta($user_id, 'terms_agreed_ua', isset($_SERVER['HTTP_USER_AGENT']) ? sanitize_textarea_field(wp_unslash($_SERVER['HTTP_USER_AGENT'])) : '');
+
+        $user = get_user_by('id', $user_id);
+    }
+
+    if (!$user || empty($user->ID)) {
+        wp_send_json_error(['message' => 'ユーザー情報の取得に失敗しました。'], 500);
+    }
+
+    // ログイン状態を作る
+    wp_set_current_user($user->ID);
+    wp_set_auth_cookie($user->ID, true);
+
+    // 使い捨て
+    unset($_SESSION['login_email'], $_SESSION['login_code'], $_SESSION['login_code_expires']);
+
+    wp_send_json_success([
+        'message'  => '登録/ログインが完了しました。',
+        'redirect' => home_url('/mypage/')
+    ]);
+}
+
+function login_send_code_ajax()
+{
+    error_log('login_send_code_ajax: start');
+
+    $nonce = isset($_POST['nonce']) ? sanitize_text_field(wp_unslash($_POST['nonce'])) : '';
+    error_log('login_send_code_ajax: nonce=' . $nonce);
+
+    if (!wp_verify_nonce($nonce, 'login_send_code')) {
+        error_log('login_send_code_ajax: nonce failed');
+        wp_send_json_error(['message' => '不正なリクエストです。'], 403);
+    }
+
+    $email = isset($_POST['email']) ? sanitize_email(wp_unslash($_POST['email'])) : '';
+    error_log('login_send_code_ajax: email=' . $email);
+
+    if ($email === '') {
+        wp_send_json_error(['message' => 'メールアドレスが入力されていません。'], 400);
+    }
+
+    if (!is_email($email)) {
+        wp_send_json_error(['message' => '無効なメールアドレスです。'], 400);
+    }
+
     if (session_status() !== PHP_SESSION_ACTIVE) {
         session_start();
     }
@@ -823,14 +949,17 @@ function login_send_code_ajax()
     $code = (string) random_int(100000, 999999);
     $_SESSION['login_email'] = $email;
     $_SESSION['login_code'] = $code;
-    $_SESSION['login_code_expires'] = time() + 300; // 5分
+    $_SESSION['login_code_expires'] = time() + 300;
 
-    // メール送信
+    error_log('login_send_code_ajax: code generated=' . $code);
+
     $subject = '認証コードのお知らせ';
     $message = "認証コードは {$code} です。\n5分以内に入力してください。";
     $headers = ['Content-Type: text/plain; charset=UTF-8'];
 
     $sent = wp_mail($email, $subject, $message, $headers);
+
+    error_log('login_send_code_ajax: wp_mail result=' . var_export($sent, true));
 
     if (!$sent) {
         wp_send_json_error(['message' => '認証コードの送信に失敗しました。'], 500);
@@ -838,3 +967,5 @@ function login_send_code_ajax()
 
     wp_send_json_success(['message' => '認証コードを送信しました。メールをご確認ください。']);
 }
+add_action('wp_ajax_nopriv_login_send_code', 'login_send_code_ajax');
+add_action('wp_ajax_login_send_code', 'login_send_code_ajax');
