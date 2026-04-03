@@ -330,14 +330,18 @@ add_action("phpmailer_init", "send_smtp_email");
 function send_smtp_email($phpmailer)
 {
     $phpmailer->isSMTP();
-    $phpmailer->Host       = "mail.last.cfbx.jp";
+    $phpmailer->Host       = 'mail.irasuto.cfbx.jp';
     $phpmailer->SMTPAuth   = true;
     $phpmailer->Port       = 587;
-    $phpmailer->SMTPSecure = "tls";
-    $phpmailer->Username   = "test@last.cfbx.jp";
-    $phpmailer->Password   = "takuya7530";
-    $phpmailer->From       = "test@last.cfbx.jp";
-    $phpmailer->FromName   = "test";
+    $phpmailer->SMTPSecure = 'tls';
+    // cPanelで作成した「メールアドレスそのもの」
+    $phpmailer->Username   = 'noreply@irasuto.cfbx.jp';
+    // cPanelでメールアカウントを作成した際に設定したパスワード
+    // $（ドルマーク）が含まれていると、それを 「変数」 と見なして中身を置き換えようするので注意
+    $phpmailer->Password   = 'tW5%QLgZS@m97X8VF%G@';
+    // cPanelで作った同じメールアドレス
+    $phpmailer->From       = 'test@last.cfbx.jp';
+    $phpmailer->FromName   = 'お絵描き民';
 
     // 一時デバッグ
     $phpmailer->SMTPDebug = 2;
